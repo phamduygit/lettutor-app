@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lettutor_app/contants.dart';
 
 class SliderPage extends StatelessWidget {
   const SliderPage({
@@ -16,24 +17,42 @@ class SliderPage extends StatelessWidget {
     return Container(
       color: Colors.white,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SvgPicture.asset(image),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: SvgPicture.asset(
+              image,
+              // height: MediaQuery.of(context).size.height * 0.5,
+              width: MediaQuery.of(context).size.width * 0.6,
+              // fit: BoxFit.fill,
+            ),
+          ),
           const SizedBox(height: 60),
-          Text(
-            title,
-            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+            child: Text(
+              title,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
           ),
           const SizedBox(
             height: 20,
           ),
-          Text(
-            description,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.normal,
-              letterSpacing: 0.7,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+            child: Text(
+              description,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+                letterSpacing: 0.7,
+              ),
+              textAlign: TextAlign.center,
             ),
-          )
+          ),
+          const SizedBox(height: 60),
         ],
       ),
     );
