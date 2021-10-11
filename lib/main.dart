@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/screens/OnBoarding/on_boarding.dart';
+// import 'package:lettutor_app/screens/OnBoarding/on_boarding.dart';
+
+import 'screens/Auth/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const OnBoardingScreen(),
+      home: const LoginScreen(),
     );
   }
 }

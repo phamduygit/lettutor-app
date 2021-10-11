@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/contants.dart';
-import 'package:lettutor_app/screens/OnBoarding/slider_page.dart';
+import 'package:lettutor_app/screens/OnBoarding/components/slider_page.dart';
 
-import 'bottom_on_boarding.dart';
+import 'components/bottom_on_boarding.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);

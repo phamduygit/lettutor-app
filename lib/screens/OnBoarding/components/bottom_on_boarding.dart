@@ -39,6 +39,9 @@ class BottomOnBoarding extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
+            if (_currentPage == _pages.length - 1) {
+
+            }
             _controller.nextPage(
               duration: const Duration(milliseconds: 500),
               curve: Curves.easeInOutQuint,
