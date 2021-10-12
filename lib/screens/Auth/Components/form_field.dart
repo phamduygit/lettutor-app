@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'default_button.dart';
 import 'secure_text_field.dart';
 
 class MyFormField extends StatefulWidget {
@@ -11,6 +12,11 @@ class MyFormField extends StatefulWidget {
 class _MyFormFieldState extends State<MyFormField> {
   final _text = TextEditingController();
   bool _validate = false;
+  void isClickLogin() {
+    setState(() {
+      _text.text.isEmpty ? _validate = true : _validate = false;
+    });
+  }
 
   @override
   void dispose() {
@@ -54,30 +60,19 @@ class _MyFormFieldState extends State<MyFormField> {
         ),
         const SizedBox(height: 15),
         const SecureTextField(),
-        const SizedBox(height: 20),
-        ElevatedButton(
-          onPressed: () {
-            setState(() {
-              _text.text.isEmpty ? _validate = true : _validate = false;
-            });
-          },
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.all(10),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
-          ),
-          child: Row(
-            children: const [
-              Spacer(),
-              Text(
-                "LOG IN",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24.0,
-                ),
-              ),
-              Spacer(),
-            ],
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            TextButton(
+              child: const Text("Forget Password?"),
+              onPressed: () {},
+            )
+          ],
+        ),
+        const SizedBox(height: 10),
+        DefaultButton(
+          content: 'LOG IN',
+          press: isClickLogin,
         ),
       ],
     );
