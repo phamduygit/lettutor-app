@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:lettutor_app/contants.dart';
-import 'package:lettutor_app/screens/Auth/Components/form_field.dart';
-
-import 'Components/border_icon_button.dart';
+import 'package:lettutor_app/screens/Auth/Components/login_form_field.dart';
+import 'package:lettutor_app/screens/Auth/register_screen.dart';
+import 'Components/introduction_app.dart';
+import 'Components/login_fb_gg.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -11,6 +11,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
@@ -18,21 +19,7 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset("assets/images/loginImage.png"),
-                const Text(
-                  "Say hello your English tutors",
-                  style: TextStyle(
-                    color: mainColor,
-                    fontSize: 24,
-                    fontWeight: FontWeight.w800,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const Text(
-                  "Become fluent faster through one on one video chat lessons tailored to your goals.",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-                  textAlign: TextAlign.center,
-                ),
+                const IntroductionApp(),
                 const SizedBox(height: 15),
                 const MyFormField(),
                 const SizedBox(height: 15),
@@ -45,21 +32,19 @@ class LoginScreen extends StatelessWidget {
                         "Sign up",
                         style: TextStyle(color: mainColor),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) {
+                            return const RegisterScreen();
+                          }),
+                        );
+                      },
                     )
                   ],
                 ),
                 const SizedBox(height: 15),
-                const Text("Or continue wiith"),
-                const SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    BorderIconButton(iconName: "assets/images/icons8-google.svg"),
-                    SizedBox(width: 20,),
-                    BorderIconButton(iconName: "assets/images/icons8-facebook.svg"),
-                  ],
-                ),
+                const LoginFacebookGoogle(),
               ],
             ),
           ),

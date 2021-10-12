@@ -15,11 +15,11 @@ class BorderIconButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100),
           border: Border.all(
             width: 1,
             color: mainColor,
           ),
+          shape: BoxShape.circle
         ),
         child: SvgPicture.asset(
           iconName,
