@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/screens/Auth/login_screen.dart';
-import 'package:lettutor_app/screens/Auth/register_screen.dart';
-// import 'package:lettutor_app/screens/OnBoarding/on_boarding.dart';
+// import 'package:lettutor_app/screens/Auth/login_screen.dart';
+import 'package:lettutor_app/screens/Home/home_screen.dart';
 
 // import 'screens/Auth/login_screen.dart';
 
@@ -20,8 +19,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        appBarTheme: const AppBarTheme(
+          centerTitle: false,
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+          elevation: 0,
+        ),
       ),
-      home: const LoginScreen(),
+      home: const HomeScreen(),
     );
   }
 }

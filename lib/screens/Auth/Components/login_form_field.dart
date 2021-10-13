@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/screens/Auth/Components/normal_form_field.dart';
+import 'package:lettutor_app/screens/Auth/Components/email_form_field.dart';
 import 'package:lettutor_app/screens/Auth/forgot_password.dart';
 import 'default_button.dart';
 import 'secure_text_field.dart';

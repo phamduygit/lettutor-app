@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'default_button.dart';
-import 'normal_form_field.dart';
+import 'email_form_field.dart';
 import 'secure_text_field.dart';
 
 class RegisterFormField extends StatefulWidget {
