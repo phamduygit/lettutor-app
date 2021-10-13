@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:lettutor_app/screens/Auth/login_screen.dart';
-import 'package:lettutor_app/screens/Home/home_screen.dart';
+import 'package:lettutor_app/screens/home/home_screen.dart';
+import 'package:lettutor_app/screens/setting/setting_screen.dart';
 
 // import 'screens/Auth/login_screen.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: const HomeScreen(),
+      home: const SettingScreen(),
     );
   }
 }

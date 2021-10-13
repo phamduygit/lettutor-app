@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/contants.dart';
-import 'package:lettutor_app/screens/OnBoarding/components/slider_page.dart';
+import 'package:lettutor_app/screens/on_boarding/components/slider_page.dart';
 
 import 'components/bottom_on_boarding.dart';
 
