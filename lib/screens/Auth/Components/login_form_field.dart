@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/screens/Auth/Components/email_form_field.dart';
 import 'package:lettutor_app/screens/Auth/forgot_password.dart';
+import 'package:lettutor_app/screens/auth/components/email_form_field.dart';
+import 'package:lettutor_app/screens/auth/components/secure_text_field.dart';
 import 'default_button.dart';
-import 'secure_text_field.dart';
 
 class MyFormField extends StatefulWidget {
   const MyFormField({Key? key}) : super(key: key);
@@ -13,18 +13,30 @@ class MyFormField extends StatefulWidget {
 
 class _MyFormFieldState extends State<MyFormField> {
   final _formKey = GlobalKey<FormState>();
+  String _email = "";
+  String _password = "";
   final TextEditingController password = TextEditingController();
+  void saveEmail(value) {
+    setState(() {
+      _email = value;
+    });
+  }
+  void savePassword(value) {
+    setState(() {
+      _password = value;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
       child: Column(
         children: [
-          const NormalFormField(
-              titleTextFiled: "EMAIL", placeHolder: "Enter your email"),
+          const EmailTextField(),
           const SizedBox(height: 15),
-          SecureTextField(
-              titleTextFiled: "PASSWORD", placeHolder: "Enter your password", password: password,),
+          PasswordTextField(
+            password: password,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -49,7 +61,7 @@ class _MyFormFieldState extends State<MyFormField> {
             press: () {
               if (_formKey.currentState!.validate()) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Processing Data')),
+                  const SnackBar(content: Text('Processing Data ')),
                 );
               }
             },

@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
-class ReEnterPasswordFormField extends StatefulWidget {
-  const ReEnterPasswordFormField({
-    Key? key, required this.titleTextFiled, required this.placeHolder, required this.password, required this.confirmPassword,
+class ReEnterPasswordTextField extends StatefulWidget {
+  const ReEnterPasswordTextField({
+    Key? key, required this.password, required this.confirmPassword,
   }) : super(key: key);
-  final String titleTextFiled;
-  final String placeHolder;
   final TextEditingController password;
   final TextEditingController confirmPassword;
   @override
-  State<ReEnterPasswordFormField> createState() => _ReEnterPasswordFormFieldState();
+  State<ReEnterPasswordTextField> createState() => _ReEnterPasswordTextFieldState();
 }
 
-class _ReEnterPasswordFormFieldState extends State<ReEnterPasswordFormField> {
+class _ReEnterPasswordTextFieldState extends State<ReEnterPasswordTextField> {
   bool showPassword = false;
   final _text = TextEditingController();
   bool validate = false;
@@ -28,10 +26,10 @@ class _ReEnterPasswordFormFieldState extends State<ReEnterPasswordFormField> {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
+          children: const [
             Text(
-              widget.titleTextFiled,
-              style: const TextStyle(color: Colors.black45),
+              "CONFIRM PASSWORD",
+              style: TextStyle(color: Colors.black45),
               textAlign: TextAlign.left,
             ),
           ],
@@ -42,7 +40,7 @@ class _ReEnterPasswordFormFieldState extends State<ReEnterPasswordFormField> {
           obscureText: !showPassword,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
-            hintText: widget.placeHolder,
+            hintText: "Re-enter your password",
             suffixIcon: SizedBox(
               height: 18.0,
               width: 18.0,

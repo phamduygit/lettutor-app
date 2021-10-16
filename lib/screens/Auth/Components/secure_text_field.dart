@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 
-class SecureTextField extends StatefulWidget {
-  const SecureTextField({
-    Key? key, required this.titleTextFiled, required this.placeHolder, required this.password,
+class PasswordTextField extends StatefulWidget {
+  const PasswordTextField({
+    Key? key, required this.password,
   }) : super(key: key);
-  final String titleTextFiled;
-  final String placeHolder;
   final TextEditingController password;
   @override
-  State<SecureTextField> createState() => _SecureTextFieldState();
+  State<PasswordTextField> createState() => _PasswordTextFieldState();
 }
 
-class _SecureTextFieldState extends State<SecureTextField> {
+class _PasswordTextFieldState extends State<PasswordTextField> {
   bool showPassword = false;
   final _text = TextEditingController();
   bool validate = false;
@@ -27,10 +25,10 @@ class _SecureTextFieldState extends State<SecureTextField> {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
+          children: const [
             Text(
-              widget.titleTextFiled,
-              style: const TextStyle(color: Colors.black45),
+              "PASSWORD",
+              style: TextStyle(color: Colors.black45),
               textAlign: TextAlign.left,
             ),
           ],
@@ -41,7 +39,7 @@ class _SecureTextFieldState extends State<SecureTextField> {
           obscureText: !showPassword,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
-            hintText: widget.placeHolder,
+            hintText: "Enter your password",
             suffixIcon: SizedBox(
               height: 18.0,
               width: 18.0,

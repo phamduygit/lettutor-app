@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 
-class NormalFormField extends StatelessWidget {
-  const NormalFormField(
-      {Key? key, required this.titleTextFiled, required this.placeHolder})
+class EmailTextField extends StatelessWidget {
+  const EmailTextField(
+      {Key? key,})
       : super(key: key);
-  final String titleTextFiled;
-  final String placeHolder;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
+          children: const [
             Text(
-              titleTextFiled,
-              style: const TextStyle(color: Colors.black45),
+              "EMAIL",
+              style: TextStyle(color: Colors.black45),
               textAlign: TextAlign.left,
             ),
           ],
@@ -23,9 +21,9 @@ class NormalFormField extends StatelessWidget {
         const SizedBox(height: 15),
         TextFormField(
           keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(
-            border: const OutlineInputBorder(),
-            hintText: placeHolder,
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: "Enter your email",
           ),
           validator: (value) {
             if (value == null || value.isEmpty) {
@@ -38,7 +36,9 @@ class NormalFormField extends StatelessWidget {
             }
             return null;
           },
-          
+          onSaved: (val) {
+            
+          },
         ),
       ],
     );
