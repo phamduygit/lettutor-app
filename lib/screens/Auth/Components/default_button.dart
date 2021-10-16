@@ -8,13 +8,11 @@ class DefaultButton extends StatelessWidget {
     required this.press,
   }) : super(key: key);
   final String content;
-  final Function press;
+  final VoidCallback press;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        press;
-      },
+      onPressed: press,
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.all(10),
         shape: RoundedRectangleBorder(

@@ -8,7 +8,7 @@ class Teacher {
   Teacher({
     required this.name,
     required this.specialties,
-    required this.avatar,
+    this.avatar = "",
     required this.rating,
     required this.interests,
     required this.description,

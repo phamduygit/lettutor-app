@@ -12,39 +12,50 @@ class MyFormField extends StatefulWidget {
 }
 
 class _MyFormFieldState extends State<MyFormField> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController password = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const NormalFormField(
-            titleTextFiled: "EMAIL", placeHolder: "Enter your email"),
-        const SizedBox(height: 15),
-        const SecureTextField(
-            titleTextFiled: "PASSWORD", placeHolder: "Enter your password"),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            TextButton(
-              child: const Text("Forget Password?"),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const ForgotPasswordScreen();
-                    },
-                  ),
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          const NormalFormField(
+              titleTextFiled: "EMAIL", placeHolder: "Enter your email"),
+          const SizedBox(height: 15),
+          SecureTextField(
+              titleTextFiled: "PASSWORD", placeHolder: "Enter your password", password: password,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                child: const Text("Forget Password?"),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const ForgotPasswordScreen();
+                      },
+                    ),
+                  );
+                },
+              )
+            ],
+          ),
+          const SizedBox(height: 10),
+          DefaultButton(
+            content: 'LOG IN',
+            press: () {
+              if (_formKey.currentState!.validate()) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Processing Data')),
                 );
-              },
-            )
-          ],
-        ),
-        const SizedBox(height: 10),
-        DefaultButton(
-          content: 'LOG IN',
-          press: () {},
-        ),
-      ],
+              }
+            },
+          ),
+        ],
+      ),
     );
   }
 }
