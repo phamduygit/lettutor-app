@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:lettutor_app/screens/Auth/login_screen.dart';
-// import 'package:lettutor_app/screens/home/home_screen.dart';
-// import 'package:lettutor_app/screens/setting/setting_screen.dart';
-
-import 'screens/Auth/login_screen.dart';
+import 'package:lettutor_app/screens/profile/profile_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +23,8 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: const LoginScreen(),
+      home: const ProfileScreen(),
     );
   }
 }
+

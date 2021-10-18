@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/contants.dart';
 
@@ -56,8 +57,7 @@ class TeacherCard extends StatelessWidget {
                                 children: List.generate(
                                   5,
                                   (index) => Container(
-                                    padding:
-                                        const EdgeInsets.only(right: 4),
+                                    padding: const EdgeInsets.only(right: 4),
                                     child: Icon(
                                       Icons.star,
                                       color: Colors.yellow[700],
@@ -68,13 +68,14 @@ class TeacherCard extends StatelessWidget {
                               ),
                             ],
                           ),
-                          IconButton(
+                          TextButton(
                             onPressed: () {},
-                            icon: const Icon(
+                            child: const Icon(
                               Icons.favorite_border,
-                              size: 20,
+                              size: 24,
                             ),
-                          ),
+                            style: TextButton.styleFrom(shape: const CircleBorder()),
+                          )
                         ],
                       ),
                       const SizedBox(height: 5),
@@ -86,8 +87,10 @@ class TeacherCard extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(right: 5),
                               child: Container(
-                                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                                child: const Text("English for Business", style: TextStyle(color: mainColor)),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 5, horizontal: 10),
+                                child: const Text("English for Business",
+                                    style: TextStyle(color: mainColor)),
                                 decoration: BoxDecoration(
                                   color: Colors.blue[200],
                                   borderRadius: BorderRadius.circular(20),
@@ -97,8 +100,10 @@ class TeacherCard extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(right: 5),
                               child: Container(
-                                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                                child: const Text("English for Kids", style: TextStyle(color: mainColor)),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 5, horizontal: 10),
+                                child: const Text("English for Kids",
+                                    style: TextStyle(color: mainColor)),
                                 decoration: BoxDecoration(
                                   color: Colors.blue[200],
                                   borderRadius: BorderRadius.circular(20),
@@ -108,8 +113,10 @@ class TeacherCard extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(right: 5),
                               child: Container(
-                                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                                child: const Text("Conversational", style: TextStyle(color: mainColor)),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 5, horizontal: 10),
+                                child: const Text("Conversational",
+                                    style: TextStyle(color: mainColor)),
                                 decoration: BoxDecoration(
                                   color: Colors.blue[200],
                                   borderRadius: BorderRadius.circular(20),

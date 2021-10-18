@@ -61,7 +61,7 @@ class _MyFormFieldState extends State<MyFormField> {
             press: () {
               if (_formKey.currentState!.validate()) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Processing Data ')),
+                  SnackBar(content: Text('Processing Data $_email $_password')),
                 );
               }
             },
