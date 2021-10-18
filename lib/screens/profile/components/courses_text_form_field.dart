@@ -53,7 +53,8 @@ class _CoursesTextFormFieldState extends State<CoursesTextFormField> {
         const SizedBox(height: 10),
         TextFormField(
           controller: value,
-          keyboardType: TextInputType.emailAddress,
+          maxLines: null,
+          keyboardType: TextInputType.multiline,
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
             hintText: "Chose courses you want to learn",
