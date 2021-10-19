@@ -41,6 +41,7 @@ dependencies:
   flutter_chips_input: ^1.10.0
   provider: ^6.0.1
   multi_select_flutter: ^4.0.0
+  readmore: ^2.1.0
 
 
 dev_dependencies:

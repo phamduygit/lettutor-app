@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/screens/profile/profile_screen.dart';
+import 'package:lettutor_app/screens/detail_teacher/detail_teacher.dart';
+// import 'package:lettutor_app/screens/home/home_screen.dart';
+// import 'package:lettutor_app/screens/profile/profile_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: const ProfileScreen(),
+      home: const DetailTeacher(),
     );
   }
 }
