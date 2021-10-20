@@ -92,6 +92,7 @@ class BookingDetailScreen extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
                           Text(
                             "Cancel",
@@ -113,6 +114,7 @@ class BookingDetailScreen extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
                           Text(
                             "Accept",

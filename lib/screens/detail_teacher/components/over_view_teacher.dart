@@ -44,7 +44,7 @@ class OverViewTeacher extends StatelessWidget {
             Row(
               children: [
                 SvgPicture.asset(
-                  "assets/images/viet-nam.svg",
+                  "assets/images/viet_nam.svg",
                   width: 30,
                   height: 15,
                 ),
