@@ -1,0 +1,87 @@
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:lettutor_app/contants.dart';
+import 'package:lettutor_app/models/pattern.dart';
+
+import 'time_button.dart';
+
+class DateButton extends StatelessWidget {
+  const DateButton({
+    Key? key,
+    required this.date,
+  }) : super(key: key);
+  final DateTime date;
+
+  @override
+  Widget build(BuildContext context) {
+    var fliterTime = schedules.where((i) => i.isAfter(DateTime.now())).toList();
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: ElevatedButton(
+        child: Row(
+          children: [
+            const Spacer(),
+            Text(
+              DateFormat('yyyy-MM-dd').format(date),
+              style: const TextStyle(fontSize: 18),
+            ),
+            const Spacer(),
+          ],
+        ),
+        onPressed: () {
+          showModalBottomSheet<void>(
+            context: context,
+            builder: (BuildContext context) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(defaultPadding),
+                      child: const Text(
+                        "Select your time!",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w500),
+                        textAlign: TextAlign.center,
+                      ),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: defaultPadding),
+                        child: GridView.count(
+                          crossAxisCount: 2,
+                          childAspectRatio: 3,
+                          children: List.generate(fliterTime.length,
+                              (index) => TimeButton(date: fliterTime[index])),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            barrierColor: Colors.transparent,
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.all(defaultPadding),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -4,6 +4,7 @@ import 'package:lettutor_app/contants.dart';
 import 'package:lettutor_app/models/pattern.dart';
 import 'package:readmore/readmore.dart';
 
+import 'booking_button.dart';
 import 'courses.dart';
 import 'option_button.dart';
 import 'over_view_teacher.dart';
@@ -53,25 +54,7 @@ class Body extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 15),
-                  ElevatedButton(
-                    child: Row(
-                      children: const [
-                        Spacer(),
-                        Text(
-                          "Booking",
-                          style: TextStyle(fontSize: 18),
-                        ),
-                        Spacer(),
-                      ],
-                    ),
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.all(defaultPadding),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
+                  BookingButton(today: DateTime.now()),
                   const SizedBox(height: 10),
                   ReadMoreText(
                     descriptionPattern,
@@ -123,4 +106,6 @@ class Body extends StatelessWidget {
     );
   }
 }
+
+
 
