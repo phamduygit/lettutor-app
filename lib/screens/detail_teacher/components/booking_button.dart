@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:lettutor_app/contants.dart';
+import 'package:lettutor_app/models/teacher.dart';
 
 import 'date_button.dart';
 
 class BookingButton extends StatelessWidget {
   const BookingButton({
-    Key? key, required this.today,
+    Key? key,
+    required this.today,
+    required this.teacher,
   }) : super(key: key);
   final DateTime today;
+  final Teacher teacher;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -49,13 +52,21 @@ class BookingButton extends StatelessWidget {
                   ),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: defaultPadding),
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
-                            DateButton(date: today),
-                            DateButton(date: today.add(const Duration(days: 1))),
-                            DateButton(date: today.add(const Duration(days: 2))),
+                            DateButton(
+                              date: today,
+                              teacher: teacher,
+                            ),
+                            DateButton(
+                                date: today.add(const Duration(days: 1)),
+                                teacher: teacher),
+                            DateButton(
+                                date: today.add(const Duration(days: 2)),
+                                teacher: teacher),
                           ],
                         ),
                       ),
@@ -79,5 +90,3 @@ class BookingButton extends StatelessWidget {
     );
   }
 }
-
-

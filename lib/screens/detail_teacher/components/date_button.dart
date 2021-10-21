@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lettutor_app/contants.dart';
 import 'package:lettutor_app/models/pattern.dart';
+import 'package:lettutor_app/models/teacher.dart';
 
 import 'time_button.dart';
 
@@ -9,9 +10,10 @@ class DateButton extends StatelessWidget {
   const DateButton({
     Key? key,
     required this.date,
+    required this.teacher,
   }) : super(key: key);
   final DateTime date;
-
+  final Teacher teacher;
   @override
   Widget build(BuildContext context) {
     var fliterTime = schedules.where((i) => i.isAfter(DateTime.now())).toList();
@@ -60,8 +62,13 @@ class DateButton extends StatelessWidget {
                         child: GridView.count(
                           crossAxisCount: 2,
                           childAspectRatio: 3,
-                          children: List.generate(fliterTime.length,
-                              (index) => TimeButton(date: fliterTime[index])),
+                          children: List.generate(
+                            fliterTime.length,
+                            (index) => TimeButton(
+                              date: fliterTime[index],
+                              teacher: teacher,
+                            ),
+                          ),
                         ),
                       ),
                     ),

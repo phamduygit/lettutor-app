@@ -1,18 +1,19 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/contants.dart';
 import 'package:lettutor_app/models/teacher.dart';
 
-class TeacherCard extends StatelessWidget {
-  const TeacherCard({
+class TutorCard extends StatelessWidget {
+  const TutorCard({
     Key? key,
     required this.teacher,
   }) : super(key: key);
+
   final Teacher teacher;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(defaultPadding),
+      padding: const EdgeInsets.only(top: 15.0),
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
@@ -53,33 +54,17 @@ class TeacherCard extends StatelessWidget {
                                   fontSize: 16,
                                 ),
                               ),
-                              const SizedBox(height: 5),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: List.generate(
-                                  5,
-                                  (index) => Container(
-                                    padding: const EdgeInsets.only(right: 4),
-                                    child: Icon(
-                                      Icons.star,
-                                      color: index < teacher.rating - 1
-                                          ? Colors.yellow[700]
-                                          : Colors.transparent,
-                                      size: 20,
-                                    ),
-                                  ),
-                                ),
-                              ),
                             ],
                           ),
-                          TextButton(
-                            onPressed: () {},
-                            child: const Icon(
-                              Icons.favorite_border,
-                              size: 24,
-                            ),
-                            style: TextButton.styleFrom(
-                                shape: const CircleBorder()),
+                          Row(
+                            children: [
+                              Text(teacher.rating.toString()),
+                              Icon(
+                                Icons.star_outlined,
+                                color: Colors.yellow[700],
+                                size: 16,
+                              )
+                            ],
                           )
                         ],
                       ),
@@ -97,10 +82,12 @@ class TeacherCard extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 5, horizontal: 10),
                                   child: Text(teacher.specialties[index],
-                                      style: const TextStyle(color: mainColor)),
+                                      style: const TextStyle(
+                                          color: mainColor)),
                                   decoration: BoxDecoration(
-                                    color: Colors.blue[200],
-                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.blue[100],
+                                    borderRadius:
+                                        BorderRadius.circular(20),
                                   ),
                                 ),
                               ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_app/models/teacher.dart';
+import 'package:lettutor_app/screens/detail_teacher/detail_teacher.dart';
 import 'components/end_drawer.dart';
 import 'components/recommended_tutors.dart';
 import 'components/teacher_card.dart';
@@ -30,14 +32,31 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
-          children: const [
-            UpComingLesson(),
-            SizedBox(height: 5),
-            RecommendedTutors(),
-            SizedBox(height: 5),
-            TeacherCard(),
-            TeacherCard(),
-            TeacherCard(),
+          children: [
+            const UpComingLesson(),
+            const SizedBox(height: 5),
+            const RecommendedTutors(),
+            const SizedBox(height: 5),
+            Column(
+              children: List.generate(
+                listTeacher.length,
+                (index) => GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailTeacher(
+                          teacher: listTeacher[index],
+                        ),
+                      ),
+                    );
+                  },
+                  child: TeacherCard(
+                    teacher: listTeacher[index],
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

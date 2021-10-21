@@ -29,7 +29,7 @@ class TitileAndChips extends StatelessWidget {
               (index) => Chip(
                 label: Text(
                   chipsContent[index],
-                  style: const TextStyle(color: mainColor),
+                  style: const TextStyle(color: mainColor, fontSize: 12),
                 ),
                 backgroundColor: Colors.blue[50],
               ),

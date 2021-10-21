@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:lettutor_app/models/teacher.dart';
 
 class OverViewTeacher extends StatelessWidget {
   const OverViewTeacher({
     Key? key,
+    required this.teacher,
   }) : super(key: key);
-
+  final Teacher teacher;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const CircleAvatar(
-          backgroundImage:
-              AssetImage("assets/images/avatar1.jpeg"),
+        CircleAvatar(
+          backgroundImage: AssetImage(teacher.avatar),
           radius: 45,
         ),
         const SizedBox(width: 10),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "April Corpuz",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: 18),
+            Text(
+              teacher.name,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
             const SizedBox(height: 5),
             Row(
@@ -49,8 +48,7 @@ class OverViewTeacher extends StatelessWidget {
                   height: 15,
                 ),
                 const SizedBox(width: 5),
-                const Text("Vietnam",
-                    style: TextStyle(fontSize: 16)),
+                const Text("Vietnam", style: TextStyle(fontSize: 16)),
               ],
             )
           ],

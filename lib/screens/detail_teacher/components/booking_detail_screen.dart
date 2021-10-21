@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lettutor_app/contants.dart';
+import 'package:lettutor_app/models/teacher.dart';
 import 'package:lettutor_app/screens/detail_teacher/components/over_view_teacher.dart';
 
 class BookingDetailScreen extends StatelessWidget {
-  const BookingDetailScreen({Key? key, required this.date}) : super(key: key);
+  const BookingDetailScreen(
+      {Key? key, required this.date, required this.teacher})
+      : super(key: key);
   final DateTime date;
+  final Teacher teacher;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +27,9 @@ class BookingDetailScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       const SizedBox(height: 30),
-                      const OverViewTeacher(),
+                      OverViewTeacher(
+                        teacher: teacher,
+                      ),
                       const SizedBox(height: 10),
                       const Divider(),
                       const SizedBox(height: 10),
