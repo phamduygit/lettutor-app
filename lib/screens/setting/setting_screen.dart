@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:lettutor_app/screens/auth/components/default_button.dart';
 import 'package:lettutor_app/contants.dart';
+import 'package:lettutor_app/screens/setting/session_history_screen.dart';
 
 import 'components/info_account.dart';
 import 'components/option_card.dart';
@@ -37,7 +38,14 @@ class SettingScreen extends StatelessWidget {
             OptionCard(
               icon: Icons.history,
               title: "Session History",
-              press: () {},
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SessionHistoryScreen(),
+                  ),
+                );
+              },
             ),
             OptionCard(
               icon: Icons.settings_outlined,
