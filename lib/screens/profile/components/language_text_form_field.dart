@@ -2,6 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:language_picker/language_picker.dart';
+import 'package:language_picker/language_picker_dropdown.dart';
+import 'package:language_picker/languages.dart';
 
 class LanguageTextFormField extends StatefulWidget {
   const LanguageTextFormField({
@@ -13,23 +16,13 @@ class LanguageTextFormField extends StatefulWidget {
 }
 
 class _LanguageTextFormFieldState extends State<LanguageTextFormField> {
-  var selectedLanguage = TextEditingController();
+  var _selectedLanguage = TextEditingController();
   List languages = [];
   @override
   void initState() {
-    selectedLanguage.text = "";
+    _selectedLanguage.text = "";
     super.initState();
   }
-
-  Future<void> readJson() async {
-    final String response =
-        await rootBundle.loadString('assets/json/languages.json');
-    final data = await json.decode(response);
-    setState(() {
-      languages = data;
-    });
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -50,15 +43,43 @@ class _LanguageTextFormFieldState extends State<LanguageTextFormField> {
           ],
         ),
         const SizedBox(height: 10),
-        // Autocomplete<String>(
-        //   optionsBuilder: (TextEditingValue textEditingValue) {
-        //     if (textEditingValue.text == '') {
-        //       return const Iterable<String>.empty();
-        //     }
-        //     return languages.where((element) => element.toString().contains(textEditingValue.text.toString()));
-        //   },
-        // )
+        TextFormField(
+          controller: _selectedLanguage,
+          keyboardType: TextInputType.none,
+          readOnly: true,
+          maxLines: null,
+          decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+            hintText: "Select your language",
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter some text';
+            }
+            return null;
+          },
+          onTap: () {_openLanguagePickerDialog();},
+        ),
       ],
     );
   }
+
+  void _openLanguagePickerDialog() => showDialog(
+        context: context,
+        builder: (context) => Theme(
+          data: Theme.of(context).copyWith(primaryColor: Colors.pink),
+          child: LanguagePickerDialog(
+            titlePadding: const EdgeInsets.all(8.0),
+            searchCursorColor: Colors.pinkAccent,
+            searchInputDecoration: InputDecoration(hintText: 'Search...'),
+            isSearchable: true,
+            title: const Text('Select your language'),
+            onValuePicked: (Language language) => setState(
+              () {
+                _selectedLanguage.text = language.name;
+              },
+            ),
+          ),
+        ),
+      );
 }

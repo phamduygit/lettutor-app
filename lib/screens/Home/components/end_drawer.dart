@@ -50,6 +50,14 @@ class EndDrawer extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const BecomeTeacher()));
             },
           ),
+          ListTile(
+            leading: const Icon(Icons.menu_book, color: Colors.black, size: 28,),
+            title: const Text('List of courses', style: TextStyle(fontSize: 16, color: Colors.black),),
+            onTap: () {
+              Navigator.pop(context);
+              // Navigator.push(context, MaterialPageRoute(builder: (context) => const BecomeTeacher()));
+            },
+          ),
         ],
       ),
     );

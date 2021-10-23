@@ -43,6 +43,7 @@ dependencies:
   multi_select_flutter: ^4.0.0
   readmore: ^2.1.0
   flutter_countdown_timer: ^4.1.0
+  language_picker: ^0.4.1
 
 
 dev_dependencies:

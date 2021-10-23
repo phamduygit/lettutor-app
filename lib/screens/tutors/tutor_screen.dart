@@ -55,6 +55,7 @@ class _TutorsState extends State<Tutors> {
       appBar: AppBar(
         title: const Text("Tutors"),
       ),
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
         child: Column(
