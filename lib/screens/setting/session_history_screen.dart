@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:lettutor_app/contants.dart';
 import 'package:lettutor_app/models/meeting.dart';
 

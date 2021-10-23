@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 class CountryTextFormField extends StatefulWidget {
   const CountryTextFormField({
-    Key? key,
+    Key? key, required this.title,
   }) : super(key: key);
-
+  final String title;
   @override
   State<CountryTextFormField> createState() => _CountryTextFormFieldState();
 }
@@ -25,10 +25,10 @@ class _CountryTextFormFieldState extends State<CountryTextFormField> {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
+          children: [
             Text(
-              "Country",
-              style: TextStyle(
+              widget.title,
+              style: const TextStyle(
                 color: Colors.black,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -40,10 +40,11 @@ class _CountryTextFormFieldState extends State<CountryTextFormField> {
         const SizedBox(height: 10),
         TextFormField(
           controller: countryName,
+          readOnly: true,
           keyboardType: TextInputType.emailAddress,
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
-            hintText: "Enter your name",
+            hintText: "Enter your country",
             suffixIcon: Icon(Icons.arrow_drop_down),
           ),
           validator: (value) {

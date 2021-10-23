@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/models/message.dart';
 import 'package:lettutor_app/models/people.dart';
 
 class DetailChat extends StatefulWidget {

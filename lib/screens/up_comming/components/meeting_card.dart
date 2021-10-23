@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lettutor_app/models/meeting.dart';
-import 'package:lettutor_app/models/message.dart';
-import 'package:lettutor_app/screens/home/home_screen.dart';
 import 'package:lettutor_app/screens/up_comming/video_call_screen.dart';
 
 class MeetingCard extends StatelessWidget {

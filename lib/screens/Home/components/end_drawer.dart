@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_app/screens/profile/become_teacher.dart';
+import 'package:lettutor_app/screens/profile/profile_screen.dart';
 
 class EndDrawer extends StatelessWidget {
   const EndDrawer({
@@ -37,12 +39,15 @@ class EndDrawer extends StatelessWidget {
             title: const Text('Profile', style: TextStyle(fontSize: 16, color: Colors.black),),
             onTap: () {
               Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen()));
             },
           ),
           ListTile(
-            title: const Text('Item 2'),
+            leading: const Icon(Icons.school, color: Colors.black, size: 28,),
+            title: const Text('Become A Tutor', style: TextStyle(fontSize: 16, color: Colors.black),),
             onTap: () {
               Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const BecomeTeacher()));
             },
           ),
         ],

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class CoursesTextFormField extends StatefulWidget {
   const CoursesTextFormField({
-    Key? key,
+    Key? key, required this.title, required this.hintText,
   }) : super(key: key);
-
+  final String title;
+  final String hintText;
   @override
   State<CoursesTextFormField> createState() => _CoursesTextFormFieldState();
 }
@@ -38,10 +39,10 @@ class _CoursesTextFormFieldState extends State<CoursesTextFormField> {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
+          children: [
             Text(
-              "Want to learn",
-              style: TextStyle(
+              widget.title,
+              style: const TextStyle(
                 color: Colors.black,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -53,11 +54,12 @@ class _CoursesTextFormFieldState extends State<CoursesTextFormField> {
         const SizedBox(height: 10),
         TextFormField(
           controller: value,
+          readOnly: true,
           maxLines: null,
           keyboardType: TextInputType.multiline,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            hintText: "Chose courses you want to learn",
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(),
+            hintText: widget.hintText,
           ),
           validator: (value) {
             if (value == null || value.isEmpty) {

@@ -58,6 +58,7 @@ class _LevelTextFormFieldState extends State<LevelTextFormField> {
         const SizedBox(height: 10),
         TextFormField(
           controller: level,
+          readOnly: true,
           keyboardType: TextInputType.emailAddress,
           decoration: const InputDecoration(
             border: OutlineInputBorder(),

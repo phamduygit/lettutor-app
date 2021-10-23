@@ -3,9 +3,9 @@ import 'package:intl/intl.dart';
 
 class BirthdayTextFormField extends StatefulWidget {
   const BirthdayTextFormField({
-    Key? key,
+    Key? key, required this.title,
   }) : super(key: key);
-
+  final String title;
   @override
   State<BirthdayTextFormField> createState() => _BirthdayTextFormFieldState();
 }
@@ -25,10 +25,10 @@ class _BirthdayTextFormFieldState extends State<BirthdayTextFormField> {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
+          children: [
             Text(
-              "Birthday",
-              style: TextStyle(
+              widget.title,
+              style: const TextStyle(
                 color: Colors.black,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/screens/messages/message_screen.dart';
+import 'package:lettutor_app/screens/home/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: const MessageScreen(),
+      home: const HomeScreen(),
     );
   }
 }
