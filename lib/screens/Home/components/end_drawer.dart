@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_app/screens/courses/courses_screen.dart';
 import 'package:lettutor_app/screens/profile/become_teacher.dart';
 import 'package:lettutor_app/screens/profile/profile_screen.dart';
 
@@ -55,7 +56,7 @@ class EndDrawer extends StatelessWidget {
             title: const Text('List of courses', style: TextStyle(fontSize: 16, color: Colors.black),),
             onTap: () {
               Navigator.pop(context);
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => const BecomeTeacher()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const CoursesScreen()));
             },
           ),
         ],
