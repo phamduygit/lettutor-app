@@ -58,51 +58,53 @@ class _TutorsState extends State<Tutors> {
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-        child: Column(
-          children: [
-            CupertinoSearchTextField(
-              controller: _textController,
-              prefixInsets:
-                  const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-              onChanged: (value) {
-                setState(() {
-                  filter();
-                });
-              },
-            ),
-            const SizedBox(height: 10),
-            SizedBox(
-              height: 40,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: List.generate(
-                  specifiers.length,
-                  (index) => Padding(
-                    padding: const EdgeInsets.only(right: 5),
-                    child: Center(
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedSpecifier = specifiers[index];
-                            filter();
-                          });
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 5, horizontal: 10),
-                          child: Text(
-                            specifiers[index],
-                            style: TextStyle(
-                              color: specifiers[index] == selectedSpecifier
-                                  ? mainColor
-                                  : Colors.black,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CupertinoSearchTextField(
+                controller: _textController,
+                prefixInsets:
+                    const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                onChanged: (value) {
+                  setState(() {
+                    filter();
+                  });
+                },
+              ),
+              const SizedBox(height: 10),
+              SizedBox(
+                height: 40,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: List.generate(
+                    specifiers.length,
+                    (index) => Padding(
+                      padding: const EdgeInsets.only(right: 5),
+                      child: Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedSpecifier = specifiers[index];
+                              filter();
+                            });
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 5, horizontal: 10),
+                            child: Text(
+                              specifiers[index],
+                              style: TextStyle(
+                                color: specifiers[index] == selectedSpecifier
+                                    ? mainColor
+                                    : Colors.black,
+                              ),
                             ),
-                          ),
-                          decoration: BoxDecoration(
-                            color: specifiers[index] == selectedSpecifier
-                                ? Colors.blue[100]
-                                : Colors.grey.withOpacity(0.3),
-                            borderRadius: BorderRadius.circular(20),
+                            decoration: BoxDecoration(
+                              color: specifiers[index] == selectedSpecifier
+                                  ? Colors.blue[100]
+                                  : Colors.grey.withOpacity(0.3),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
                           ),
                         ),
                       ),
@@ -110,28 +112,28 @@ class _TutorsState extends State<Tutors> {
                   ),
                 ),
               ),
-            ),
-            Column(
-              children: List.generate(
-                filterTeacher.length,
-                (index) => GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DetailTeacher(
-                          teacher: filterTeacher[index],
+              Column(
+                children: List.generate(
+                  filterTeacher.length,
+                  (index) => GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailTeacher(
+                            teacher: filterTeacher[index],
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                  child: TutorCard(
-                    teacher: filterTeacher[index],
+                      );
+                    },
+                    child: TutorCard(
+                      teacher: filterTeacher[index],
+                    ),
                   ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
