@@ -53,7 +53,10 @@ class _TutorsState extends State<Tutors> {
     ];
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Tutors"),
+        title: const Text(
+          "Tutors",
+          style: TextStyle(fontWeight: FontWeight.w500),
+        ),
       ),
       backgroundColor: Colors.white,
       body: Padding(

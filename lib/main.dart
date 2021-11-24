@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/my_tab_bar.dart';
-import 'package:lettutor_app/screens/home/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +20,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
           elevation: 0,
+          // titleTextStyle: TextStyle(fontWeight: FontWeight.w500),
         ),
       ),
       home: const MyTabBar(),
