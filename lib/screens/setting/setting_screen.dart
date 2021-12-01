@@ -15,7 +15,7 @@ class SettingScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           "Settings",
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.w500),
         ),
       ),
       backgroundColor: Colors.white,

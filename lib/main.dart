@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/my_tab_bar.dart';
+import 'package:lettutor_app/screens/Auth/login_screen.dart';
+import 'package:lettutor_app/screens/main_app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,8 +8,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
           // titleTextStyle: TextStyle(fontWeight: FontWeight.w500),
         ),
       ),
-      home: const MyTabBar(),
+      home: const MainApp(),
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/contants.dart';
+import 'package:lettutor_app/screens/auth/login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BottomOnBoarding extends StatelessWidget {
   const BottomOnBoarding({
@@ -7,11 +9,19 @@ class BottomOnBoarding extends StatelessWidget {
     required List<Widget> pages,
     required int currentPage,
     required PageController controller,
-  }) : _pages = pages, _currentPage = currentPage, _controller = controller, super(key: key);
+  })  : _pages = pages,
+        _currentPage = currentPage,
+        _controller = controller,
+        super(key: key);
 
   final List<Widget> _pages;
   final int _currentPage;
   final PageController _controller;
+  _incrementCounter() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int counter = 1;
+    await prefs.setInt('isOnBoarding', counter);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +36,7 @@ class BottomOnBoarding extends StatelessWidget {
               duration: const Duration(milliseconds: 300),
               height: 10,
               width: index == _currentPage ? 30 : 10,
-              margin:
-                  const EdgeInsets.symmetric(horizontal: 5, vertical: 30),
+              margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 30),
               decoration: BoxDecoration(
                 color: index == _currentPage
                     ? mainColor
@@ -40,7 +49,12 @@ class BottomOnBoarding extends StatelessWidget {
         GestureDetector(
           onTap: () {
             if (_currentPage == _pages.length - 1) {
-
+              _incrementCounter();
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
+              );
             }
             _controller.nextPage(
               duration: const Duration(milliseconds: 500),
@@ -51,10 +65,9 @@ class BottomOnBoarding extends StatelessWidget {
             duration: const Duration(milliseconds: 300),
             alignment: Alignment.center,
             height: 70,
-            width: _currentPage == _pages.length - 1 ? 200 : 70, 
+            width: _currentPage == _pages.length - 1 ? 200 : 70,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(35),
-                color: mainColor),
+                borderRadius: BorderRadius.circular(35), color: mainColor),
             child: _currentPage == _pages.length - 1
                 ? const Text("Get Started",
                     style: TextStyle(
