@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/screens/Auth/login_screen.dart';
 import 'package:lettutor_app/screens/main_app.dart';
 
 void main() {

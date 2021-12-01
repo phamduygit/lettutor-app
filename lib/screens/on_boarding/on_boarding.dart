@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/contants.dart';
 import 'package:lettutor_app/screens/on_boarding/components/slider_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import 'components/bottom_on_boarding.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -13,7 +11,6 @@ class OnBoardingScreen extends StatefulWidget {
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   final List<Widget> _pages = [
     const SliderPage(
       image: "assets/images/learnonline.svg",

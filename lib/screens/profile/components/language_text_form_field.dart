@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:language_picker/language_picker.dart';
-import 'package:language_picker/language_picker_dropdown.dart';
 import 'package:language_picker/languages.dart';
 
 class LanguageTextFormField extends StatefulWidget {
@@ -16,7 +13,7 @@ class LanguageTextFormField extends StatefulWidget {
 }
 
 class _LanguageTextFormFieldState extends State<LanguageTextFormField> {
-  var _selectedLanguage = TextEditingController();
+  final _selectedLanguage = TextEditingController();
   List languages = [];
   @override
   void initState() {
@@ -71,7 +68,7 @@ class _LanguageTextFormFieldState extends State<LanguageTextFormField> {
           child: LanguagePickerDialog(
             titlePadding: const EdgeInsets.all(8.0),
             searchCursorColor: Colors.pinkAccent,
-            searchInputDecoration: InputDecoration(hintText: 'Search...'),
+            searchInputDecoration: const InputDecoration(hintText: 'Search...'),
             isSearchable: true,
             title: const Text('Select your language'),
             onValuePicked: (Language language) => setState(
