@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/screens/Auth/login_screen.dart';
+import 'package:lettutor_app/screens/home/home_screen.dart';
+import 'package:lettutor_app/screens/my_tab_bar.dart';
 import 'package:lettutor_app/screens/on_boarding/on_boarding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,12 +13,15 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
-  int state = 1;
+  int isOnBoarding = 1;
+  int isLogin = 1;
   Future<void> initSharedPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int flag = (prefs.getInt('isOnBoarding') ?? 0);
+    int flag1 = (prefs.getInt('isOnBoarding') ?? 0);
+    int flag2 = (prefs.getInt('isLogin') ?? 0);
     setState(() {
-      state = flag;
+      isOnBoarding = flag1;
+      isLogin = flag2;
     });
   }
   @override
@@ -26,7 +31,10 @@ class _MainAppState extends State<MainApp> {
   }
   @override
   Widget build(BuildContext context) {
-    if (state == 1) {
+    if (isOnBoarding == 1) {
+      if (isLogin == 1) {
+        return const MyTabBar();
+      }
       return const LoginScreen();
     }
     return const OnBoardingScreen();

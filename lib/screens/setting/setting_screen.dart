@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 // import 'package:lettutor_app/screens/auth/components/default_button.dart';
 import 'package:lettutor_app/contants.dart';
+import 'package:lettutor_app/screens/auth/login_screen.dart';
 import 'package:lettutor_app/screens/setting/session_history_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'components/info_account.dart';
 import 'components/option_card.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({Key? key}) : super(key: key);
+
+  void _logOut() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int counter = 0;
+    await prefs.setInt('isLogin', counter);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +92,11 @@ class SettingScreen extends StatelessWidget {
                     Spacer(),
                   ],
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  _logOut();
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+                },
               ),
             ],
           ),

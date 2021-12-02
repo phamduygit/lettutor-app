@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class EmailTextField extends StatelessWidget {
-  const EmailTextField(
-      {Key? key,})
-      : super(key: key);
+  const EmailTextField({
+    Key? key,
+    required this.saveEmail,
+  }) : super(key: key);
+  final void Function(String) saveEmail;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,16 +30,17 @@ class EmailTextField extends StatelessWidget {
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'Please enter some text';
-            }
-            else {
-              if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value)) {
+            } else {
+              if (!RegExp(
+                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                  .hasMatch(value)) {
                 return 'Invalid email';
               }
             }
             return null;
           },
           onSaved: (val) {
-            
+            saveEmail(val!);
           },
         ),
       ],

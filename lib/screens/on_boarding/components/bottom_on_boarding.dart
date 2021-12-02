@@ -17,7 +17,7 @@ class BottomOnBoarding extends StatelessWidget {
   final List<Widget> _pages;
   final int _currentPage;
   final PageController _controller;
-  _incrementCounter() async {
+  _didOnBoarding() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int counter = 1;
     await prefs.setInt('isOnBoarding', counter);
@@ -49,7 +49,7 @@ class BottomOnBoarding extends StatelessWidget {
         GestureDetector(
           onTap: () {
             if (_currentPage == _pages.length - 1) {
-              _incrementCounter();
+              _didOnBoarding();
               Navigator.pop(context);
               Navigator.push(
                 context,

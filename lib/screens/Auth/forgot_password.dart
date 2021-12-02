@@ -12,6 +12,13 @@ class ForgotPasswordScreen extends StatefulWidget {
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final _formKey = GlobalKey<FormState>();
+  String _email = "";
+  void saveEmail(value) {
+    setState(() {
+      _email = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,14 +51,15 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 15),
-                const EmailTextField(),
+                EmailTextField(saveEmail: saveEmail),
                 const SizedBox(height: 15),
                 DefaultButton(
                   content: "SEND",
                   press: () {
                     if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Processing Data')),
+                        SnackBar(content: Text('Processing Data $_email')),
                       );
                     }
                   },

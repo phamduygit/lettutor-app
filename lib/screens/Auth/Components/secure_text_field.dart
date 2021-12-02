@@ -2,23 +2,16 @@ import 'package:flutter/material.dart';
 
 class PasswordTextField extends StatefulWidget {
   const PasswordTextField({
-    Key? key, required this.password,
+    Key? key, required this.savePassword,
   }) : super(key: key);
-  final TextEditingController password;
   @override
   State<PasswordTextField> createState() => _PasswordTextFieldState();
+  final void Function(String?) savePassword;
 }
 
 class _PasswordTextFieldState extends State<PasswordTextField> {
   bool showPassword = false;
-  final _text = TextEditingController();
-  bool validate = false;
 
-  @override
-  void dispose() {
-    _text.dispose();
-    super.dispose();
-  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,7 +28,6 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
         ),
         const SizedBox(height: 15),
         TextFormField(
-          controller: widget.password,
           obscureText: !showPassword,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
@@ -69,6 +61,9 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
               }
             }
             return null;
+          },
+          onSaved: (value) {
+            widget.savePassword(value);
           },
         ),
       ],

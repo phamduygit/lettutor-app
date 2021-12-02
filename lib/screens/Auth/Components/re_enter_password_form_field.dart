@@ -2,24 +2,16 @@ import 'package:flutter/material.dart';
 
 class ReEnterPasswordTextField extends StatefulWidget {
   const ReEnterPasswordTextField({
-    Key? key, required this.password, required this.confirmPassword,
+    Key? key, required this.password,
   }) : super(key: key);
-  final TextEditingController password;
-  final TextEditingController confirmPassword;
+  final String password;
   @override
   State<ReEnterPasswordTextField> createState() => _ReEnterPasswordTextFieldState();
 }
 
 class _ReEnterPasswordTextFieldState extends State<ReEnterPasswordTextField> {
   bool showPassword = false;
-  final _text = TextEditingController();
-  bool validate = false;
 
-  @override
-  void dispose() {
-    _text.dispose();
-    super.dispose();
-  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -36,7 +28,6 @@ class _ReEnterPasswordTextFieldState extends State<ReEnterPasswordTextField> {
         ),
         const SizedBox(height: 15),
         TextFormField(
-          controller: widget.confirmPassword,
           obscureText: !showPassword,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
@@ -68,7 +59,7 @@ class _ReEnterPasswordTextFieldState extends State<ReEnterPasswordTextField> {
               if (value.length < 8) {
                 return 'Password at least 8 charactor';
               }
-              if (value != widget.password.text) {
+              if (value != widget.password) {
                 return 'Confirm password does not match';
               }
             }
