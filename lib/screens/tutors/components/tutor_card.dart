@@ -33,7 +33,7 @@ class TutorCard extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundImage: AssetImage(teacher.avatar),
+                  backgroundImage: NetworkImage(teacher.avatar),
                   radius: 30,
                 ),
                 const SizedBox(width: 10),

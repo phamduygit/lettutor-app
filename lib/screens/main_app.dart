@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/screens/Auth/login_screen.dart';
-import 'package:lettutor_app/screens/home/home_screen.dart';
 import 'package:lettutor_app/screens/my_tab_bar.dart';
 import 'package:lettutor_app/screens/on_boarding/on_boarding.dart';
 import 'package:shared_preferences/shared_preferences.dart';

@@ -13,7 +13,7 @@ class OverViewTeacher extends StatelessWidget {
     return Row(
       children: [
         CircleAvatar(
-          backgroundImage: AssetImage(teacher.avatar),
+          backgroundImage: NetworkImage(teacher.avatar),
           radius: 45,
         ),
         const SizedBox(width: 10),

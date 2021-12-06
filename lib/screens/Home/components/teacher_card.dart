@@ -1,7 +1,12 @@
+// ignore_for_file: implementation_imports
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/contants.dart';
 import 'package:lettutor_app/models/teacher.dart';
+import 'package:lettutor_app/models/user.dart';
+import 'package:provider/src/provider.dart';
+
 
 class TeacherCard extends StatelessWidget {
   const TeacherCard({
@@ -32,7 +37,7 @@ class TeacherCard extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundImage: AssetImage(teacher.avatar),
+                  backgroundImage: NetworkImage(teacher.avatar),
                   radius: 30,
                 ),
                 const SizedBox(width: 10),
@@ -73,10 +78,13 @@ class TeacherCard extends StatelessWidget {
                             ],
                           ),
                           TextButton(
-                            onPressed: () {},
-                            child: const Icon(
-                              Icons.favorite_border,
+                            onPressed: () {
+                              context.read<User>().like(teacher.id);
+                            },
+                            child: Icon(
+                              context.watch<User>().isFavorite(teacher.id) ? Icons.favorite : Icons.favorite_border,
                               size: 24,
+                              color: Colors.red,
                             ),
                             style: TextButton.styleFrom(
                                 shape: const CircleBorder()),

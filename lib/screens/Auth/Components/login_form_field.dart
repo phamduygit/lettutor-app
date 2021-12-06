@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_app/screens/Auth/forgot_password.dart';
 import 'package:lettutor_app/screens/auth/components/email_form_field.dart';
 import 'package:lettutor_app/screens/auth/components/secure_text_field.dart';
-import 'package:lettutor_app/screens/home/home_screen.dart';
 import 'package:lettutor_app/screens/my_tab_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'default_button.dart';
