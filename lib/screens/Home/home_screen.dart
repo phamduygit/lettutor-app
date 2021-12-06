@@ -13,58 +13,53 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => User(favorites: [])),
-      ],
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "Home",
-            style: TextStyle(fontWeight: FontWeight.w500),
-          ),
-          actions: [
-            Builder(
-              builder: (context) => IconButton(
-                icon: const CircleAvatar(
-                  backgroundImage: AssetImage("assets/images/avatar.jpeg"),
-                ),
-                onPressed: () => Scaffold.of(context).openEndDrawer(),
-              ),
-            ),
-          ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Home",
+          style: TextStyle(fontWeight: FontWeight.w500),
         ),
-        endDrawer: const EndDrawer(),
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              const UpComingLesson(),
-              const SizedBox(height: 5),
-              const RecommendedTutors(),
-              const SizedBox(height: 5),
-              Column(
-                children: List.generate(
-                  listTeacher.length,
-                  (index) => GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DetailTeacher(
-                            teacher: listTeacher[index],
-                          ),
+        actions: [
+          Builder(
+            builder: (context) => IconButton(
+              icon:  CircleAvatar(
+                backgroundImage: NetworkImage(context.watch<User>().avatar),
+              ),
+              onPressed: () => Scaffold.of(context).openEndDrawer(),
+            ),
+          ),
+        ],
+      ),
+      endDrawer: const EndDrawer(),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const UpComingLesson(),
+            const SizedBox(height: 5),
+            const RecommendedTutors(),
+            const SizedBox(height: 5),
+            Column(
+              children: List.generate(
+                listTeacher.length,
+                (index) => GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailTeacher(
+                          teacher: listTeacher[index],
                         ),
-                      );
-                    },
-                    child: TeacherCard(
-                      teacher: listTeacher[index],
-                    ),
+                      ),
+                    );
+                  },
+                  child: TeacherCard(
+                    teacher: listTeacher[index],
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

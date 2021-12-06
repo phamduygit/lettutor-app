@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/contants.dart';
+import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/screens/profile/components/edit_photo.dart';
 import 'birthday_text_form_field.dart';
 import 'country_text_form_field.dart';

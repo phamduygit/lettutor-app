@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/contants.dart';
+import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/models/teacher.dart';
 import 'package:readmore/readmore.dart';
 import 'components/booking_button.dart';

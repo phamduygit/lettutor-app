@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/screens/Auth/forgot_password.dart';
 import 'package:lettutor_app/screens/auth/components/email_form_field.dart';
 import 'package:lettutor_app/screens/auth/components/secure_text_field.dart';
 import 'package:lettutor_app/screens/my_tab_bar.dart';
+import 'package:lettutor_app/service/provider/user_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'default_button.dart';
 
@@ -29,11 +31,12 @@ class _MyFormFieldState extends State<MyFormField> {
       _password = value;
     });
   }
-  _didLogin() async {
+
+  _didLogin(String userID) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int counter = 1;
-    await prefs.setInt('isLogin', counter);
+    await prefs.setString('currentUserID', userID);
   }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -64,17 +67,25 @@ class _MyFormFieldState extends State<MyFormField> {
           const SizedBox(height: 10),
           DefaultButton(
             content: 'LOG IN',
-            press: () {
+            press: () async {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Processing Data $_email $_password')),
+                User newUser = User(
+                  id: _email,
+                  fullName: _email,
+                  email: _email,
+                  favorites: [],
                 );
-                if (_email == "admin@gmail.com" && _password == "123456789") {
-                  _didLogin();
-                  // Navigator.pop(context);
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const MyTabBar()));
+                if (await UserProvider().isNotExists(newUser)) {
+                  await UserProvider().insert(newUser);
+                } else {
+
                 }
+                _didLogin(newUser.id);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyTabBar()),
+                );
               }
             },
           ),

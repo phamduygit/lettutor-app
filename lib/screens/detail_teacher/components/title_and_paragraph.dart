@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/contants.dart';
+import 'package:lettutor_app/constants/app_constants.dart';
 
 class TitleAndParagraph extends StatelessWidget {
   const TitleAndParagraph({

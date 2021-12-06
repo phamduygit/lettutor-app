@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/contants.dart';
+import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/screens/Auth/Components/login_form_field.dart';
 import 'package:lettutor_app/screens/Auth/register_screen.dart';
 import 'Components/introduction_app.dart';
@@ -17,7 +17,6 @@ class LoginScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
           child: SingleChildScrollView(
             child: Column(
-              // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const IntroductionApp(),
                 const SizedBox(height: 15),

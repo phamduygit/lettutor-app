@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/contants.dart';
+import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/models/review.dart';
 import 'package:lettutor_app/screens/detail_teacher/components/review_card.dart';
 

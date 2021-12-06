@@ -5,7 +5,7 @@ import 'package:lettutor_app/screens/on_boarding/on_boarding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MainApp extends StatefulWidget {
-  const MainApp({ Key? key }) : super(key: key);
+  const MainApp({Key? key}) : super(key: key);
 
   @override
   _MainAppState createState() => _MainAppState();
@@ -13,28 +13,31 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   int isOnBoarding = 1;
-  int isLogin = 1;
+  String currentUserID = "";
   Future<void> initSharedPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int flag1 = (prefs.getInt('isOnBoarding') ?? 0);
-    int flag2 = (prefs.getInt('isLogin') ?? 0);
+    String userID = (prefs.getString('currentUserID') ?? "");
     setState(() {
       isOnBoarding = flag1;
-      isLogin = flag2;
+      currentUserID = userID;
     });
   }
+
   @override
   void initState() {
     super.initState();
     initSharedPreferences();
   }
+
   @override
   Widget build(BuildContext context) {
+    print(currentUserID);
     if (isOnBoarding == 1) {
-      if (isLogin == 1) {
+      if (currentUserID != "") {
         return const MyTabBar();
       }
-      return const LoginScreen();
+      return const MyTabBar();
     }
     return const OnBoardingScreen();
   }

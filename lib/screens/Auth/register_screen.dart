@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/contants.dart';
+import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/screens/Auth/Components/introduction_app.dart';
 import 'package:lettutor_app/screens/Auth/Components/login_fb_gg.dart';
 import 'package:lettutor_app/screens/Auth/Components/register_form_field.dart';
