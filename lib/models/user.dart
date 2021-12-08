@@ -9,7 +9,7 @@ class User extends ChangeNotifier{
   User({
     this.id = "1",
     this.fullName = "",
-    this.avatar = "https://cdn-icons-png.flaticon.com/512/848/848043.png",
+    this.avatar = "https://images.unsplash.com/photo-1565604113656-e92be3ec1b15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     this.email = "",
     required this.favorites,
   });

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_app/models/local_app_sp.dart';
 import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/screens/Auth/forgot_password.dart';
 import 'package:lettutor_app/screens/auth/components/email_form_field.dart';
 import 'package:lettutor_app/screens/auth/components/secure_text_field.dart';
 import 'package:lettutor_app/screens/my_tab_bar.dart';
 import 'package:lettutor_app/service/provider/user_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'default_button.dart';
 
@@ -32,11 +34,6 @@ class _MyFormFieldState extends State<MyFormField> {
     });
   }
 
-  _didLogin(String userID) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('currentUserID', userID);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -50,7 +47,8 @@ class _MyFormFieldState extends State<MyFormField> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TextButton(
-                child: const Text("Forget Password?"),
+                child: Text(
+                    "Forget Password? ${context.watch<LocalApp>().getCurrentUserID}"),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -72,20 +70,16 @@ class _MyFormFieldState extends State<MyFormField> {
                 _formKey.currentState!.save();
                 User newUser = User(
                   id: _email,
-                  fullName: _email,
                   email: _email,
                   favorites: [],
                 );
                 if (await UserProvider().isNotExists(newUser)) {
                   await UserProvider().insert(newUser);
-                } else {
-
-                }
-                _didLogin(newUser.id);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MyTabBar()),
-                );
+                  print("new user");
+                } else {}
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                await prefs.setString('currentUserID', _email);
+                Provider.of<LocalApp>(context, listen: false).setID(_email);
               }
             },
           ),

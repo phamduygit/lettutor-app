@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_app/models/teacher.dart';
 import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/screens/detail_teacher/detail_teacher.dart';
-import 'package:provider/provider.dart';
 import 'components/end_drawer.dart';
 import 'components/recommended_tutors.dart';
 import 'components/teacher_card.dart';
@@ -22,8 +21,8 @@ class HomeScreen extends StatelessWidget {
         actions: [
           Builder(
             builder: (context) => IconButton(
-              icon:  CircleAvatar(
-                backgroundImage: NetworkImage(context.watch<User>().avatar),
+              icon:  const CircleAvatar(
+                backgroundImage: NetworkImage("https://images.unsplash.com/photo-1565604113656-e92be3ec1b15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"),
               ),
               onPressed: () => Scaffold.of(context).openEndDrawer(),
             ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/screens/courses/courses_screen.dart';
 import 'package:lettutor_app/screens/profile/become_teacher.dart';
 import 'package:lettutor_app/screens/profile/profile_screen.dart';
+import 'package:provider/provider.dart';
 
 class EndDrawer extends StatelessWidget {
   const EndDrawer({
@@ -10,6 +12,7 @@ class EndDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<User>();
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -26,10 +29,10 @@ class EndDrawer extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text('Phạm Minh Duy', style: TextStyle(fontSize: 18, color: Colors.white),),
-                    SizedBox(height: 5),
-                    Text("18120345@student.hcmus.edu.vn", style: TextStyle(fontSize: 14, color: Colors.white), maxLines: 1, overflow: TextOverflow.ellipsis),
+                  children: [
+                    Text(user.fullName == "" ? "..." : user.fullName, style: const TextStyle(fontSize: 18, color: Colors.white),),
+                    const SizedBox(height: 5),
+                    const Text("18120345@student.hcmus.edu.vn", style: TextStyle(fontSize: 14, color: Colors.white), maxLines: 1, overflow: TextOverflow.ellipsis),
                   ],
                 ),
               ],
