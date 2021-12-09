@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/models/teacher.dart';
 import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/service/provider/list_teacher.dart';
+import 'package:lettutor_app/service/sql_lite/favorite_dao.dart';
 import 'package:provider/src/provider.dart';
-
+import 'package:uuid/uuid.dart';
 
 class TeacherCard extends StatelessWidget {
   const TeacherCard({
@@ -16,6 +18,8 @@ class TeacherCard extends StatelessWidget {
   final Teacher teacher;
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<User>();
+    final teacherProvider = context.watch<ListTeacher>();
     return Padding(
       padding: const EdgeInsets.all(defaultPadding),
       child: Container(
@@ -66,10 +70,10 @@ class TeacherCard extends StatelessWidget {
                                   (index) => Container(
                                     padding: const EdgeInsets.only(right: 4),
                                     child: Icon(
-                                      Icons.star,
-                                      color: index < teacher.rating - 1
-                                          ? Colors.yellow[700]
-                                          : Colors.transparent,
+                                      index < teacher.rating - 0.5
+                                          ? Icons.star
+                                          : index - teacher.rating + 0.5 > 0 ? Icons.star_border : Icons.star_half,
+                                      color: Colors.yellow[700],
                                       size: 20,
                                     ),
                                   ),
@@ -79,10 +83,24 @@ class TeacherCard extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () {
-                              context.read<User>().like(teacher.id);
+                              user.like(teacher.id);
+                              teacherProvider.favorite(teacher);
+                              // local save
+                              if (user.isFavorite(teacher.id)) {
+                                Favorite newFavorite = Favorite(
+                                  id: const Uuid().v4(),
+                                  userID: user.id,
+                                  teacherID: teacher.id,
+                                );
+                                FavoriteProvider().insert(newFavorite);
+                              } else {
+                                FavoriteProvider().delete(user.id, teacher.id);
+                              }
                             },
                             child: Icon(
-                              context.watch<User>().isFavorite(teacher.id) ? Icons.favorite : Icons.favorite_border,
+                              user.isFavorite(teacher.id)
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
                               size: 24,
                               color: Colors.red,
                             ),

@@ -7,6 +7,7 @@ class Teacher {
   String interests;
   String description;
   List<String> language;
+  int isFavorite = 0;
   Teacher({
     required this.id,
     required this.name,
@@ -17,6 +18,14 @@ class Teacher {
     required this.description,
     required this.language,
   });
+  favorite() {
+    if (isFavorite == 1) {
+      isFavorite = 0;
+    } else {
+      isFavorite = 1;
+    }
+    
+  }
 }
 
 List<Teacher> listTeacher = [
@@ -33,7 +42,7 @@ List<Teacher> listTeacher = [
     ],
     avatar:
         "https://api.app.lettutor.com/avatar/cd0a440b-cd19-4c55-a2a2-612707b1c12cavatar1631029793834.jpg",
-    rating: 4.5,
+    rating: 4.6,
     interests:
         "Cooking, Mingling with kids, Watch my small retail store, Travelling",
     description:
@@ -53,7 +62,7 @@ List<Teacher> listTeacher = [
     ],
     avatar:
         "https://api.app.lettutor.com/avatar/c6303006-d5d0-45f6-a0ee-89148a51b69eavatar1631108968307.jpg",
-    rating: 4.5,
+    rating: 3.4,
     interests: "Finance, gardening, travelling",
     description:
         "I have been teaching English as a second language for kids, teenagers and adults for 5 years. I can help you gain a stronger foundation in English before furthering your studies. I'm patient, will speak slowly and clearly so don't hesitate to ask for good understanding.",
@@ -69,7 +78,7 @@ List<Teacher> listTeacher = [
     ],
     avatar:
         "https://api.app.lettutor.com/avatar/86248137-6f7d-4cf5-ad2e-34da42722b28avatar1628058042246.jpg",
-    rating: 4.5,
+    rating: 3.8,
     interests: "Finance, gardening, travelling",
     description:
         "Hi, I am teacher Nhi. I have been teaching English for 2 years. I used to study abroad in Sydney for 7 years. During my time as an overseas student, I had spoken with many people from diverse cultural backgrounds; therefore, I have strong listening and speaking skills. I love teaching English and I will devote to helping you improve your English skills if you book my class. I am also patient and understanding because I know for many people, English is a tough language to master. In my class, I will help you correct your pronunciation and deliver the lessons in a way that is easy for you to understand. If you book my class, you will have many chances to practice your speaking skills and also improve your pronunciation and grammatical knowledge. Besides that, if you need me to, I will share my personal tips to study English more effectively with you and show you the importance of having fun and practice while learning English. As an English teacher, I constantly update my English knowledge to better serve my career and students.",

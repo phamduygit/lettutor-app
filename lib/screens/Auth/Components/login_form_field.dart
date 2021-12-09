@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/models/local_app_sp.dart';
+import 'package:lettutor_app/service/provider/local_app_sp.dart';
 import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/screens/Auth/forgot_password.dart';
 import 'package:lettutor_app/screens/auth/components/email_form_field.dart';
 import 'package:lettutor_app/screens/auth/components/secure_text_field.dart';
-import 'package:lettutor_app/screens/my_tab_bar.dart';
-import 'package:lettutor_app/service/provider/user_provider.dart';
+import 'package:lettutor_app/service/sql_lite/user_dao.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'default_button.dart';
@@ -75,7 +74,6 @@ class _MyFormFieldState extends State<MyFormField> {
                 );
                 if (await UserProvider().isNotExists(newUser)) {
                   await UserProvider().insert(newUser);
-                  print("new user");
                 } else {}
                 SharedPreferences prefs = await SharedPreferences.getInstance();
                 await prefs.setString('currentUserID', _email);

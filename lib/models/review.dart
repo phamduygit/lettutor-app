@@ -27,6 +27,6 @@ List<Review> reviews = [
     avatar: "assets/images/avatar1.jpeg",
     numberOfStar: 3,
     date: DateTime.now(),
-    username: "Username1]2",
+    username: "Username12",
   ),
 ];

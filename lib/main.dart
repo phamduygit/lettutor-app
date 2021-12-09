@@ -3,7 +3,7 @@ import 'package:lettutor_app/screens/main_app.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'models/local_app_sp.dart';
+import 'service/provider/local_app_sp.dart';
 
 void main() {
   runApp(const MyApp());

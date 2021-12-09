@@ -45,9 +45,13 @@ class FavoriteProvider {
     db.close();
   }
 
-  Future<void> delete(Favorite favorite) async {
+  Future<void> delete(String userID, String teacherID) async {
     Database db = await open();
-    await db.delete('favorites', where: 'id = ?', whereArgs: [favorite.id]);
+    final List<Map<String, dynamic>> maps =
+        await db.query('favorites', where: 'userID = ?', whereArgs: [userID]);
+    final favorite =
+        maps.firstWhere((element) => element['teacherID'] == teacherID);
+    await db.delete('favorites', where: 'id = ?', whereArgs: [favorite["id"]]);
   }
 
   Future<List<String>> listTeacherID(String userID) async {

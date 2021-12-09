@@ -45,6 +45,7 @@ dependencies:
   language_picker: ^0.4.1
   shared_preferences: ^2.0.9
   sqflite: ^2.0.1
+  uuid: ^3.0.5
 
 
 dev_dependencies:

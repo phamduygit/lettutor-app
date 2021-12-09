@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
-import 'package:lettutor_app/models/local_app_sp.dart';
+import 'package:lettutor_app/service/provider/list_teacher.dart';
+import 'package:lettutor_app/service/provider/local_app_sp.dart';
 import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/screens/home/home_screen.dart';
 import 'package:lettutor_app/screens/messages/message_screen.dart';
 import 'package:lettutor_app/screens/setting/setting_screen.dart';
 import 'package:lettutor_app/screens/tutors/tutor_screen.dart';
 import 'package:lettutor_app/screens/up_comming/upcomming_screen.dart';
-import 'package:lettutor_app/service/provider/user_provider.dart';
+import 'package:lettutor_app/service/sql_lite/user_dao.dart';
 import 'package:provider/provider.dart';
 
 class MyTabBar extends StatefulWidget {
@@ -20,7 +21,7 @@ class MyTabBar extends StatefulWidget {
 class _MyTabBarState extends State<MyTabBar> {
   int _selectedIndex = 0;
   User user = User(favorites: []);
-  String currentUserID = "";
+  ListTeacher teachers = ListTeacher();
   static const List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
     MessageScreen(),
@@ -34,18 +35,20 @@ class _MyTabBarState extends State<MyTabBar> {
     });
   }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
     UserProvider()
         .getUser(context.watch<LocalApp>().getCurrentUserID)
-        .then((value) => user.updateUser(value));
+        .then((value) {
+      user.updateUser(value);
+      teachers.setListTeacher(value.favorites);
+    });
+
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (context) => user)],
+      providers: [
+        ChangeNotifierProvider(create: (context) => user),
+        ChangeNotifierProvider(create: (context) => teachers),
+      ],
       child: Scaffold(
         body: Center(
           child: _widgetOptions.elementAt(_selectedIndex),

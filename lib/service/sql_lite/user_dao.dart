@@ -1,4 +1,5 @@
 import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/service/sql_lite/favorite_dao.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -46,11 +47,13 @@ class UserProvider {
     await open();
     final List<Map<String, dynamic>> maps =
         await db!.query('users', where: 'id = ?', whereArgs: [userID]);
-    // List<String> favorites =
-    //     await FavoriteProvider().listTeacherID(maps[0]["id"]);
+    List<String> favorites = [];
+    if (maps.isNotEmpty) {
+      favorites = await FavoriteProvider().listTeacherID(maps[0]["id"]);
+    }
     await db!.close();
     return User(
-      favorites: [],
+      favorites: favorites,
       id: maps[0]["id"],
       fullName: maps[0]["fullName"],
       email: maps[0]["email"],

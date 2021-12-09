@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/models/teacher.dart';
-import 'package:lettutor_app/models/user.dart';
+
 import 'package:lettutor_app/screens/detail_teacher/detail_teacher.dart';
+import 'package:lettutor_app/service/provider/list_teacher.dart';
+import 'package:provider/provider.dart';
 import 'components/end_drawer.dart';
 import 'components/recommended_tutors.dart';
 import 'components/teacher_card.dart';
 import 'components/up_coming_lesson.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  
+  @override
   Widget build(BuildContext context) {
+    var teachers = context.watch<ListTeacher>();
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -40,20 +48,20 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 5),
             Column(
               children: List.generate(
-                listTeacher.length,
+                teachers.list.length,
                 (index) => GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => DetailTeacher(
-                          teacher: listTeacher[index],
+                          teacher: teachers.list[index],
                         ),
                       ),
                     );
                   },
                   child: TeacherCard(
-                    teacher: listTeacher[index],
+                    teacher: teachers.list[index],
                   ),
                 ),
               ),

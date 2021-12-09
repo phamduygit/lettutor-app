@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 // import 'package:lettutor_app/screens/auth/components/default_button.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
-import 'package:lettutor_app/models/local_app_sp.dart';
-import 'package:lettutor_app/screens/auth/login_screen.dart';
+import 'package:lettutor_app/service/provider/list_teacher.dart';
+import 'package:lettutor_app/service/provider/local_app_sp.dart';
 import 'package:lettutor_app/screens/setting/session_history_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -91,6 +91,7 @@ class SettingScreen extends StatelessWidget {
                   SharedPreferences prefs =
                       await SharedPreferences.getInstance();
                   await prefs.setString('currentUserID', "");
+                  Provider.of<ListTeacher>(context, listen: false).setListTeacher([]);
                   Provider.of<LocalApp>(context, listen: false).setID("");
                 },
               ),
