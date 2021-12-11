@@ -4,8 +4,11 @@ class People {
   String avatar;
   String username;
   List<Message> messages;
-  People(
-      {required this.avatar, required this.username, required this.messages});
+  People({
+    required this.avatar,
+    required this.username,
+    required this.messages,
+  });
 }
 
 List<People> persons = [

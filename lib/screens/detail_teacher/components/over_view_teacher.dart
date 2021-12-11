@@ -17,8 +17,8 @@ class OverViewTeacher extends StatefulWidget {
 
 class _OverViewTeacherState extends State<OverViewTeacher> {
   Future<void> fetchCountry() async {
-    final response = await http
-        .get(Uri.parse('https://restcountries.com/v2/alpha/${widget.teacher.country}'));
+    final response = await http.get(Uri.parse(
+        'https://restcountries.com/v2/alpha/${widget.teacher.country}'));
     if (response.statusCode == 200) {
       setState(() {
         json = jsonDecode(response.body);
@@ -27,12 +27,14 @@ class _OverViewTeacherState extends State<OverViewTeacher> {
       throw Exception('Failed to load album');
     }
   }
+
   Map<String, dynamic> json = {};
   @override
   void initState() {
     super.initState();
     fetchCountry();
   }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -57,7 +59,11 @@ class _OverViewTeacherState extends State<OverViewTeacher> {
                 (index) => Container(
                   padding: const EdgeInsets.only(right: 4),
                   child: Icon(
-                    Icons.star,
+                    index < widget.teacher.rating - 0.5
+                        ? Icons.star
+                        : index - widget.teacher.rating + 0.5 > 0
+                            ? Icons.star_border
+                            : Icons.star_half,
                     color: Colors.yellow[700],
                     size: 20,
                   ),
@@ -67,9 +73,14 @@ class _OverViewTeacherState extends State<OverViewTeacher> {
             const SizedBox(height: 5),
             Row(
               children: [
-                SvgPicture.network(json["flag"] ?? "https://flagcdn.com/vn.svg", height: 15, width: 30,),
+                SvgPicture.network(
+                  json["flag"] ?? "https://flagcdn.com/vn.svg",
+                  height: 15,
+                  width: 30,
+                ),
                 const SizedBox(width: 5),
-                Text("${json["name"] ?? "none"}", style: const TextStyle(fontSize: 16)),
+                Text("${json["name"] ?? "none"}",
+                    style: const TextStyle(fontSize: 16)),
               ],
             )
           ],

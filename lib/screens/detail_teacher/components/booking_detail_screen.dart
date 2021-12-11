@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
+import 'package:lettutor_app/models/meeting.dart';
 import 'package:lettutor_app/models/teacher.dart';
+import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/screens/detail_teacher/components/over_view_teacher.dart';
+import 'package:lettutor_app/service/provider/list_meeting.dart';
+import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 
 class BookingDetailScreen extends StatelessWidget {
   const BookingDetailScreen(
@@ -128,7 +133,19 @@ class BookingDetailScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Meeting newMeeting = Meeting(
+                          id: const Uuid().v4(),
+                          userID: context.read<User>().id,
+                          teacherID: teacher.id,
+                          avatar: teacher.avatar,
+                          name: teacher.name,
+                          date: date,
+                          status: 1,
+                        );
+                        Provider.of<ListMeeting>(context, listen: false)
+                            .addNewMeeting(newMeeting);
+                      },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.all(defaultPadding),
                         shape: RoundedRectangleBorder(

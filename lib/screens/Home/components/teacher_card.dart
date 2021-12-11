@@ -90,9 +90,9 @@ class TeacherCard extends StatelessWidget {
                                   userID: user.id,
                                   teacherID: teacher.id,
                                 );
-                                FavoriteProvider().insert(newFavorite);
+                                FavoriteDAO().insert(newFavorite);
                               } else {
-                                FavoriteProvider().delete(user.id, teacher.id);
+                                FavoriteDAO().delete(user.id, teacher.id);
                               }
                             },
                             child: Icon(

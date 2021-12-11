@@ -35,7 +35,7 @@ class _MyTabBarState extends State<MyTabBar> {
 
   @override
   Widget build(BuildContext context) {
-    UserProvider()
+    UserDAO()
         .getUser(context.watch<LocalApp>().getCurrentUserID)
         .then((value) {
       Provider.of<User>(context, listen: false).updateUser(value);

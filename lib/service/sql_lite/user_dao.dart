@@ -3,7 +3,7 @@ import 'package:lettutor_app/service/sql_lite/favorite_dao.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-class UserProvider {
+class UserDAO {
   final String databaseName = 'user.db';
   Database? db;
   Future<void> open() async {
@@ -49,7 +49,7 @@ class UserProvider {
         await db!.query('users', where: 'id = ?', whereArgs: [userID]);
     List<String> favorites = [];
     if (maps.isNotEmpty) {
-      favorites = await FavoriteProvider().listTeacherID(maps[0]["id"]);
+      favorites = await FavoriteDAO().listTeacherID(maps[0]["id"]);
     }
     await db!.close();
     return User(

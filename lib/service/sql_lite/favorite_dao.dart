@@ -19,7 +19,7 @@ class Favorite {
   }
 }
 
-class FavoriteProvider {
+class FavoriteDAO {
   final String databaseName = "users.db";
   Future<Database> open() async {
     Database db = await openDatabase(

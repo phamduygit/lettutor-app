@@ -73,8 +73,8 @@ class _MyFormFieldState extends State<MyFormField> {
                     email: _email,
                     favorites: [],
                   );
-                  if (await UserProvider().isNotExists(newUser)) {
-                    await UserProvider().insert(newUser);
+                  if (await UserDAO().isNotExists(newUser)) {
+                    await UserDAO().insert(newUser);
                   } else {}
                   SharedPreferences prefs =
                       await SharedPreferences.getInstance();

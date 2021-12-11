@@ -16,7 +16,7 @@ class DateButton extends StatelessWidget {
   final Teacher teacher;
   @override
   Widget build(BuildContext context) {
-    var fliterTime = schedules.where((i) => i.isAfter(DateTime.now())).toList();
+    var fliterTime = schedules.where((i) => (i.isAfter(DateTime.now()) && i.day == date.day)).toList();
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: ElevatedButton(

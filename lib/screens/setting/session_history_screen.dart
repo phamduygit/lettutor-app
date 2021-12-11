@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
-import 'package:lettutor_app/models/meeting.dart';
+import 'package:lettutor_app/service/provider/list_meeting.dart';
+import 'package:provider/provider.dart';
 
 import 'components/session_history_card.dart';
 
@@ -15,6 +16,7 @@ class SessionHistoryScreen extends StatefulWidget {
 class _SessionHistoryScreenState extends State<SessionHistoryScreen> {
   @override
   Widget build(BuildContext context) {
+    final listMeeting = context.watch<ListMeeting>();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Session History"),
@@ -32,7 +34,7 @@ class _SessionHistoryScreenState extends State<SessionHistoryScreen> {
                 setState(() {});
               },
             ),
-            Column(children: List.generate(listMeeting.length, (index) => SessionHistoryCard(meeting: listMeeting[index])),)
+            Column(children: List.generate(listMeeting.list.length, (index) => SessionHistoryCard(meeting: listMeeting.list[index])),)
           ],
         ),
       ),

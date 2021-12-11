@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/screens/main_app.dart';
+import 'package:lettutor_app/service/provider/list_meeting.dart';
 import 'package:lettutor_app/service/provider/list_teacher.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -43,6 +44,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => localApp),
         ChangeNotifierProvider(create: (context) => user),
         ChangeNotifierProvider(create: (context) => teachers),
+        ChangeNotifierProvider(create: (context) => ListMeeting()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

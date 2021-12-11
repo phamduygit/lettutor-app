@@ -1,12 +1,19 @@
 class Meeting {
+  String id;
+  String userID;
+  String teacherID;
   String avatar;
   String name;
   DateTime date;
-  Meeting({required this.avatar, required this.name, required this.date,});
+  int status;
+  Meeting({
+    required this.id,
+    required this.userID,
+    required this.teacherID,
+    required this.avatar,
+    required this.name,
+    required this.date,
+    required this.status,
+  });
 }
 
-
-List<Meeting> listMeeting = [
-  Meeting(avatar: "assets/images/avatar.jpeg", name: "Pham Duy", date: DateTime.parse("2021-10-22 15:20:00")),
-  Meeting(avatar: "assets/images/avatar1.jpeg", name: "Thanh Duc", date: DateTime.parse("2021-10-22 16:20:00")),
-];

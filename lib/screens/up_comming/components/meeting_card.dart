@@ -33,7 +33,7 @@ class MeetingCard extends StatelessWidget {
               child: Row(
                 children: [
                   CircleAvatar(
-                    backgroundImage: AssetImage(meeting.avatar),
+                    backgroundImage: NetworkImage(meeting.avatar),
                     radius: 30,
                   ),
                   const SizedBox(width: 10),
