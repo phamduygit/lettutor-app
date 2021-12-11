@@ -1,6 +1,7 @@
 class Teacher {
   String id;
   String name;
+  String country;
   List<String> specialties;
   String avatar;
   double rating;
@@ -11,6 +12,7 @@ class Teacher {
   Teacher({
     required this.id,
     required this.name,
+    required this.country,
     required this.specialties,
     this.avatar = "",
     required this.rating,
@@ -32,6 +34,7 @@ List<Teacher> listTeacher = [
   Teacher(
     id: "1",
     name: "April corpuz",
+    country: "ph",
     language: ["English"],
     specialties: [
       "English for Business",
@@ -51,6 +54,7 @@ List<Teacher> listTeacher = [
   Teacher(
     id: "2",
     name: "Hannah Nguyen",
+    country: "vn",
     language: ["English"],
     specialties: [
       "Conversational",
@@ -71,6 +75,7 @@ List<Teacher> listTeacher = [
     id: "3",
     name: "Nhi Lam",
     language: ["English"],
+    country: "ph",
     specialties: [
       "Conversational",
       "English for kids",
@@ -87,6 +92,7 @@ List<Teacher> listTeacher = [
     id: "4",
     name: "Joan Gacer",
     language: ["English", "Filipino"],
+    country: "ph",
     specialties: [
       "Conversational",
       "English for kids",
@@ -108,6 +114,7 @@ List<Teacher> listTeacher = [
   Teacher(
     id: "5",
     name: "Kathy Huỳnh",
+    country: 'vn',
     language: ["English", "Vietnamese"],
     specialties: [
       "Conversational",
@@ -129,6 +136,7 @@ List<Teacher> listTeacher = [
   Teacher(
     id: "6",
     name: "Teacher GP",
+    country: "vn",
     language: ["English", "Vietnamese"],
     specialties: [
       "Conversational",

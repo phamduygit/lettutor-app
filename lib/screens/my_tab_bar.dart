@@ -20,8 +20,6 @@ class MyTabBar extends StatefulWidget {
 
 class _MyTabBarState extends State<MyTabBar> {
   int _selectedIndex = 0;
-  User user = User(favorites: []);
-  ListTeacher teachers = ListTeacher();
   static const List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
     MessageScreen(),
@@ -40,48 +38,41 @@ class _MyTabBarState extends State<MyTabBar> {
     UserProvider()
         .getUser(context.watch<LocalApp>().getCurrentUserID)
         .then((value) {
-      user.updateUser(value);
-      teachers.setListTeacher(value.favorites);
+      Provider.of<User>(context, listen: false).updateUser(value);
+      Provider.of<ListTeacher>(context, listen: false).setListTeacher(value.favorites);
     });
-
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => user),
-        ChangeNotifierProvider(create: (context) => teachers),
-      ],
-      child: Scaffold(
-        body: Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: mainColor,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.message),
-              label: 'Message',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.access_time),
-              label: 'Upcoming',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.people),
-              label: 'Tutors',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: mainColor,
-          unselectedItemColor: Colors.grey,
-          onTap: _onItemTapped,
-        ),
+    return Scaffold(
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: mainColor,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.message),
+            label: 'Message',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.access_time),
+            label: 'Upcoming',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.people),
+            label: 'Tutors',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: mainColor,
+        unselectedItemColor: Colors.grey,
+        onTap: _onItemTapped,
       ),
     );
   }

@@ -1,5 +1,3 @@
-// ignore_for_file: implementation_imports
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
@@ -7,7 +5,7 @@ import 'package:lettutor_app/models/teacher.dart';
 import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/service/provider/list_teacher.dart';
 import 'package:lettutor_app/service/sql_lite/favorite_dao.dart';
-import 'package:provider/src/provider.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 class TeacherCard extends StatelessWidget {

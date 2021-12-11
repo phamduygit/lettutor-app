@@ -67,17 +67,22 @@ class _MyFormFieldState extends State<MyFormField> {
             press: () async {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                User newUser = User(
-                  id: _email,
-                  email: _email,
-                  favorites: [],
-                );
-                if (await UserProvider().isNotExists(newUser)) {
-                  await UserProvider().insert(newUser);
-                } else {}
-                SharedPreferences prefs = await SharedPreferences.getInstance();
-                await prefs.setString('currentUserID', _email);
-                Provider.of<LocalApp>(context, listen: false).setID(_email);
+                if (_password == "12345678") {
+                  User newUser = User(
+                    id: _email,
+                    email: _email,
+                    favorites: [],
+                  );
+                  if (await UserProvider().isNotExists(newUser)) {
+                    await UserProvider().insert(newUser);
+                  } else {}
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  await prefs.setString('currentUserID', _email);
+                  Provider.of<LocalApp>(context, listen: false).setID(_email);
+                } else {
+                  ///
+                }
               }
             },
           ),

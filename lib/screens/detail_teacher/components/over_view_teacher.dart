@@ -1,19 +1,44 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:lettutor_app/models/teacher.dart';
+import 'package:http/http.dart' as http;
 
-class OverViewTeacher extends StatelessWidget {
+class OverViewTeacher extends StatefulWidget {
   const OverViewTeacher({
     Key? key,
     required this.teacher,
   }) : super(key: key);
   final Teacher teacher;
+
+  @override
+  State<OverViewTeacher> createState() => _OverViewTeacherState();
+}
+
+class _OverViewTeacherState extends State<OverViewTeacher> {
+  Future<void> fetchCountry() async {
+    final response = await http
+        .get(Uri.parse('https://restcountries.com/v2/alpha/${widget.teacher.country}'));
+    if (response.statusCode == 200) {
+      setState(() {
+        json = jsonDecode(response.body);
+      });
+    } else {
+      throw Exception('Failed to load album');
+    }
+  }
+  Map<String, dynamic> json = {};
+  @override
+  void initState() {
+    super.initState();
+    fetchCountry();
+  }
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         CircleAvatar(
-          backgroundImage: NetworkImage(teacher.avatar),
+          backgroundImage: NetworkImage(widget.teacher.avatar),
           radius: 45,
         ),
         const SizedBox(width: 10),
@@ -21,7 +46,7 @@ class OverViewTeacher extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              teacher.name,
+              widget.teacher.name,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
             const SizedBox(height: 5),
@@ -42,13 +67,9 @@ class OverViewTeacher extends StatelessWidget {
             const SizedBox(height: 5),
             Row(
               children: [
-                SvgPicture.asset(
-                  "assets/images/viet_nam.svg",
-                  width: 30,
-                  height: 15,
-                ),
+                SvgPicture.network(json["flag"] ?? "https://flagcdn.com/vn.svg", height: 15, width: 30,),
                 const SizedBox(width: 5),
-                const Text("Vietnam", style: TextStyle(fontSize: 16)),
+                Text("${json["name"] ?? "none"}", style: const TextStyle(fontSize: 16)),
               ],
             )
           ],

@@ -2,7 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/models/teacher.dart';
+import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/service/provider/list_teacher.dart';
+import 'package:lettutor_app/service/sql_lite/favorite_dao.dart';
+import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
+import 'package:uuid/uuid.dart';
 import 'components/booking_button.dart';
 import 'components/courses.dart';
 import 'components/option_button.dart';
@@ -17,6 +22,8 @@ class DetailTeacher extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var heightScreen = MediaQuery.of(context).size.height;
+    final user = context.watch<User>();
+    final teacherProvider = context.watch<ListTeacher>();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Detail Teacher"),
@@ -48,9 +55,25 @@ class DetailTeacher extends StatelessWidget {
                           press: () {},
                         ),
                         OptionButton(
-                          icon: CupertinoIcons.heart,
+                          icon: teacher.isFavorite == 1
+                              ? CupertinoIcons.heart_fill
+                              : CupertinoIcons.heart,
                           title: "Favorite",
-                          press: () {},
+                          press: () {
+                            user.like(teacher.id);
+                            teacherProvider.favorite(teacher);
+                            // local save
+                            if (user.isFavorite(teacher.id)) {
+                              Favorite newFavorite = Favorite(
+                                id: const Uuid().v4(),
+                                userID: user.id,
+                                teacherID: teacher.id,
+                              );
+                              FavoriteProvider().insert(newFavorite);
+                            } else {
+                              FavoriteProvider().delete(user.id, teacher.id);
+                            }
+                          },
                         ),
                         OptionButton(
                           icon: Icons.report_gmailerrorred_rounded,
