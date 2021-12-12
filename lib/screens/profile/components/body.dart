@@ -79,6 +79,7 @@ class _BodyState extends State<Body> {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
                         }
+                        Navigator.pop(context);
                       },
                     )
                   ],

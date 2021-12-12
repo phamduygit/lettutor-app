@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
+import 'package:lettutor_app/models/meeting.dart';
 
 class VideoCallSreen extends StatefulWidget {
-  const VideoCallSreen({Key? key}) : super(key: key);
+  const VideoCallSreen({Key? key, required this.meeting}) : super(key: key);
 
   @override
   State<VideoCallSreen> createState() => _VideoCallSreenState();
+  final Meeting meeting;
 }
 
 class _VideoCallSreenState extends State<VideoCallSreen> {
-  int endTime = DateTime.parse("2021-10-22 20:20:00").millisecondsSinceEpoch;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +77,7 @@ class _VideoCallSreenState extends State<VideoCallSreen> {
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                             ),
-                            endTime: endTime,
+                            endTime: widget.meeting.date.millisecondsSinceEpoch,
                           ),
                         ],
                       ),
@@ -119,7 +120,9 @@ class _VideoCallSreenState extends State<VideoCallSreen> {
                     color: Colors.white,
                   ),
                   GestureDetector(
-                    onTap: () {Navigator.pop(context);},
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
                     child: Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(

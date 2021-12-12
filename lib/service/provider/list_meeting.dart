@@ -25,6 +25,10 @@ class ListMeeting extends ChangeNotifier {
     List<Meeting> upComming = _list.where((element) => element.date.isAfter(DateTime.now())).toList();
     return upComming;
   }
+  List<Meeting> getFinishedMeeting() {
+    List<Meeting> finishedMeeting = _list.where((element) => element.date.isBefore(DateTime.now())).toList();
+    return finishedMeeting;
+  }
   void updateOneMeeting(Meeting meeting) {
     int index = _list.indexWhere((element) => element.id == meeting.id);
     _list[index] = meeting;

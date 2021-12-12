@@ -71,8 +71,10 @@ class MeetingCard extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(2),
                                   color: Colors.red[100]),
                               child: Text(
-                                DateFormat("HH:mm").format(meeting.date.add(const Duration(minutes: 25))),
-                                style: const TextStyle(fontSize: 10, color: Colors.red),
+                                DateFormat("HH:mm").format(meeting.date
+                                    .add(const Duration(minutes: 25))),
+                                style: const TextStyle(
+                                    fontSize: 10, color: Colors.red),
                               ),
                             )
                           ],
@@ -98,7 +100,14 @@ class MeetingCard extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const VideoCallSreen()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => VideoCallSreen(
+                              meeting: meeting,
+                            ),
+                          ),
+                        );
                       },
                       child: const Text("Join"),
                     ),

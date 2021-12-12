@@ -34,7 +34,14 @@ class _SessionHistoryScreenState extends State<SessionHistoryScreen> {
                 setState(() {});
               },
             ),
-            Column(children: List.generate(listMeeting.list.length, (index) => SessionHistoryCard(meeting: listMeeting.list[index])),)
+            Column(
+              children: List.generate(
+                listMeeting.getFinishedMeeting().length,
+                (index) => SessionHistoryCard(
+                  meeting: listMeeting.getFinishedMeeting()[index],
+                ),
+              ),
+            )
           ],
         ),
       ),

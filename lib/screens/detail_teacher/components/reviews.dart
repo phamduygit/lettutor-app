@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
-import 'package:lettutor_app/models/review.dart';
+import 'package:lettutor_app/models/teacher.dart';
 import 'package:lettutor_app/screens/detail_teacher/components/review_card.dart';
+import 'package:lettutor_app/service/provider/list_review.dart';
+import 'package:provider/provider.dart';
 
 class Reviews extends StatelessWidget {
   const Reviews({
-    Key? key,
+    Key? key, required this.teacher,
   }) : super(key: key);
-
+  final Teacher teacher;
   @override
   Widget build(BuildContext context) {
+    final reviews = context.read<ListReview>();
     return Padding(
       padding: const EdgeInsets.only(top: 10.0),
       child: Column(
@@ -22,9 +25,9 @@ class Reviews extends StatelessWidget {
           const SizedBox(height: 10),
           Column(
             children: List.generate(
-              reviews.length,
+              reviews.getReviewOfTeacher(teacher).length,
               (index) => ReviewCard(
-                review: reviews[index],
+                review: reviews.getReviewOfTeacher(teacher)[index],
               ),
             ),
           )

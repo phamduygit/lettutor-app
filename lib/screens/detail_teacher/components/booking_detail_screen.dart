@@ -147,6 +147,7 @@ class BookingDetailScreen extends StatelessWidget {
                         await MeetingDAO().insertMeeting(newMeeting);
                         Provider.of<ListMeeting>(context, listen: false)
                             .addNewMeeting(newMeeting);
+                        Navigator.popUntil(context, (route) => route.settings.name == "/detailTeacher");
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.all(defaultPadding),

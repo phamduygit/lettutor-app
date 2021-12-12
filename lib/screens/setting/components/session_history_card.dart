@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:lettutor_app/models/meeting.dart';
 import 'package:lettutor_app/screens/setting/feedback.dart';
 
@@ -40,21 +41,22 @@ class SessionHistoryCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                         Text(
+                        Text(
                           meeting.name,
                           style: const TextStyle(fontSize: 18),
                         ),
                         const SizedBox(height: 5),
                         Row(
-                          children: const [
-                            Icon(
+                          children: [
+                            const Icon(
                               Icons.calendar_today_outlined,
                               size: 15,
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text(
-                              "02:30:00, 23/10/2021",
-                              style: TextStyle(fontSize: 15),
+                              DateFormat('HH:mm:ss dd/MM/yyyy')
+                                  .format(meeting.date),
+                              style: const TextStyle(fontSize: 15),
                             )
                           ],
                         ),
@@ -99,7 +101,13 @@ class SessionHistoryCard extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const FeedbackScreen()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                FeedbackScreen(meeting: meeting),
+                          ),
+                        );
                       },
                       child: const Text("Give Feedback"),
                       style:

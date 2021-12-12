@@ -1,12 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
+import 'package:lettutor_app/models/meeting.dart';
+import 'package:lettutor_app/models/review.dart';
+import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/screens/setting/components/rating.dart';
+import 'package:lettutor_app/service/provider/list_review.dart';
+import 'package:lettutor_app/service/sql_lite/review_dao.dart';
+import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 
-class FeedbackScreen extends StatelessWidget {
-  const FeedbackScreen({Key? key}) : super(key: key);
+class FeedbackScreen extends StatefulWidget {
+  const FeedbackScreen({Key? key, required this.meeting}) : super(key: key);
+  final Meeting meeting;
 
   @override
+  State<FeedbackScreen> createState() => _FeedbackScreenState();
+}
+
+class _FeedbackScreenState extends State<FeedbackScreen> {
+  int numberOfStar = 5;
+  String comment = "";
+  final _formKey = GlobalKey<FormState>();
+  void saveNumberOfStar(value) {
+    setState(() {
+      numberOfStar = value;
+    });
+  }
+  @override
+  void initState() {
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
+    final user = context.read<User>();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Feedback"),
@@ -33,26 +59,29 @@ class FeedbackScreen extends StatelessWidget {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       "Rate Your Tutor",
                       style: TextStyle(fontSize: 18, color: mainColor),
                     ),
-                    SizedBox(height: 10),
-                    Text(
-                      "How was yoour Study?",
+                    const SizedBox(height: 10),
+                    const Text(
+                      "How was your Study?",
                       style: TextStyle(fontSize: 18),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     CircleAvatar(
-                      backgroundImage: AssetImage("assets/images/avatar.jpeg"),
+                      backgroundImage: NetworkImage(widget.meeting.avatar),
                       radius: 40,
                     ),
                     Text(
-                      "Hannah Nguyen",
-                      style: TextStyle(fontSize: 18),
+                      widget.meeting.name,
+                      style: const TextStyle(fontSize: 18),
                     ),
-                    RatingStar(),
+                    RatingStar(
+                      saveNumberOfStar: saveNumberOfStar,
+                      numberOfStar: numberOfStar,
+                    ),
                   ],
                 ),
               ),
@@ -74,46 +103,77 @@ class FeedbackScreen extends StatelessWidget {
                   ],
                   color: Colors.white,
                 ),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 15),
-                    const Text(
-                      "Leave your comment",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    const SizedBox(height: 20),
-                    const TextField(
-                      keyboardType: TextInputType.multiline,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: "Leave your throught about this study",
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 15),
+                      const Text(
+                        "Leave your comment",
+                        style: TextStyle(fontSize: 18),
                       ),
-                      maxLines: null,
-                    ),
-                    const SizedBox(height: 15),
-                    ElevatedButton(
-                      child: Row(
-                        children: const [
-                          Spacer(),
-                          Text(
-                            "Submit",
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
-                          Spacer(),
-                        ],
-                      ),
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
+                      const SizedBox(height: 20),
+                      TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: "Leave your throught about this study",
                         ),
-                        padding: const EdgeInsets.all(12)
+                        maxLines: null,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
+                          setState(() {
+                            comment = value!;
+                          });
+                        },
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                  ],
+                      const SizedBox(height: 15),
+                      ElevatedButton(
+                        child: Row(
+                          children: const [
+                            Spacer(),
+                            Text(
+                              "Submit",
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                            Spacer(),
+                          ],
+                        ),
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            _formKey.currentState!.save();
+                            Review review = Review(
+                              id: const Uuid().v4(),
+                              userID: user.id,
+                              teacherID: widget.meeting.teacherID,
+                              avatar: user.avatar,
+                              username: user.fullName,
+                              date: DateTime.now(),
+                              numberOfStar: numberOfStar,
+                              comment: comment,
+                            );
+                            Provider.of<ListReview>(context, listen: false)
+                                .addNewReivew(review);
+                            await ReviewDAO().insert(review);
+                            Navigator.pop(context);
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            padding: const EdgeInsets.all(12)),
+                      ),
+                      const SizedBox(height: 20),
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -17,7 +17,7 @@ class ReviewCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CircleAvatar(
-              backgroundImage: AssetImage(review.avatar),
+              backgroundImage: NetworkImage(review.avatar),
               radius: 30,
             ),
             const SizedBox(width: 15),

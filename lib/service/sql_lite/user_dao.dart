@@ -45,7 +45,7 @@ class UserDAO {
   Future<bool> isNotExists(User user) async {
     await open();
     final List<Map<String, dynamic>> maps =
-        await db!.query('users', where: 'id = ?', whereArgs: [user.id]);
+        await db!.query('users', where: 'email = ?', whereArgs: [user.email]);
     if (maps.isEmpty) {
       return true;
     }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/screens/auth/login_screen.dart';
 import 'package:lettutor_app/screens/main_app.dart';
 import 'package:lettutor_app/service/provider/list_meeting.dart';
+import 'package:lettutor_app/service/provider/list_review.dart';
 import 'package:lettutor_app/service/provider/list_teacher.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -45,6 +47,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => user),
         ChangeNotifierProvider(create: (context) => teachers),
         ChangeNotifierProvider(create: (context) => ListMeeting()),
+        ChangeNotifierProvider(create: (context) => ListReview()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -57,7 +60,11 @@ class _MyAppState extends State<MyApp> {
             elevation: 0,
           ),
         ),
-        home: const MainApp(),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const MainApp(),
+          '/login': (context) => const LoginScreen(),
+        },
       ),
     );
   }

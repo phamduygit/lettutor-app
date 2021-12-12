@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/service/provider/list_meeting.dart';
+import 'package:lettutor_app/service/provider/list_review.dart';
 import 'package:lettutor_app/service/provider/list_teacher.dart';
 import 'package:lettutor_app/service/provider/local_app_sp.dart';
 import 'package:lettutor_app/screens/home/home_screen.dart';
@@ -10,6 +11,7 @@ import 'package:lettutor_app/screens/setting/setting_screen.dart';
 import 'package:lettutor_app/screens/tutors/tutor_screen.dart';
 import 'package:lettutor_app/screens/up_comming/upcomming_screen.dart';
 import 'package:lettutor_app/service/sql_lite/meeting_dao.dart';
+import 'package:lettutor_app/service/sql_lite/review_dao.dart';
 import 'package:lettutor_app/service/sql_lite/user_dao.dart';
 import 'package:provider/provider.dart';
 
@@ -37,15 +39,20 @@ class _MyTabBarState extends State<MyTabBar> {
 
   @override
   Widget build(BuildContext context) {
-    UserDAO().getUserById(context.watch<LocalApp>().getCurrentUserID).then((value) {
+    UserDAO()
+        .getUserById(context.watch<LocalApp>().getCurrentUserID)
+        .then((value) {
       Provider.of<ListTeacher>(context, listen: false)
           .setListTeacher(value.favorites);
-          Provider.of<User>(context, listen:  false).updateUser(value);
+      Provider.of<User>(context, listen: false).updateUser(value);
     });
     MeetingDAO()
         .getListMeeting(context.watch<LocalApp>().getCurrentUserID)
         .then((value) => Provider.of<ListMeeting>(context, listen: false)
             .setListMeeting(value));
+    ReviewDAO()
+        .getListReivew()
+        .then((value) => Provider.of<ListReview>(context, listen: false).setListReview(value));
     return Scaffold(
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),

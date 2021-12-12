@@ -118,7 +118,7 @@ class DetailTeacher extends StatelessWidget {
                       chipsContent: teacher.specialties,
                     ),
                     const Courses(),
-                    const Reviews(),
+                    Reviews(teacher: teacher),
                   ],
                 ),
               ),

@@ -57,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         builder: (context) => DetailTeacher(
                           teacher: teachers.list[index],
                         ),
+                        settings: const RouteSettings(name: "/detailTeacher")
                       ),
                     );
                   },
