@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/service/sql_lite/user_dao.dart';
+import 'package:provider/provider.dart';
 
 class LevelTextFormField extends StatefulWidget {
   const LevelTextFormField({
@@ -33,12 +36,13 @@ class _LevelTextFormFieldState extends State<LevelTextFormField> {
   SingingCharacter? _character = SingingCharacter.beginer;
   @override
   void initState() {
-    level.text = _levels[0];
+    level.text = context.read<User>().level;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<User>();
     return Column(
       children: [
         Row(
@@ -69,6 +73,11 @@ class _LevelTextFormFieldState extends State<LevelTextFormField> {
               return 'Please enter some text';
             }
             return null;
+          },
+          onSaved: (val) {
+            user.level = level.text;
+            user.updateUser(user);
+            UserDAO().update(user);
           },
           onTap: () => showDialog(
             context: context,

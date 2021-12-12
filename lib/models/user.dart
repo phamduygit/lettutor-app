@@ -17,7 +17,7 @@ class User extends ChangeNotifier{
     this.fullName = "",
     this.avatar = "https://images.unsplash.com/photo-1565604113656-e92be3ec1b15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     this.email = "",
-    this.country = "Vietname",
+    this.country = "Vietnam",
     this.phone = "",
     this.level = "Beginer",
     required this.birthDay,
@@ -58,7 +58,7 @@ class User extends ChangeNotifier{
       'country': country,
       'phone': phone,
       'birthday': DateFormat('dd/MM/yyyy HH:mm:ss').format(birthDay),
-      'target': target.join(" "),
+      'target': target.join("-"),
       'level': level,
     };
     //id, fullName, avatar, email, country, phone, birthday, target, level

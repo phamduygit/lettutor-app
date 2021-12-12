@@ -1,3 +1,4 @@
+
 import 'package:intl/intl.dart';
 import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/service/sql_lite/favorite_dao.dart';
@@ -20,6 +21,9 @@ class UserDAO {
     );
   }
 
+  Future<void> close() async {
+    db!.close();
+  }
   Future<void> insert(User user) async {
     await open();
     final List<Map<String, dynamic>> maps =
@@ -33,7 +37,11 @@ class UserDAO {
     }
     await db!.close();
   }
-
+  Future<void> update(User user) async {
+    await open();
+    await db!.update('users', user.toMap(), where: 'id = ?', whereArgs: [user.id]);
+    // db!.close();
+  }
   Future<bool> isNotExists(User user) async {
     await open();
     final List<Map<String, dynamic>> maps =
@@ -86,7 +94,7 @@ class UserDAO {
       country: maps[0]["country"],
       phone: maps[0]["phone"],
       birthDay: DateFormat("dd/MM/yyyy HH:mm:ss").parse(maps[0]["birthday"]),
-      target: maps[0]["target"].split(" "),
+      target: maps[0]["target"].split("-"),
       level: maps[0]["level"],
     );
   }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/service/sql_lite/user_dao.dart';
+import 'package:provider/provider.dart';
 
 class BirthdayTextFormField extends StatefulWidget {
   const BirthdayTextFormField({
@@ -13,14 +16,15 @@ class BirthdayTextFormField extends StatefulWidget {
 class _BirthdayTextFormFieldState extends State<BirthdayTextFormField> {
   TextEditingController dateinput = TextEditingController();
   //text editing controller for text field
-  DateTime now = DateTime.now();
+  // DateTime now = DateTime.now();
   @override
   void initState() {
-    dateinput.text = DateFormat('yyyy-MM-dd').format(now); //set the initial value of text field
+    dateinput.text = DateFormat('dd/MM/yyyy').format(context.read<User>().birthDay); //set the initial value of text field
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<User>();
     return Column(
       children: [
         Row(
@@ -38,7 +42,7 @@ class _BirthdayTextFormFieldState extends State<BirthdayTextFormField> {
           ],
         ),
         const SizedBox(height: 10),
-        TextField(
+        TextFormField(
           controller: dateinput, //editing controller of this TextField
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
@@ -48,7 +52,7 @@ class _BirthdayTextFormFieldState extends State<BirthdayTextFormField> {
           onTap: () async {
             DateTime? pickedDate = await showDatePicker(
               context: context,
-              initialDate: DateTime.now(),
+              initialDate: user.birthDay,
               firstDate: DateTime(
                   2000), //DateTime.now() - not to allow to choose before today.
               lastDate: DateTime(2101),
@@ -56,12 +60,17 @@ class _BirthdayTextFormFieldState extends State<BirthdayTextFormField> {
 
             if (pickedDate != null) {
               String formattedDate =
-                  DateFormat('yyyy-MM-dd').format(pickedDate);
+                  DateFormat('dd/MM/yyyy').format(pickedDate);
               setState(() {
                 dateinput.text =
                     formattedDate; //set output date to TextField value.
               });
             }
+          },
+          onSaved: (val) {
+            user.birthDay = DateFormat("dd/MM/yyyy").parse(val!);
+            user.updateUser(user);
+            UserDAO().update(user);
           },
         )
       ],

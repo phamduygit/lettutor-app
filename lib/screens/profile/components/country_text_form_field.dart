@@ -1,5 +1,8 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/service/sql_lite/user_dao.dart';
+import 'package:provider/provider.dart';
 
 class CountryTextFormField extends StatefulWidget {
   const CountryTextFormField({
@@ -15,11 +18,12 @@ class _CountryTextFormFieldState extends State<CountryTextFormField> {
   
   @override
   void initState() {
-    countryName.text = "Vietnam"; //set the initial value of text field
+    countryName.text = context.read<User>().country; //set the initial value of text field
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<User>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -53,7 +57,11 @@ class _CountryTextFormFieldState extends State<CountryTextFormField> {
             }
             return null;
           },
-          onSaved: (val) {},
+          onSaved: (val) {
+            user.country = countryName.text;
+            user.updateUser(user);
+            UserDAO().update(user);
+          },
           onTap: () {
             showCountryPicker(
               context: context,

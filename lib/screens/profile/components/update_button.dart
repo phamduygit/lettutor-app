@@ -3,13 +3,13 @@ import 'package:lettutor_app/constants/app_constants.dart';
 
 class UpdateButton extends StatelessWidget {
   const UpdateButton({
-    Key? key,
+    Key? key, required this.press,
   }) : super(key: key);
-
+  final VoidCallback press;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: press,
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.all(10),
         shape: RoundedRectangleBorder(

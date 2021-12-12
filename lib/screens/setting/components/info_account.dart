@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
+import 'package:lettutor_app/models/user.dart';
+import 'package:provider/provider.dart';
 
 class InfoAccount extends StatelessWidget {
   const InfoAccount({
@@ -8,6 +10,7 @@ class InfoAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.read<User>();
     return Padding(
       padding: const EdgeInsets.all(defaultPadding),
       child: Row(
@@ -19,10 +22,16 @@ class InfoAccount extends StatelessWidget {
           const SizedBox(width: 10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text("Pham Duy", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16)),
-              SizedBox(height: 10),
-              Text("18120345@student.hcmus.edu.vn"),
+            children: [
+              Text(
+                user.fullName,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(user.email),
             ],
           )
         ],

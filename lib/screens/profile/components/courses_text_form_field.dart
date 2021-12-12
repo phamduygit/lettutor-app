@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/service/sql_lite/user_dao.dart';
+import 'package:provider/provider.dart';
 
 class CoursesTextFormField extends StatefulWidget {
   const CoursesTextFormField({
@@ -28,12 +31,14 @@ class _CoursesTextFormFieldState extends State<CoursesTextFormField> {
   var value = TextEditingController();
   @override
   void initState() {
-    value.text = "";
+    value.text = context.read<User>().target.join("-");
+    selectedCourses = context.read<User>().target;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<User>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -61,11 +66,16 @@ class _CoursesTextFormFieldState extends State<CoursesTextFormField> {
             border: const OutlineInputBorder(),
             hintText: widget.hintText,
           ),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter some text';
-            }
-            return null;
+          // validator: (value) {
+          //   if (value == null || value.isEmpty) {
+          //     return 'Please enter some text';
+          //   }
+          //   return null;
+          // },
+          onSaved: (val) {
+            user.target = selectedCourses;
+            user.updateUser(user);
+            UserDAO().update(user);
           },
           onTap: () => showDialog(
             context: context,
@@ -99,11 +109,8 @@ class _CoursesTextFormFieldState extends State<CoursesTextFormField> {
                   actions: [
                     TextButton(
                       onPressed: () {
+                        value.text = selectedCourses.join("-");
                         Navigator.of(context).pop();
-                        value.text = "";
-                        for (var i = 0; i < selectedCourses.length; i++) {
-                          value.text += selectedCourses[i] + ", ";
-                        }
                       },
                       child: const Text("Ok"),
                     ),

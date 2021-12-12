@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/service/sql_lite/user_dao.dart';
+import 'package:provider/provider.dart';
 
 class NormalTextFormField extends StatelessWidget {
   const NormalTextFormField({
@@ -12,6 +15,7 @@ class NormalTextFormField extends StatelessWidget {
   final String name;
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<User>();
     return Column(
       children: [
         Row(
@@ -43,7 +47,11 @@ class NormalTextFormField extends StatelessWidget {
             return null;
           },
           initialValue: name,
-          onSaved: (val) {},
+          onSaved: (val) {
+            user.fullName = val!;
+            user.updateUser(user);
+            UserDAO().update(user);
+          },
         ),
       ],
     );

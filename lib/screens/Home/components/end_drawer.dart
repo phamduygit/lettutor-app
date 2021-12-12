@@ -24,42 +24,83 @@ class EndDrawer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CircleAvatar(backgroundImage: AssetImage('assets/images/avatar.jpeg'), radius: 40,),
+                CircleAvatar(
+                  backgroundImage: NetworkImage(user.avatar),
+                  radius: 40,
+                ),
                 const SizedBox(height: 10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(user.fullName == "" ? "..." : user.fullName, style: const TextStyle(fontSize: 18, color: Colors.white),),
+                    Text(
+                      user.fullName == "" ? "..." : user.fullName,
+                      style: const TextStyle(fontSize: 18, color: Colors.white),
+                    ),
                     const SizedBox(height: 5),
-                    const Text("18120345@student.hcmus.edu.vn", style: TextStyle(fontSize: 14, color: Colors.white), maxLines: 1, overflow: TextOverflow.ellipsis),
+                    Text(
+                      user.email,
+                      style: const TextStyle(fontSize: 14, color: Colors.white),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ],
                 ),
               ],
             ),
           ),
           ListTile(
-            leading: const Icon(Icons.person_outline_sharp, color: Colors.black, size: 28,),
-            title: const Text('Profile', style: TextStyle(fontSize: 16, color: Colors.black),),
+            leading: const Icon(
+              Icons.person_outline_sharp,
+              color: Colors.black,
+              size: 28,
+            ),
+            title: const Text(
+              'Profile',
+              style: TextStyle(fontSize: 16, color: Colors.black),
+            ),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ProfileScreen()));
             },
           ),
           ListTile(
-            leading: const Icon(Icons.school, color: Colors.black, size: 28,),
-            title: const Text('Become A Tutor', style: TextStyle(fontSize: 16, color: Colors.black),),
+            leading: const Icon(
+              Icons.school,
+              color: Colors.black,
+              size: 28,
+            ),
+            title: const Text(
+              'Become A Tutor',
+              style: TextStyle(fontSize: 16, color: Colors.black),
+            ),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const BecomeTeacher()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const BecomeTeacher()));
             },
           ),
           ListTile(
-            leading: const Icon(Icons.menu_book, color: Colors.black, size: 28,),
-            title: const Text('List of courses', style: TextStyle(fontSize: 16, color: Colors.black),),
+            leading: const Icon(
+              Icons.menu_book,
+              color: Colors.black,
+              size: 28,
+            ),
+            title: const Text(
+              'List of courses',
+              style: TextStyle(fontSize: 16, color: Colors.black),
+            ),
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const CoursesScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const CoursesScreen()));
             },
           ),
         ],

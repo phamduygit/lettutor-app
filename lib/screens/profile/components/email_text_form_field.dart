@@ -9,6 +9,7 @@ class EmailTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<User>();
     return Column(
       children: [
         Row(
@@ -33,8 +34,12 @@ class EmailTextFormField extends StatelessWidget {
             border: OutlineInputBorder(),
             hintText: "Enter your email",
           ),
-          initialValue: context.read<User>().email,
-          onSaved: (val) {},
+          initialValue: user.email,
+          onSaved: (val) {
+            // user.email = val!;
+            // user.updateUser(user);
+            // UserDAO().update(user);
+          },
         ),
       ],
     );

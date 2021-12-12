@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/service/sql_lite/user_dao.dart';
+import 'package:provider/provider.dart';
 
 class PhoneTextFormField extends StatelessWidget {
   const PhoneTextFormField({
@@ -7,6 +10,7 @@ class PhoneTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<User>();
     return Column(
       children: [
         Row(
@@ -30,7 +34,7 @@ class PhoneTextFormField extends StatelessWidget {
             border: OutlineInputBorder(),
             hintText: "Enter your phone number",
           ),
-          initialValue: "0342569003",
+          initialValue: user.phone,
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'Please enter some text';
@@ -41,7 +45,11 @@ class PhoneTextFormField extends StatelessWidget {
             }
             return null;
           },
-          onSaved: (val) {},
+          onSaved: (val) {
+            user.phone = val!;
+            user.updateUser(user);
+            UserDAO().update(user);
+          },
         ),
       ],
     );
