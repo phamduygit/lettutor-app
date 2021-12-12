@@ -58,6 +58,7 @@ class FavoriteDAO {
     Database db = await open();
     final List<Map<String, dynamic>> maps =
         await db.query('favorites', where: 'userID = ?', whereArgs: [userID]);
+    db.close();
     return List.generate(maps.length, (index) {
       return maps[index]['teacherID'];
     });

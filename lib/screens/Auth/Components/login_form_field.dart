@@ -7,6 +7,7 @@ import 'package:lettutor_app/screens/auth/components/secure_text_field.dart';
 import 'package:lettutor_app/service/sql_lite/user_dao.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 import 'default_button.dart';
 
 class MyFormField extends StatefulWidget {
@@ -69,17 +70,22 @@ class _MyFormFieldState extends State<MyFormField> {
                 _formKey.currentState!.save();
                 if (_password == "12345678") {
                   User newUser = User(
-                    id: _email,
+                    id: const Uuid().v4(),
                     email: _email,
                     favorites: [],
+                    target: [],
+                    birthDay: DateTime.now(),
                   );
                   if (await UserDAO().isNotExists(newUser)) {
                     await UserDAO().insert(newUser);
-                  } else {}
+                  } else {
+                    newUser = await UserDAO().getUserByEmail(_email);
+                  }
                   SharedPreferences prefs =
                       await SharedPreferences.getInstance();
-                  await prefs.setString('currentUserID', _email);
-                  Provider.of<LocalApp>(context, listen: false).setID(_email);
+                  await prefs.setString('currentUserID', newUser.id);
+                  Provider.of<LocalApp>(context, listen: false)
+                      .setID(newUser.id);
                 } else {
                   ///
                 }

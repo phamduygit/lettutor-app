@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
+import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/screens/profile/components/edit_photo.dart';
+import 'package:provider/provider.dart';
 import 'birthday_text_form_field.dart';
 import 'country_text_form_field.dart';
 import 'courses_text_form_field.dart';
@@ -12,9 +14,10 @@ import 'update_button.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
-  // CountryCode countryCode;
+  
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<User>();
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
@@ -31,13 +34,13 @@ class Body extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 10),
-              const Text(
-                "Phạm Minh Duy",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+               Text(
+                user.fullName == "" ? "None" : user.fullName,
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              const Text("Account ID: 2b1195b1-3714-48da-8f65-f3e757112ef7"),
+              Text("Account ID: ${user.id}"),
               const Divider(),
-              const NormalTextFormField(name: "Phạm Minh Duy", hintText: "Enter your name", title: "Name",),
+              NormalTextFormField(name: user.fullName, hintText: "Enter your name", title: "Name",),
               const SizedBox(height: 10),
               const EmailTextFormField(),
               const SizedBox(height: 10),

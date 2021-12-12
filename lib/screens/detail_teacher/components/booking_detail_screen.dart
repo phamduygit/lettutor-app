@@ -6,6 +6,7 @@ import 'package:lettutor_app/models/teacher.dart';
 import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/screens/detail_teacher/components/over_view_teacher.dart';
 import 'package:lettutor_app/service/provider/list_meeting.dart';
+import 'package:lettutor_app/service/sql_lite/meeting_dao.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -133,7 +134,7 @@ class BookingDetailScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         Meeting newMeeting = Meeting(
                           id: const Uuid().v4(),
                           userID: context.read<User>().id,
@@ -143,6 +144,7 @@ class BookingDetailScreen extends StatelessWidget {
                           date: date,
                           status: 1,
                         );
+                        await MeetingDAO().insertMeeting(newMeeting);
                         Provider.of<ListMeeting>(context, listen: false)
                             .addNewMeeting(newMeeting);
                       },

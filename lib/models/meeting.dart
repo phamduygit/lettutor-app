@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class Meeting {
   String id;
   String userID;
@@ -15,5 +17,16 @@ class Meeting {
     required this.date,
     required this.status,
   });
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'userID': userID,
+      'teacherID': teacherID,
+      'avatar': avatar,
+      'name': name,
+      'date': DateFormat('dd/MM/yyyy HH:mm:ss').format(date),
+      'status': status,
+    };
+  }
 }
 

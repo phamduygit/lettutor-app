@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_app/models/user.dart';
+import 'package:provider/provider.dart';
 
 class EmailTextFormField extends StatelessWidget {
   const EmailTextFormField({
@@ -31,7 +33,7 @@ class EmailTextFormField extends StatelessWidget {
             border: OutlineInputBorder(),
             hintText: "Enter your email",
           ),
-          initialValue: "minhduy.bthuy@gmail.com",
+          initialValue: context.read<User>().email,
           onSaved: (val) {},
         ),
       ],

@@ -21,7 +21,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final localApp = LocalApp();
-  User user = User(favorites: []);
+  User user = User(favorites: [], target: [], birthDay: DateTime.now());
   ListTeacher teachers = ListTeacher();
   initApp() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
