@@ -57,7 +57,7 @@ class EndDrawer extends StatelessWidget {
             ),
             title: const Text(
               'Profile',
-              style: TextStyle(fontSize: 16, color: Colors.black),
+              style: TextStyle(fontSize: 16),
             ),
             onTap: () {
               Navigator.pop(context);
@@ -70,12 +70,11 @@ class EndDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(
               Icons.school,
-              color: Colors.black,
               size: 28,
             ),
             title: const Text(
               'Become A Tutor',
-              style: TextStyle(fontSize: 16, color: Colors.black),
+              style: TextStyle(fontSize: 16),
             ),
             onTap: () {
               Navigator.pop(context);
@@ -88,12 +87,11 @@ class EndDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(
               Icons.menu_book,
-              color: Colors.black,
               size: 28,
             ),
             title: const Text(
               'List of courses',
-              style: TextStyle(fontSize: 16, color: Colors.black),
+              style: TextStyle(fontSize: 16),
             ),
             onTap: () {
               Navigator.pop(context);

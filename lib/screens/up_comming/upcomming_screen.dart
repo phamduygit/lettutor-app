@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/screens/up_comming/components/meeting_card.dart';
-import 'package:lettutor_app/service/provider/list_meeting.dart';
+import 'package:lettutor_app/data/provider/list_meeting.dart';
 import 'package:provider/provider.dart';
 
 class Upcomming extends StatelessWidget {

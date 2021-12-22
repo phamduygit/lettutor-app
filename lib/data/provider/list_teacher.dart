@@ -12,7 +12,9 @@ class ListTeacher extends ChangeNotifier {
   }
 
   void setListTeacher(List<String> listFavorite) {
+    
     for (int i = 0; i < list.length; i++) {
+      list[i].isFavorite = 0;
       if (listFavorite.contains(list[i].id)) {
         list[i].isFavorite = 1;
       }

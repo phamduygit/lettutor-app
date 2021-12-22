@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/models/user.dart';
-import 'package:lettutor_app/service/sql_lite/user_dao.dart';
+import 'package:lettutor_app/data/sql_lite/user_dao.dart';
 import 'package:provider/provider.dart';
 
 class CoursesTextFormField extends StatefulWidget {

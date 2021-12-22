@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/service/provider/local_app_sp.dart';
+import 'package:lettutor_app/data/provider/local_app_sp.dart';
 import 'package:lettutor_app/screens/auth/login_screen.dart';
 import 'package:lettutor_app/screens/my_tab_bar.dart';
 import 'package:provider/provider.dart';

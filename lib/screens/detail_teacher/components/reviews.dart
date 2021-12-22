@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/models/teacher.dart';
 import 'package:lettutor_app/screens/detail_teacher/components/review_card.dart';
-import 'package:lettutor_app/service/provider/list_review.dart';
+import 'package:lettutor_app/data/provider/list_review.dart';
 import 'package:provider/provider.dart';
 
 class Reviews extends StatelessWidget {

@@ -4,8 +4,8 @@ import 'package:lettutor_app/models/meeting.dart';
 import 'package:lettutor_app/models/review.dart';
 import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/screens/setting/components/rating.dart';
-import 'package:lettutor_app/service/provider/list_review.dart';
-import 'package:lettutor_app/service/sql_lite/review_dao.dart';
+import 'package:lettutor_app/data/provider/list_review.dart';
+import 'package:lettutor_app/data/sql_lite/review_dao.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 

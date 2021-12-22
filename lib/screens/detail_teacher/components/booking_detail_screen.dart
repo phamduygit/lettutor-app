@@ -5,8 +5,8 @@ import 'package:lettutor_app/models/meeting.dart';
 import 'package:lettutor_app/models/teacher.dart';
 import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/screens/detail_teacher/components/over_view_teacher.dart';
-import 'package:lettutor_app/service/provider/list_meeting.dart';
-import 'package:lettutor_app/service/sql_lite/meeting_dao.dart';
+import 'package:lettutor_app/data/provider/list_meeting.dart';
+import 'package:lettutor_app/data/sql_lite/meeting_dao.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 

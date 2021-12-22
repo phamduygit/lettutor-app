@@ -1,7 +1,7 @@
 
 import 'package:intl/intl.dart';
 import 'package:lettutor_app/models/user.dart';
-import 'package:lettutor_app/service/sql_lite/favorite_dao.dart';
+import 'package:lettutor_app/data/sql_lite/favorite_dao.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 

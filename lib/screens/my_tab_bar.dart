@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/models/user.dart';
-import 'package:lettutor_app/service/provider/list_meeting.dart';
-import 'package:lettutor_app/service/provider/list_review.dart';
-import 'package:lettutor_app/service/provider/list_teacher.dart';
-import 'package:lettutor_app/service/provider/local_app_sp.dart';
+import 'package:lettutor_app/data/provider/list_meeting.dart';
+import 'package:lettutor_app/data/provider/list_review.dart';
+import 'package:lettutor_app/data/provider/list_teacher.dart';
+import 'package:lettutor_app/data/provider/local_app_sp.dart';
 import 'package:lettutor_app/screens/home/home_screen.dart';
 import 'package:lettutor_app/screens/messages/message_screen.dart';
 import 'package:lettutor_app/screens/setting/setting_screen.dart';
 import 'package:lettutor_app/screens/tutors/tutor_screen.dart';
 import 'package:lettutor_app/screens/up_comming/upcomming_screen.dart';
-import 'package:lettutor_app/service/sql_lite/meeting_dao.dart';
-import 'package:lettutor_app/service/sql_lite/review_dao.dart';
-import 'package:lettutor_app/service/sql_lite/user_dao.dart';
+import 'package:lettutor_app/data/sql_lite/meeting_dao.dart';
+import 'package:lettutor_app/data/sql_lite/review_dao.dart';
+import 'package:lettutor_app/data/sql_lite/user_dao.dart';
 import 'package:provider/provider.dart';
 
 class MyTabBar extends StatefulWidget {

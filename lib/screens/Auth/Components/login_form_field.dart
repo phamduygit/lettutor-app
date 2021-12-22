@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/service/provider/local_app_sp.dart';
+import 'package:lettutor_app/data/provider/local_app_sp.dart';
 import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/screens/Auth/forgot_password.dart';
 import 'package:lettutor_app/screens/auth/components/email_form_field.dart';
 import 'package:lettutor_app/screens/auth/components/secure_text_field.dart';
-import 'package:lettutor_app/service/sql_lite/user_dao.dart';
+import 'package:lettutor_app/data/sql_lite/user_dao.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';

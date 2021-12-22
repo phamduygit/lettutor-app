@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/screens/auth/login_screen.dart';
 import 'package:lettutor_app/screens/main_app.dart';
-import 'package:lettutor_app/service/provider/list_meeting.dart';
-import 'package:lettutor_app/service/provider/list_review.dart';
-import 'package:lettutor_app/service/provider/list_teacher.dart';
+import 'package:lettutor_app/data/provider/list_meeting.dart';
+import 'package:lettutor_app/data/provider/list_review.dart';
+import 'package:lettutor_app/data/provider/list_teacher.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'service/provider/local_app_sp.dart';
+import 'data/provider/local_app_sp.dart';
 
 void main() {
   runApp(const MyApp());
@@ -59,6 +59,9 @@ class _MyAppState extends State<MyApp> {
             foregroundColor: Colors.black,
             elevation: 0,
           ),
+        ),
+        darkTheme: ThemeData(
+          brightness: Brightness.dark,
         ),
         initialRoute: '/',
         routes: {

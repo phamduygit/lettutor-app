@@ -15,7 +15,7 @@ class RecommendedTutors extends StatelessWidget {
           Container(
             child: const Text(
               "Recommnended Tutors",
-              style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
             decoration: BoxDecoration(
               border: Border(

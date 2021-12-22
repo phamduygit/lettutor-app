@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/screens/setting/booking_history.dart';
-import 'package:lettutor_app/service/provider/list_teacher.dart';
-import 'package:lettutor_app/service/provider/local_app_sp.dart';
+import 'package:lettutor_app/data/provider/list_teacher.dart';
+import 'package:lettutor_app/data/provider/local_app_sp.dart';
 import 'package:lettutor_app/screens/setting/session_history_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';

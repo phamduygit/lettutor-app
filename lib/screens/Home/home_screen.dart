@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:lettutor_app/screens/detail_teacher/detail_teacher.dart';
-import 'package:lettutor_app/service/provider/list_teacher.dart';
+import 'package:lettutor_app/data/provider/list_teacher.dart';
 import 'package:provider/provider.dart';
 import 'components/end_drawer.dart';
 import 'components/recommended_tutors.dart';
@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       endDrawer: const EndDrawer(),
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
