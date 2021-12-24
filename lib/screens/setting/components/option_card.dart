@@ -13,12 +13,13 @@ class OptionCard extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 15.0),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Colors.white,
-          onPrimary: Colors.black,
+          primary: Theme.of(context).primaryColor,
+          // onPrimary: Colors.black,
           padding: const EdgeInsets.all(12.0),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),
           ),
+          elevation: 5
         ),
         child: Row(
           children: [

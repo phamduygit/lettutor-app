@@ -6,8 +6,9 @@ import 'package:provider/provider.dart';
 class LevelTextFormField extends StatefulWidget {
   const LevelTextFormField({
     Key? key,
+    required this.title,
   }) : super(key: key);
-
+  final String title;
   @override
   State<LevelTextFormField> createState() => _LevelTextFormFieldState();
 }
@@ -47,11 +48,10 @@ class _LevelTextFormFieldState extends State<LevelTextFormField> {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
+          children: [
             Text(
-              "My Level",
-              style: TextStyle(
-                color: Colors.black,
+              widget.title,
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),

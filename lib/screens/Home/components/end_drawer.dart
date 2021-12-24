@@ -52,7 +52,6 @@ class EndDrawer extends StatelessWidget {
           ListTile(
             leading: const Icon(
               Icons.person_outline_sharp,
-              color: Colors.black,
               size: 28,
             ),
             title: const Text(

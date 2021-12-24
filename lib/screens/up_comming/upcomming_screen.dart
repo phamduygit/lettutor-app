@@ -14,7 +14,6 @@ class Upcomming extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Upcoming"),
       ),
-      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
         child: Column(

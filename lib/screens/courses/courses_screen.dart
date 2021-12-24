@@ -15,7 +15,6 @@ class CoursesScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Courses"),
       ),
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

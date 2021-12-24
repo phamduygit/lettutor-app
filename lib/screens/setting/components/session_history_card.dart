@@ -13,19 +13,8 @@ class SessionHistoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 15.0),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 2,
-              offset: const Offset(0, 0), // changes position of shadow
-            ),
-          ],
-        ),
+      child: Card(
+        elevation: 5,
         child: Column(
           children: [
             Padding(

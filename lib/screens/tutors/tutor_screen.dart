@@ -58,7 +58,6 @@ class _TutorsState extends State<Tutors> {
           style: TextStyle(fontWeight: FontWeight.w500),
         ),
       ),
-      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
         child: SingleChildScrollView(
@@ -99,7 +98,7 @@ class _TutorsState extends State<Tutors> {
                               style: TextStyle(
                                 color: specifiers[index] == selectedSpecifier
                                     ? mainColor
-                                    : Colors.black,
+                                    : null,
                               ),
                             ),
                             decoration: BoxDecoration(

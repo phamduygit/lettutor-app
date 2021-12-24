@@ -68,7 +68,7 @@ class StepOneContent extends StatelessWidget {
         const SizedBox(height: 10),
         const TitleLine(title: "Languages I speak"),
         const SizedBox(height: 10),
-        const LanguageTextFormField(),
+        const LanguageTextFormField( title: "Languages",),
         const SizedBox(height: 10),
         const TitleLine(title: "Who I teach"),
         const SizedBox(height: 10),
@@ -81,7 +81,7 @@ class StepOneContent extends StatelessWidget {
           name: "",
         ),
         const SizedBox(height: 10),
-        const LevelTextFormField(),
+        const LevelTextFormField(title: "I am best at teaching students who are",),
         const SizedBox(height: 10),
         const CoursesTextFormField(title: "My specialties are", hintText: "Chose your specialties",)
       ],

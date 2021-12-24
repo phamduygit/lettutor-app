@@ -16,7 +16,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
   @override
   Widget build(BuildContext context) {
     var teachers = context.watch<ListTeacher>();
@@ -29,8 +28,9 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           Builder(
             builder: (context) => IconButton(
-              icon:  const CircleAvatar(
-                backgroundImage: NetworkImage("https://images.unsplash.com/photo-1565604113656-e92be3ec1b15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"),
+              icon: const CircleAvatar(
+                backgroundImage: NetworkImage(
+                    "https://images.unsplash.com/photo-1565604113656-e92be3ec1b15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"),
               ),
               onPressed: () => Scaffold.of(context).openEndDrawer(),
             ),
@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       endDrawer: const EndDrawer(),
-      // backgroundColor: Colors.white,
+      // backgroundColor: Theme.of(context).primaryColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -54,11 +54,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DetailTeacher(
-                          teacher: teachers.list[index],
-                        ),
-                        settings: const RouteSettings(name: "/detailTeacher")
-                      ),
+                          builder: (context) => DetailTeacher(
+                                teacher: teachers.list[index],
+                              ),
+                          settings:
+                              const RouteSettings(name: "/detailTeacher")),
                     );
                   },
                   child: TeacherCard(

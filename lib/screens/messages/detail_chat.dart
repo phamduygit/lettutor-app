@@ -67,10 +67,11 @@ class _DetailChatState extends State<DetailChat> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(color: Colors.black)),
-                child: const TextField(
+                child: TextField(
                   decoration: InputDecoration(
                     hintText: "Input your text",
                     border: InputBorder.none,
+                    suffixIcon: IconButton(onPressed: () {}, icon: const Icon(Icons.send))
                   ),
                 ),
               ),

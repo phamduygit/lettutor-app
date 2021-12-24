@@ -67,7 +67,7 @@ class _BodyState extends State<Body> {
                       title: "Birthday",
                     ),
                     const SizedBox(height: 10),
-                    const LevelTextFormField(),
+                    const LevelTextFormField(title: "My level",),
                     const SizedBox(height: 10),
                     const CoursesTextFormField(
                       title: "Want to learn",

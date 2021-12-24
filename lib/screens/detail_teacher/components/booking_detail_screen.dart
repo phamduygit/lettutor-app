@@ -22,7 +22,6 @@ class BookingDetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Booking Detail"),
       ),
-      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: defaultPadding),

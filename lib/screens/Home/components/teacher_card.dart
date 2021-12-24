@@ -20,6 +20,7 @@ class TeacherCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
       child: Card(
+        elevation: 5,
         child: Container(
           padding: const EdgeInsets.all(10),
           child: Column(

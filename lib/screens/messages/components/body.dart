@@ -28,6 +28,7 @@ class _BodyState extends State<Body> {
       padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
       child: Column(
         children: [
+          const SizedBox(height: 12),
           CupertinoSearchTextField(
             controller: _textController,
             prefixInsets: const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),

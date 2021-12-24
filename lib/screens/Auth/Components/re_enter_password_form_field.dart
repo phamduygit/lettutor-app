@@ -21,7 +21,6 @@ class _ReEnterPasswordTextFieldState extends State<ReEnterPasswordTextField> {
           children: const [
             Text(
               "CONFIRM PASSWORD",
-              style: TextStyle(color: Colors.black45),
               textAlign: TextAlign.left,
             ),
           ],

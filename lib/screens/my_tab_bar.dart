@@ -50,15 +50,14 @@ class _MyTabBarState extends State<MyTabBar> {
         .getListMeeting(context.watch<LocalApp>().getCurrentUserID)
         .then((value) => Provider.of<ListMeeting>(context, listen: false)
             .setListMeeting(value));
-    ReviewDAO()
-        .getListReivew()
-        .then((value) => Provider.of<ListReview>(context, listen: false).setListReview(value));
+    ReviewDAO().getListReivew().then((value) =>
+        Provider.of<ListReview>(context, listen: false).setListReview(value));
     return Scaffold(
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: mainColor,
+        // backgroundColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -85,6 +84,7 @@ class _MyTabBarState extends State<MyTabBar> {
         selectedItemColor: mainColor,
         unselectedItemColor: Colors.grey,
         onTap: _onItemTapped,
+        elevation: 5,
       ),
     );
   }

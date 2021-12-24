@@ -21,7 +21,6 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           children: const [
             Text(
               "PASSWORD",
-              style: TextStyle(color: Colors.black45),
               textAlign: TextAlign.left,
             ),
           ],

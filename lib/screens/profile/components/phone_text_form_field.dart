@@ -19,7 +19,6 @@ class PhoneTextFormField extends StatelessWidget {
             Text(
               "Phone Number",
               style: TextStyle(
-                color: Colors.black,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),

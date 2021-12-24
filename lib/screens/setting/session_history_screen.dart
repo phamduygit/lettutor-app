@@ -21,11 +21,11 @@ class _SessionHistoryScreenState extends State<SessionHistoryScreen> {
       appBar: AppBar(
         title: const Text("Session History"),
       ),
-      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
         child: Column(
           children: [
+            const SizedBox(height: 12),
             CupertinoSearchTextField(
               // controller: _textController,
               prefixInsets:

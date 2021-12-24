@@ -91,15 +91,12 @@ class DetailTeacher extends StatelessWidget {
                     ReadMoreText(
                       teacher.description,
                       trimLines: 5,
-                      style: TextStyle(
-                          fontSize: 16, color: Colors.black.withOpacity(0.6)),
+                      style: const TextStyle(fontSize: 16),
                       colorClickableText: Colors.black,
                       trimMode: TrimMode.Line,
                       delimiter: ' ',
-                      moreStyle:
-                          const TextStyle(fontSize: 16, color: Colors.black),
-                      lessStyle:
-                          const TextStyle(fontSize: 16, color: Colors.black),
+                      moreStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      lessStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     TitileAndChips(
                       title: "Language",
@@ -126,7 +123,6 @@ class DetailTeacher extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor: Colors.white,
     );
   }
 }

@@ -14,7 +14,6 @@ class BookingHistory extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Booking History"),
       ),
-      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
         child: Column(

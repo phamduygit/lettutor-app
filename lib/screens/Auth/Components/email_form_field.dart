@@ -15,7 +15,6 @@ class EmailTextField extends StatelessWidget {
           children: const [
             Text(
               "EMAIL",
-              style: TextStyle(color: Colors.black45),
               textAlign: TextAlign.left,
             ),
           ],

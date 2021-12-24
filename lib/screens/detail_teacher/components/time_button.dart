@@ -22,10 +22,11 @@ class TimeButton extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => BookingDetailScreen(
-                      date: date,
-                      teacher: teacher,
-                    )),
+              builder: (context) => BookingDetailScreen(
+                date: date,
+                teacher: teacher,
+              ),
+            ),
           );
         },
         child: Text(

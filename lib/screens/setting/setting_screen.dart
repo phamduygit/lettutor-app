@@ -21,7 +21,7 @@ class SettingScreen extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.w500),
         ),
       ),
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(defaultPadding),
         child: SingleChildScrollView(

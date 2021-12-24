@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lettutor_app/constants/app_theme.dart';
 import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/screens/auth/login_screen.dart';
 import 'package:lettutor_app/screens/main_app.dart';
@@ -7,7 +8,6 @@ import 'package:lettutor_app/data/provider/list_review.dart';
 import 'package:lettutor_app/data/provider/list_teacher.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'data/provider/local_app_sp.dart';
 
 void main() {
@@ -52,17 +52,9 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.white,
-            foregroundColor: Colors.black,
-            elevation: 0,
-          ),
-        ),
-        darkTheme: ThemeData(
-          brightness: Brightness.dark,
-        ),
+        theme: lightTheme,
+        darkTheme: darkTheme,
+        themeMode: ThemeMode.dark,
         initialRoute: '/',
         routes: {
           '/': (context) => const MainApp(),

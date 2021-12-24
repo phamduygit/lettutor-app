@@ -19,7 +19,6 @@ class _BecomeTeacherState extends State<BecomeTeacher> {
       appBar: AppBar(
         title: const Text("Become Tutor"),
       ),
-      backgroundColor: Colors.white,
       body: Stepper(
         type: StepperType.horizontal,
         currentStep: _index,

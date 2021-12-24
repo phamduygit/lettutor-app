@@ -5,9 +5,9 @@ import 'package:language_picker/languages.dart';
 
 class LanguageTextFormField extends StatefulWidget {
   const LanguageTextFormField({
-    Key? key,
+    Key? key, required this.title,
   }) : super(key: key);
-
+  final String title;
   @override
   State<LanguageTextFormField> createState() => _LanguageTextFormFieldState();
 }
@@ -27,11 +27,10 @@ class _LanguageTextFormFieldState extends State<LanguageTextFormField> {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
+          children: [
             Text(
-              "My Level",
-              style: TextStyle(
-                color: Colors.black,
+              widget.title,
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),

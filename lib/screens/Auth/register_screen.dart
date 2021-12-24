@@ -10,12 +10,9 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text("Sign up"),
         elevation: 0,
-        foregroundColor: Colors.black,
-        backgroundColor: Colors.white,
       ),
       body: SafeArea(
         child: Padding(
