@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class RecommendedTutors extends StatelessWidget {
   const RecommendedTutors({
@@ -16,7 +17,7 @@ class RecommendedTutors extends StatelessWidget {
             child: const Text(
               "Recommnended Tutors",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-            ),
+            ).tr(),
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
@@ -28,15 +29,15 @@ class RecommendedTutors extends StatelessWidget {
           InkWell(
             onTap: () {},
             child: Row(
-              children: const [
-                Text(
+              children: [
+                const Text(
                   "See all",
                   style: TextStyle(
                     color: mainColor,
                     fontSize: 16,
                   ),
-                ),
-                Icon(
+                ).tr(),
+                const Icon(
                   Icons.chevron_right,
                   color: mainColor,
                   size: 24,

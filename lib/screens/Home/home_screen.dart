@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
 import 'package:lettutor_app/screens/detail_teacher/detail_teacher.dart';
 import 'package:lettutor_app/data/provider/list_teacher.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text(
           "Home",
           style: TextStyle(fontWeight: FontWeight.w500),
-        ),
+        ).tr(),
         actions: [
           Builder(
             builder: (context) => IconButton(

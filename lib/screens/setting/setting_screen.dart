@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
+import 'package:lettutor_app/screens/setting/advanced_setting.dart';
 import 'package:lettutor_app/screens/setting/booking_history.dart';
 import 'package:lettutor_app/data/provider/list_teacher.dart';
 import 'package:lettutor_app/data/provider/local_app_sp.dart';
@@ -61,7 +62,14 @@ class SettingScreen extends StatelessWidget {
               OptionCard(
                 icon: Icons.settings_outlined,
                 title: "Advanced Settings",
-                press: () {},
+                press: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AdvancedSetting(),
+                    ),
+                  );
+                },
               ),
               const SizedBox(height: 30),
               OptionCard(
@@ -98,7 +106,8 @@ class SettingScreen extends StatelessWidget {
                   SharedPreferences prefs =
                       await SharedPreferences.getInstance();
                   await prefs.setString('currentUserID', "");
-                  Provider.of<ListTeacher>(context, listen: false).setListTeacher([]);
+                  Provider.of<ListTeacher>(context, listen: false)
+                      .setListTeacher([]);
                   Provider.of<LocalApp>(context, listen: false).setID("");
                 },
               ),

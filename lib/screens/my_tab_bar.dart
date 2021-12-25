@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/models/user.dart';
@@ -58,26 +59,26 @@ class _MyTabBarState extends State<MyTabBar> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         // backgroundColor: Colors.white,
-        items: const <BottomNavigationBarItem>[
+        items:  <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: const Icon(Icons.home),
+            label: tr('Home'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: 'Message',
+            icon: const Icon(Icons.message),
+            label: tr('Message'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.access_time),
-            label: 'Upcoming',
+            icon: const Icon(Icons.access_time),
+            label: tr('Upcoming'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: 'Tutors',
+            icon: const Icon(Icons.people),
+            label: tr('Tutors'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: const Icon(Icons.settings),
+            label: tr('Settings'),
           ),
         ],
         currentIndex: _selectedIndex,

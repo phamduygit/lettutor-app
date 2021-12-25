@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class UpComingLesson extends StatelessWidget {
   const UpComingLesson({
@@ -11,15 +12,17 @@ class UpComingLesson extends StatelessWidget {
     return Container(
       width: double.infinity,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(height: 30),
-          const Text(
-            "Total lesson time is 11 hours 46 minutes",
-            style: TextStyle(
+          Text(
+            "${tr("Total lesson time is")} ${DateFormat('hh').format(DateTime.now())} ${tr("hours")} ${DateFormat('mm').format(DateTime.now())} ${tr("minutes")}",
+            style: const TextStyle(
               fontSize: 18,
               color: Colors.white,
               fontWeight: FontWeight.w500,
             ),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 10),
           const Text(
@@ -28,11 +31,11 @@ class UpComingLesson extends StatelessWidget {
               fontSize: 16,
               color: Colors.white,
             ),
-          ),
+          ).tr(),
           const SizedBox(height: 10),
-          const Text(
-            "Wed, 06 Oct 21 06:30 - 06:56",
-            style: TextStyle(
+          Text(
+            DateFormat('EE, dd MMM yy hh:mm - hh:mm', context.fallbackLocale.toString() == "vi_VN" ? "vi" : "en" ).format(DateTime.now()),
+            style: const TextStyle(
               fontSize: 14,
               color: Colors.white,
             ),
@@ -42,7 +45,7 @@ class UpComingLesson extends StatelessWidget {
             child: const Text(
               "Enter lesson room",
               style: TextStyle(fontSize: 14),
-            ),
+            ).tr(),
             onPressed: () {},
             style: ElevatedButton.styleFrom(
               primary: Colors.white,

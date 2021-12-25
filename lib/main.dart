@@ -9,9 +9,22 @@ import 'package:lettutor_app/data/provider/list_teacher.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'data/provider/local_app_sp.dart';
+// import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('en', 'US'), Locale('vi', 'VN')],
+      path:
+          'assets/translations', // <-- change the path of the translation files
+      // fallbackLocale: const Locale('en', 'US'),
+      child: const MyApp(),
+    ),
+    // const MyApp()
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -50,6 +63,9 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => ListReview()),
       ],
       child: MaterialApp(
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: lightTheme,
