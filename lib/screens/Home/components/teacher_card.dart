@@ -6,6 +6,7 @@ import 'package:lettutor_app/data/provider/list_teacher.dart';
 import 'package:lettutor_app/data/sql_lite/favorite_dao.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class TeacherCard extends StatelessWidget {
   const TeacherCard({
@@ -113,7 +114,7 @@ class TeacherCard extends StatelessWidget {
                                         vertical: 5, horizontal: 10),
                                     child: Text(teacher.specialties[index],
                                         style:
-                                            const TextStyle(color: mainColor)),
+                                            const TextStyle(color: mainColor)).tr(),
                                     decoration: BoxDecoration(
                                       color: Colors.blue[200],
                                       borderRadius: BorderRadius.circular(20),

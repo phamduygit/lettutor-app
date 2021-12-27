@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/data/sql_lite/user_dao.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class LevelTextFormField extends StatefulWidget {
   const LevelTextFormField({
@@ -64,13 +65,13 @@ class _LevelTextFormFieldState extends State<LevelTextFormField> {
           controller: level,
           readOnly: true,
           keyboardType: TextInputType.emailAddress,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            hintText: "Enter your name",
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(),
+            hintText: tr("Enter your name"),
           ),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter some text';
+              return tr('Please enter some text');
             }
             return null;
           },
@@ -84,7 +85,7 @@ class _LevelTextFormFieldState extends State<LevelTextFormField> {
             builder: (context) {
               return StatefulBuilder(builder: (context, setState) {
                 return AlertDialog(
-                  title: const Text("Select your level"),
+                  title: const Text("Select your level").tr(),
                   content: SingleChildScrollView(
                     child: SizedBox(
                       width: double.infinity,

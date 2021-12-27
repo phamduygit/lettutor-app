@@ -15,6 +15,7 @@ import 'components/over_view_teacher.dart';
 import 'components/reviews.dart';
 import 'components/title_and_chips.dart';
 import 'components/title_and_paragraph.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class DetailTeacher extends StatelessWidget {
   const DetailTeacher({Key? key, required this.teacher}) : super(key: key);
@@ -26,7 +27,7 @@ class DetailTeacher extends StatelessWidget {
     final teacherProvider = context.watch<ListTeacher>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Detail Teacher"),
+        title: const Text("Detail Teacher").tr(),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -51,14 +52,14 @@ class DetailTeacher extends StatelessWidget {
                       children: [
                         OptionButton(
                           icon: Icons.chat_outlined,
-                          title: "Message",
+                          title: tr("Message"),
                           press: () {},
                         ),
                         OptionButton(
                           icon: teacher.isFavorite == 1
                               ? CupertinoIcons.heart_fill
                               : CupertinoIcons.heart,
-                          title: "Favorite",
+                          title: tr("Favorite"),
                           press: () {
                             user.like(teacher.id);
                             teacherProvider.favorite(teacher);
@@ -77,7 +78,7 @@ class DetailTeacher extends StatelessWidget {
                         ),
                         OptionButton(
                           icon: Icons.report_gmailerrorred_rounded,
-                          title: "Report",
+                          title: tr("Report"),
                           press: () {},
                         ),
                       ],
@@ -99,19 +100,19 @@ class DetailTeacher extends StatelessWidget {
                       lessStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     TitileAndChips(
-                      title: "Language",
+                      title: tr("Languages"),
                       chipsContent: teacher.language,
                     ),
                     TitleAndParagraph(
-                      title: "Interest",
+                      title: tr("Interests"),
                       paragraph: teacher.interests,
                     ),
                     TitleAndParagraph(
-                      title: "Teaching experience",
+                      title: tr("Teaching experience"),
                       paragraph: teacher.interests,
                     ),
                     TitileAndChips(
-                      title: "Specialties",
+                      title: ("Specialties"),
                       chipsContent: teacher.specialties,
                     ),
                     const Courses(),

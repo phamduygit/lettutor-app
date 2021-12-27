@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'components/body.dart';
 
 class MessageScreen extends StatelessWidget {
@@ -9,7 +9,7 @@ class MessageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Message"),
+        title: const Text("Message").tr(),
       ),
       body: const Body(),
     );

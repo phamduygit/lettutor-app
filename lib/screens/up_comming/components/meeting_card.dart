@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lettutor_app/models/meeting.dart';
 import 'package:lettutor_app/screens/up_comming/video_call_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class MeetingCard extends StatelessWidget {
   const MeetingCard({
@@ -81,7 +82,7 @@ class MeetingCard extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {},
-                      child: const Text("Cancel"),
+                      child: const Text("Cancel").tr(),
                       style: ElevatedButton.styleFrom(primary: Colors.grey),
                     ),
                   ),
@@ -98,7 +99,7 @@ class MeetingCard extends StatelessWidget {
                           ),
                         );
                       },
-                      child: const Text("Join"),
+                      child: const Text("Join").tr(),
                     ),
                   ),
                 ],

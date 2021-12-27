@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:language_picker/language_picker.dart';
 import 'package:language_picker/languages.dart';
 
@@ -44,13 +44,13 @@ class _LanguageTextFormFieldState extends State<LanguageTextFormField> {
           keyboardType: TextInputType.none,
           readOnly: true,
           maxLines: null,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            hintText: "Select your language",
+          decoration:  InputDecoration(
+            border: const OutlineInputBorder(),
+            hintText: tr("Select your language"),
           ),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter some text';
+              return tr('Please enter some text');
             }
             return null;
           },

@@ -4,7 +4,7 @@ import 'package:lettutor_app/screens/courses/courses_screen.dart';
 import 'package:lettutor_app/screens/profile/become_teacher.dart';
 import 'package:lettutor_app/screens/profile/profile_screen.dart';
 import 'package:provider/provider.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 class EndDrawer extends StatelessWidget {
   const EndDrawer({
     Key? key,
@@ -57,7 +57,7 @@ class EndDrawer extends StatelessWidget {
             title: const Text(
               'Profile',
               style: TextStyle(fontSize: 16),
-            ),
+            ).tr(),
             onTap: () {
               Navigator.pop(context);
               Navigator.push(
@@ -72,9 +72,9 @@ class EndDrawer extends StatelessWidget {
               size: 28,
             ),
             title: const Text(
-              'Become A Tutor',
+              'Become Tutor',
               style: TextStyle(fontSize: 16),
-            ),
+            ).tr(),
             onTap: () {
               Navigator.pop(context);
               Navigator.push(
@@ -89,9 +89,9 @@ class EndDrawer extends StatelessWidget {
               size: 28,
             ),
             title: const Text(
-              'List of courses',
+              'Courses',
               style: TextStyle(fontSize: 16),
-            ),
+            ).tr(),
             onTap: () {
               Navigator.pop(context);
               Navigator.push(

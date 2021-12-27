@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/models/teacher.dart';
 import 'package:lettutor_app/screens/detail_teacher/detail_teacher.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'components/tutor_card.dart';
 
 class Tutors extends StatefulWidget {
@@ -17,7 +17,7 @@ class _TutorsState extends State<Tutors> {
   late TextEditingController _textController;
   // Teacher teacher = listTeacher[0];
   List<Teacher> filterTeacher = listTeacher;
-  String selectedSpecifier = "All";
+  String selectedSpecifier = ("All");
   @override
   void initState() {
     super.initState();
@@ -30,7 +30,7 @@ class _TutorsState extends State<Tutors> {
             (element.name
                 .toLowerCase()
                 .contains(_textController.text.toLowerCase())) &&
-            (selectedSpecifier == "All" ||
+            (selectedSpecifier == ("All") ||
                 element.specialties.contains(selectedSpecifier)))
         .toList();
   }
@@ -40,7 +40,7 @@ class _TutorsState extends State<Tutors> {
     List<String> specifiers = [
       "All",
       "English for kids",
-      "Business English",
+      "English for business",
       "Conversational",
       "STARTERS",
       "MOVERS",
@@ -56,7 +56,7 @@ class _TutorsState extends State<Tutors> {
         title: const Text(
           "Tutors",
           style: TextStyle(fontWeight: FontWeight.w500),
-        ),
+        ).tr(),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
@@ -86,7 +86,7 @@ class _TutorsState extends State<Tutors> {
                         child: GestureDetector(
                           onTap: () {
                             setState(() {
-                              selectedSpecifier = specifiers[index];
+                              selectedSpecifier = (specifiers[index]);
                               filter();
                             });
                           },
@@ -100,9 +100,9 @@ class _TutorsState extends State<Tutors> {
                                     ? mainColor
                                     : null,
                               ),
-                            ),
+                            ).tr(),
                             decoration: BoxDecoration(
-                              color: specifiers[index] == selectedSpecifier
+                              color: (specifiers[index]) == selectedSpecifier
                                   ? Colors.blue[100]
                                   : Colors.grey.withOpacity(0.3),
                               borderRadius: BorderRadius.circular(20),

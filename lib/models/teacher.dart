@@ -37,7 +37,7 @@ List<Teacher> listTeacher = [
     country: "ph",
     language: ["English"],
     specialties: [
-      "English for Business",
+      "English for business",
       "Conversational",
       "English for kids",
       "STARTERS",
@@ -97,7 +97,7 @@ List<Teacher> listTeacher = [
       "Conversational",
       "English for kids",
       "IELTS",
-      "English for Business",
+      "English for business",
       "STARTERS",
       "MOVERS",
       "PET",
@@ -141,7 +141,7 @@ List<Teacher> listTeacher = [
     specialties: [
       "Conversational",
       "English for kids",
-      "English for Business",
+      "English for business",
     ],
     avatar:
         "https://api.app.lettutor.com/avatar/9f896616-72d6-4d28-8859-de0e90f3c4adavatar1634393619087.jpg",

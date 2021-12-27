@@ -3,6 +3,7 @@ import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/screens/up_comming/components/meeting_card.dart';
 import 'package:lettutor_app/data/provider/list_meeting.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class Upcomming extends StatelessWidget {
   const Upcomming({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class Upcomming extends StatelessWidget {
     final listMeeting = context.watch<ListMeeting>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Upcoming"),
+        title: const Text("Upcoming").tr(),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),

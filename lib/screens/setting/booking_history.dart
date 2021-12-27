@@ -12,7 +12,7 @@ class BookingHistory extends StatelessWidget {
     final listMeeting = context.watch<ListMeeting>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Booking History"),
+        title: const Text("Booking history"),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 class UpdateButton extends StatelessWidget {
   const UpdateButton({
     Key? key, required this.press,
@@ -18,16 +18,16 @@ class UpdateButton extends StatelessWidget {
         primary: mainColor,
       ),
       child: Row(
-        children: const [
-          Spacer(),
-          Text(
+        children:  [
+          const Spacer(),
+          const Text(
             "Update",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20.0,
             ),
-          ),
-          Spacer(),
+          ).tr(),
+          const Spacer(),
         ],
       ),
     );

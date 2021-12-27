@@ -18,7 +18,7 @@ class StepTwoContent extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: Colors.blue[50],
+            color: Colors.blue ,
             borderRadius: BorderRadius.circular(10)
           ),
           child: Column(

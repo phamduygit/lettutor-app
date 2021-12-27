@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/models/people.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class DetailChat extends StatefulWidget {
   const DetailChat({Key? key, required this.people}) : super(key: key);
@@ -30,7 +31,7 @@ class _DetailChatState extends State<DetailChat> {
                 const Text(
                   "Teacher",
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
-                ),
+                ).tr(),
               ],
             ),
           ],

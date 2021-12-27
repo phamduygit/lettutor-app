@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/models/courses.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'components/courses_card.dart';
 
 class CoursesScreen extends StatelessWidget {
@@ -13,7 +13,7 @@ class CoursesScreen extends StatelessWidget {
     final List<Course> listConversationalEnglish = listCourse.where((element) => element.category == "Conversational English").toList();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Courses"),
+        title: const Text("Courses").tr(),
       ),
       body: SingleChildScrollView(
         child: Column(

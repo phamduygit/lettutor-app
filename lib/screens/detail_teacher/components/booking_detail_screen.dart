@@ -9,6 +9,7 @@ import 'package:lettutor_app/data/provider/list_meeting.dart';
 import 'package:lettutor_app/data/sql_lite/meeting_dao.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class BookingDetailScreen extends StatelessWidget {
   const BookingDetailScreen(
@@ -20,7 +21,7 @@ class BookingDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Booking Detail"),
+        title: const Text("Booking Detail").tr(),
       ),
       body: SafeArea(
         child: Padding(
@@ -44,7 +45,7 @@ class BookingDetailScreen extends StatelessWidget {
                           const Text(
                             "Booking time:",
                             style: TextStyle(fontSize: 18),
-                          ),
+                          ).tr(),
                           Text(
                             "${DateFormat('HH:mm').format(date)} - ${DateFormat('HH:mm').format(date)}",
                             style: const TextStyle(fontSize: 18),
@@ -63,31 +64,31 @@ class BookingDetailScreen extends StatelessWidget {
                       const SizedBox(height: 15),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
+                        children: [
+                          const Text(
                             "Total:",
                             style: TextStyle(fontSize: 18),
-                          ),
-                          Text(
+                          ).tr(),
+                          const Text(
                             "You have a lesson left",
                             style: TextStyle(fontSize: 18),
-                          ),
+                          ).tr(),
                         ],
                       ),
                       const SizedBox(height: 15),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
+                        children: [
+                          const Text(
                             "Notes:",
                             style: TextStyle(fontSize: 18),
-                          ),
-                          SizedBox(height: 10),
+                          ).tr(),
+                          const SizedBox(height: 10),
                           TextField(
                             keyboardType: TextInputType.multiline,
                             decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: "Send your message",
+                              border: const OutlineInputBorder(),
+                              hintText: tr("Send your message"),
                             ),
                             maxLines: null,
                           )
@@ -104,11 +105,11 @@ class BookingDetailScreen extends StatelessWidget {
                     child: ElevatedButton(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
+                        children:[
+                          const Text(
                             "Cancel",
                             style: TextStyle(fontSize: 18),
-                          ),
+                          ).tr(),
                         ],
                       ),
                       onPressed: () {},
@@ -126,11 +127,11 @@ class BookingDetailScreen extends StatelessWidget {
                     child: ElevatedButton(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
+                        children:[
+                          const Text(
                             "Accept",
                             style: TextStyle(fontSize: 18),
-                          ),
+                          ).tr(),
                         ],
                       ),
                       onPressed: () async {
@@ -146,7 +147,8 @@ class BookingDetailScreen extends StatelessWidget {
                         await MeetingDAO().insertMeeting(newMeeting);
                         Provider.of<ListMeeting>(context, listen: false)
                             .addNewMeeting(newMeeting);
-                        Navigator.popUntil(context, (route) => route.settings.name == "/detailTeacher");
+                        Navigator.popUntil(context,
+                            (route) => route.settings.name == "/detailTeacher");
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.all(defaultPadding),

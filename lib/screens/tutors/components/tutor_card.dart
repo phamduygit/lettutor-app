@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/models/teacher.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class TutorCard extends StatelessWidget {
   const TutorCard({
@@ -71,13 +72,15 @@ class TutorCard extends StatelessWidget {
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 10),
-                                    child: Text(teacher.specialties[index],
-                                        style: const TextStyle(
-                                            color: mainColor)),
+                                    child: Text(
+                                      teacher.specialties[index],
+                                      style: const TextStyle(
+                                        color: mainColor,
+                                      ),
+                                    ).tr(),
                                     decoration: BoxDecoration(
                                       color: Colors.blue[100],
-                                      borderRadius:
-                                          BorderRadius.circular(20),
+                                      borderRadius: BorderRadius.circular(20),
                                     ),
                                   ),
                                 ),

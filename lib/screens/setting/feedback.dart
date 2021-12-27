@@ -8,6 +8,7 @@ import 'package:lettutor_app/data/provider/list_review.dart';
 import 'package:lettutor_app/data/sql_lite/review_dao.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class FeedbackScreen extends StatefulWidget {
   const FeedbackScreen({Key? key, required this.meeting}) : super(key: key);
@@ -26,16 +27,18 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
       numberOfStar = value;
     });
   }
+
   @override
   void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     final user = context.read<User>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Feedback"),
+        title: const Text("Feedback").tr(),
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -63,12 +66,12 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                     const Text(
                       "Rate Your Tutor",
                       style: TextStyle(fontSize: 18, color: mainColor),
-                    ),
+                    ).tr(),
                     const SizedBox(height: 10),
                     const Text(
                       "How was your Study?",
                       style: TextStyle(fontSize: 18),
-                    ),
+                    ).tr(),
                     const SizedBox(height: 10),
                     CircleAvatar(
                       backgroundImage: NetworkImage(widget.meeting.avatar),
@@ -111,18 +114,18 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       const Text(
                         "Leave your comment",
                         style: TextStyle(fontSize: 18),
-                      ),
+                      ).tr(),
                       const SizedBox(height: 20),
                       TextFormField(
                         keyboardType: TextInputType.multiline,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: "Leave your throught about this study",
+                        decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          hintText: tr("Leave your throught about this study"),
                         ),
                         maxLines: null,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
+                            return tr('Please enter some text');
                           }
                           return null;
                         },
@@ -135,15 +138,15 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       const SizedBox(height: 15),
                       ElevatedButton(
                         child: Row(
-                          children: const [
-                            Spacer(),
-                            Text(
+                          children: [
+                            const Spacer(),
+                            const Text(
                               "Submit",
                               style: TextStyle(
                                 fontSize: 18,
                               ),
-                            ),
-                            Spacer(),
+                            ).tr(),
+                            const Spacer(),
                           ],
                         ),
                         onPressed: () async {

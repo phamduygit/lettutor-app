@@ -11,6 +11,7 @@ import 'level_text_form_field.dart';
 import 'normal_text_form_filed.dart';
 import 'phone_text_form_field.dart';
 import 'update_button.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -45,7 +46,7 @@ class _BodyState extends State<Body> {
                 style:
                     const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              Text("Account ID: ${user.id}"),
+              Text("${tr("Account ID")}: ${user.id}"),
               const Divider(),
               Form(
                 key: _formKey,
@@ -53,33 +54,33 @@ class _BodyState extends State<Body> {
                   children: [
                     NormalTextFormField(
                       name: user.fullName,
-                      hintText: "Enter your name",
-                      title: "Name",
+                      hintText: tr("Enter your name"),
+                      title: tr("Name"),
                     ),
                     const SizedBox(height: 10),
                     const EmailTextFormField(),
                     const SizedBox(height: 10),
-                    const CountryTextFormField(title: "Country"),
+                     CountryTextFormField(title: tr("Country")),
                     const SizedBox(height: 10),
                     const PhoneTextFormField(),
                     const SizedBox(height: 10),
-                    const BirthdayTextFormField(
-                      title: "Birthday",
+                     BirthdayTextFormField(
+                      title: tr("Birthday"),
                     ),
                     const SizedBox(height: 10),
-                    const LevelTextFormField(title: "My level",),
+                     LevelTextFormField(title: tr("My level"),),
                     const SizedBox(height: 10),
-                    const CoursesTextFormField(
-                      title: "Want to learn",
-                      hintText: "Chose the courses you want to learn",
+                     CoursesTextFormField(
+                      title: tr("Want to learn"),
+                      hintText: tr("Chose the courses you want to learn"),
                     ),
                     const SizedBox(height: 20),
                     UpdateButton(
                       press: () async {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
+                          Navigator.pop(context);
                         }
-                        Navigator.pop(context);
                       },
                     )
                   ],

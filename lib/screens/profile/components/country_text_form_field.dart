@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/data/sql_lite/user_dao.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CountryTextFormField extends StatefulWidget {
   const CountryTextFormField({
@@ -45,14 +46,14 @@ class _CountryTextFormFieldState extends State<CountryTextFormField> {
           controller: countryName,
           readOnly: true,
           keyboardType: TextInputType.emailAddress,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            hintText: "Enter your country",
-            suffixIcon: Icon(Icons.arrow_drop_down),
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(),
+            hintText: tr("Enter your country"),
+            suffixIcon: const Icon(Icons.arrow_drop_down),
           ),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter some text';
+              return tr('Please enter some text');
             }
             return null;
           },
@@ -82,8 +83,8 @@ class _CountryTextFormFieldState extends State<CountryTextFormField> {
                 ),
                 // Optional. Styles the search field.
                 inputDecoration: InputDecoration(
-                  labelText: 'Search',
-                  hintText: 'Start typing to search',
+                  labelText: tr('Search'),
+                  hintText: tr('Start typing to search'),
                   prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderSide: BorderSide(

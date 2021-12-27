@@ -7,7 +7,7 @@ import 'package:lettutor_app/data/provider/local_app_sp.dart';
 import 'package:lettutor_app/screens/setting/session_history_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'components/info_account.dart';
 import 'components/option_card.dart';
 
@@ -20,7 +20,7 @@ class SettingScreen extends StatelessWidget {
         title: const Text(
           "Settings",
           style: TextStyle(fontWeight: FontWeight.w500),
-        ),
+        ).tr(),
       ),
       // backgroundColor: Colors.white,
       body: Padding(
@@ -32,12 +32,12 @@ class SettingScreen extends StatelessWidget {
               const SizedBox(height: 30),
               OptionCard(
                 icon: Icons.person_outline,
-                title: "View Feedbacks",
+                title: tr("View feedbacks"),
                 press: () {},
               ),
               OptionCard(
                 icon: Icons.list_rounded,
-                title: "Booking History",
+                title: tr("Booking history"),
                 press: () {
                   Navigator.push(
                     context,
@@ -49,7 +49,7 @@ class SettingScreen extends StatelessWidget {
               ),
               OptionCard(
                 icon: Icons.history,
-                title: "Session History",
+                title: tr("Session history"),
                 press: () {
                   Navigator.push(
                     context,
@@ -61,7 +61,7 @@ class SettingScreen extends StatelessWidget {
               ),
               OptionCard(
                 icon: Icons.settings_outlined,
-                title: "Advanced Settings",
+                title: tr("Advanced settings"),
                 press: () {
                   Navigator.push(
                     context,
@@ -74,7 +74,7 @@ class SettingScreen extends StatelessWidget {
               const SizedBox(height: 30),
               OptionCard(
                 icon: Icons.web_asset,
-                title: "Our Website",
+                title: tr("Our website"),
                 press: () {},
               ),
               OptionCard(
@@ -93,13 +93,13 @@ class SettingScreen extends StatelessWidget {
                   ),
                 ),
                 child: Row(
-                  children: const [
-                    Spacer(),
-                    Text(
+                  children: [
+                    const Spacer(),
+                    const Text(
                       "Log out",
                       style: TextStyle(fontSize: 16),
-                    ),
-                    Spacer(),
+                    ).tr(),
+                    const Spacer(),
                   ],
                 ),
                 onPressed: () async {

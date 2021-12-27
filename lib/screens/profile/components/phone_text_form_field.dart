@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/data/sql_lite/user_dao.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class PhoneTextFormField extends StatelessWidget {
   const PhoneTextFormField({
@@ -15,10 +16,10 @@ class PhoneTextFormField extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
+          children: [
             Text(
-              "Phone Number",
-              style: TextStyle(
+              tr("Phone Number"),
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),
@@ -29,17 +30,17 @@ class PhoneTextFormField extends StatelessWidget {
         const SizedBox(height: 10),
         TextFormField(
           keyboardType: TextInputType.number,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            hintText: "Enter your phone number",
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(),
+            hintText: tr("Enter your phone number"),
           ),
           initialValue: user.phone,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter some text';
+              return tr('Please enter some text');
             } else {
               if (!RegExp(r"^(?:[+0]9)?[0-9]{10}$").hasMatch(value)) {
-                return 'Invalid phone number';
+                return tr('Invalid phone number');
               }
             }
             return null;

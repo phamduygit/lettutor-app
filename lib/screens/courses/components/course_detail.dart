@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/models/courses.dart';
 import 'package:lettutor_app/screens/courses/components/title_line.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'course_detail_card.dart';
 
 class CourseDetail extends StatelessWidget {
@@ -14,7 +14,7 @@ class CourseDetail extends StatelessWidget {
     double widthScreen = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Courses Detail"),
+        title: const Text("Courses Detail").tr(),
       ),
       body: SafeArea(
         child: Padding(
@@ -26,10 +26,10 @@ class CourseDetail extends StatelessWidget {
                 const SizedBox(height: 15),
                 CoursesDetailCard(course: course, widthScreen: widthScreen),
                 const SizedBox(height: 15),
-                const TitleLine(title: "Overview"),
-                const IconAndTitle(
+                TitleLine(title: tr("Overview")),
+                IconAndTitle(
                   icon: CupertinoIcons.question_circle,
-                  title: "Why take this course",
+                  title: tr("Why take this course"),
                   colorIcon: Colors.red,
                 ),
                 Padding(
@@ -37,9 +37,9 @@ class CourseDetail extends StatelessWidget {
                       left: defaultPadding * 2, right: defaultPadding, top: 5),
                   child: Text(course.reason),
                 ),
-                const IconAndTitle(
+                IconAndTitle(
                   icon: CupertinoIcons.question_circle,
-                  title: "What will you be able to do",
+                  title: tr("What will you be able to do"),
                   colorIcon: Colors.red,
                 ),
                 Padding(
@@ -47,21 +47,21 @@ class CourseDetail extends StatelessWidget {
                       left: defaultPadding * 2, right: defaultPadding, top: 5),
                   child: Text(course.value),
                 ),
-                const TitleLine(title: "Experience Level"),
+                TitleLine(title: tr("Experience Level")),
                 const SizedBox(height: 5),
                 IconAndTitle(
                   icon: Icons.people_alt_outlined,
                   title: course.experienceLevel,
                   colorIcon: Colors.blue,
                 ),
-                const TitleLine(title: "Course Length"),
+                 TitleLine(title: tr("Course Length")),
                 const SizedBox(height: 5),
                 IconAndTitle(
                   icon: Icons.topic,
-                  title: "${course.listTopic.length} topics",
+                  title: "${course.listTopic.length} ${tr("topics")}",
                   colorIcon: Colors.blue,
                 ),
-                const TitleLine(title: "Course Length"),
+                 TitleLine(title: tr("List topics")),
                 const SizedBox(height: 5),
                 Padding(
                   padding: const EdgeInsets.only(
@@ -76,7 +76,8 @@ class CourseDetail extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         child: Text(
                           "${index + 1}. ${course.listTopic[index]}",
-                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w500),
                         ),
                       ),
                     ),

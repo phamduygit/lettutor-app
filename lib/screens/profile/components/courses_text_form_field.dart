@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_app/models/user.dart';
 import 'package:lettutor_app/data/sql_lite/user_dao.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CoursesTextFormField extends StatefulWidget {
   const CoursesTextFormField({
-    Key? key, required this.title, required this.hintText,
+    Key? key,
+    required this.title,
+    required this.hintText,
   }) : super(key: key);
   final String title;
   final String hintText;
@@ -98,7 +101,7 @@ class _CoursesTextFormFieldState extends State<CoursesTextFormField> {
                                             (element) => element == e);
                                   });
                                 },
-                                title: Text(e),
+                                title: Text(e).tr(),
                               ),
                             )
                             .toList(),

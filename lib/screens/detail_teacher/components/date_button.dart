@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/models/pattern.dart';
 import 'package:lettutor_app/models/teacher.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'time_button.dart';
 
 class DateButton extends StatelessWidget {
@@ -46,7 +46,7 @@ class DateButton extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w500),
                         textAlign: TextAlign.center,
-                      ),
+                      ).tr(),
                       decoration: BoxDecoration(
                         color: Theme.of(context).primaryColor,
                         borderRadius: const BorderRadius.only(

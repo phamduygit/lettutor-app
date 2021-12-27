@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'components/step_1_content.dart';
 import 'components/step_two_content.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 class BecomeTeacher extends StatefulWidget {
   const BecomeTeacher({Key? key}) : super(key: key);
 
@@ -17,7 +17,7 @@ class _BecomeTeacherState extends State<BecomeTeacher> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Become Tutor"),
+        title: const Text("Become Tutor").tr(),
       ),
       body: Stepper(
         type: StepperType.horizontal,
@@ -44,19 +44,19 @@ class _BecomeTeacherState extends State<BecomeTeacher> {
         steps: <Step>[
           Step(
             isActive: _index == 0,
-            title: const Text('Profile'),
+            title: const Text('Profile').tr(),
             content: const StepOneContent(),
           ),
           Step(
             isActive: _index == 1,
-            title: const Text('Video'),
+            title: const Text('Video').tr(),
             content: const StepTwoContent(),
           ),
           
           Step(
             isActive: _index == 2,
-            title: const Text('Approval'),
-            content: const Text('Please wait for the operator approval'),
+            title: const Text('Approval').tr(),
+            content: const Text('Please wait for the operator approval').tr(),
           ),
         ],
       ),

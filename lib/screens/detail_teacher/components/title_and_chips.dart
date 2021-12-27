@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class TitileAndChips extends StatelessWidget {
   const TitileAndChips({
@@ -30,7 +31,7 @@ class TitileAndChips extends StatelessWidget {
                 label: Text(
                   chipsContent[index],
                   style: const TextStyle(color: mainColor, fontSize: 12),
-                ),
+                ).tr(),
                 backgroundColor: Colors.blue[50],
               ),
             ),

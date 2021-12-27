@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/data/provider/list_meeting.dart';
 import 'package:provider/provider.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 import 'components/session_history_card.dart';
 
 class SessionHistoryScreen extends StatefulWidget {
@@ -19,7 +19,7 @@ class _SessionHistoryScreenState extends State<SessionHistoryScreen> {
     final listMeeting = context.watch<ListMeeting>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Session History"),
+        title: const Text("Session history").tr(),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
