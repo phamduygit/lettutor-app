@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/screens/Auth/Components/default_button.dart';
 import 'package:lettutor_app/screens/auth/components/email_form_field.dart';
-
+import 'package:easy_localization/easy_localization.dart';
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
 
@@ -23,7 +23,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Forgot password"),
+        title: const Text("Forgot password").tr(),
         elevation: 0,
       ),
       body: SafeArea(
@@ -32,8 +32,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           child: Form(
             key: _formKey,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const Spacer(),
+                const SizedBox(height: 20),
                 const Text(
                   "Reset Password",
                   style: TextStyle(
@@ -51,7 +52,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 EmailTextField(saveEmail: saveEmail),
                 const SizedBox(height: 15),
                 DefaultButton(
-                  content: "SEND",
+                  content: tr("SEND"),
                   press: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class PasswordTextField extends StatefulWidget {
   const PasswordTextField({
@@ -18,11 +19,11 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
-            Text(
+          children: [
+            const Text(
               "PASSWORD",
               textAlign: TextAlign.left,
-            ),
+            ).tr(),
           ],
         ),
         const SizedBox(height: 15),
@@ -30,7 +31,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           obscureText: !showPassword,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
-            hintText: "Enter your password",
+            hintText: tr("Enter your password"),
             suffixIcon: SizedBox(
               height: 18.0,
               width: 18.0,
@@ -52,11 +53,11 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           ),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter some text';
+              return tr('Please enter some text');
             }
             else {
               if (value.length < 8) {
-                return 'Password at least 8 charactor';
+                return tr('Password at least 8 charactor');
               }
             }
             return null;

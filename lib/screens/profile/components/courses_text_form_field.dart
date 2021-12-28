@@ -19,8 +19,8 @@ class CoursesTextFormField extends StatefulWidget {
 class _CoursesTextFormFieldState extends State<CoursesTextFormField> {
   static final List<String> _courses = [
     "English for kids",
-    "Business English",
-    "Conversational English",
+    "English for business",
+    "Conversational",
     "STARTERS",
     "MOVERS",
     "FLYERS",

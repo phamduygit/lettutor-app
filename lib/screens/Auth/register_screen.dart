@@ -3,6 +3,7 @@ import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/screens/Auth/Components/introduction_app.dart';
 import 'package:lettutor_app/screens/Auth/Components/login_fb_gg.dart';
 import 'package:lettutor_app/screens/Auth/Components/register_form_field.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Sign up"),
+        title: const Text("Sign up").tr(),
         elevation: 0,
       ),
       body: SafeArea(

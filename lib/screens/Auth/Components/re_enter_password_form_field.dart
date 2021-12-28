@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ReEnterPasswordTextField extends StatefulWidget {
   const ReEnterPasswordTextField({
-    Key? key, required this.password,
+    Key? key,
+    required this.password,
   }) : super(key: key);
   final String password;
   @override
-  State<ReEnterPasswordTextField> createState() => _ReEnterPasswordTextFieldState();
+  State<ReEnterPasswordTextField> createState() =>
+      _ReEnterPasswordTextFieldState();
 }
 
 class _ReEnterPasswordTextFieldState extends State<ReEnterPasswordTextField> {
@@ -18,11 +21,11 @@ class _ReEnterPasswordTextFieldState extends State<ReEnterPasswordTextField> {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
-            Text(
+          children:  [
+            const Text(
               "CONFIRM PASSWORD",
               textAlign: TextAlign.left,
-            ),
+            ).tr(),
           ],
         ),
         const SizedBox(height: 15),
@@ -30,7 +33,7 @@ class _ReEnterPasswordTextFieldState extends State<ReEnterPasswordTextField> {
           obscureText: !showPassword,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),
-            hintText: "Re-enter your password",
+            hintText: tr("Re-enter your password"),
             suffixIcon: SizedBox(
               height: 18.0,
               width: 18.0,
@@ -52,14 +55,13 @@ class _ReEnterPasswordTextFieldState extends State<ReEnterPasswordTextField> {
           ),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter some text';
-            }
-            else {
+              return tr('Please enter some text');
+            } else {
               if (value.length < 8) {
-                return 'Password at least 8 charactor';
+                return tr('Password at least 8 charactor');
               }
               if (value != widget.password) {
-                return 'Confirm password does not match';
+                return tr('Confirm password does not match');
               }
             }
             return null;

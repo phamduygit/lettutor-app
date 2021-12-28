@@ -4,6 +4,7 @@ import 'package:lettutor_app/screens/Auth/Components/login_form_field.dart';
 import 'package:lettutor_app/screens/Auth/register_screen.dart';
 import 'Components/introduction_app.dart';
 import 'Components/login_fb_gg.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -24,11 +25,11 @@ class LoginScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Don't have account? "),
+                    const Text("Don't have account? ").tr(),
                     InkWell(
-                      child: const Text(
-                        "Sign up",
-                        style: TextStyle(color: mainColor),
+                      child: Text(
+                        tr("Sign up"),
+                        style: const TextStyle(color: mainColor),
                       ),
                       onTap: () {
                         Navigator.push(

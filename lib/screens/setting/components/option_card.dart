@@ -14,7 +14,7 @@ class OptionCard extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: Theme.of(context).primaryColor,
-          // onPrimary: Colors.black,
+          onPrimary: Theme.of(context).primaryColorLight,
           padding: const EdgeInsets.all(12.0),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30),

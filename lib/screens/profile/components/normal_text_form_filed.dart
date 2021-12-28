@@ -34,7 +34,7 @@ class NormalTextFormField extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         TextFormField(
-          keyboardType: TextInputType.none,
+          keyboardType: TextInputType.text,
           maxLines: null,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),

@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 import 'default_button.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class MyFormField extends StatefulWidget {
   const MyFormField({Key? key}) : super(key: key);
@@ -48,7 +49,7 @@ class _MyFormFieldState extends State<MyFormField> {
             children: [
               TextButton(
                 child: Text(
-                    "Forget Password? ${context.watch<LocalApp>().getCurrentUserID}"),
+                    "Forget Password? ${context.watch<LocalApp>().getCurrentUserID}",).tr(),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -64,7 +65,7 @@ class _MyFormFieldState extends State<MyFormField> {
           ),
           const SizedBox(height: 10),
           DefaultButton(
-            content: 'LOG IN',
+            content: tr('LOG IN'),
             press: () async {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();

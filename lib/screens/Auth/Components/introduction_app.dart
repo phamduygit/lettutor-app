@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class IntroductionApp extends StatelessWidget {
   const IntroductionApp({
@@ -20,13 +21,12 @@ class IntroductionApp extends StatelessWidget {
             fontWeight: FontWeight.w800,
           ),
           textAlign: TextAlign.center,
-        ),
+        ).tr(),
         const Text(
           "Become fluent faster through one on one video chat lessons tailored to your goals.",
-          style:
-              TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
           textAlign: TextAlign.center,
-        ),
+        ).tr(),
       ],
     );
   }

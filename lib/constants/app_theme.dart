@@ -7,6 +7,7 @@ ThemeData lightTheme = ThemeData(
     foregroundColor: Colors.black,
     elevation: 0,
   ),
+  primaryColorLight: Colors.black,
   primaryColor: Colors.white,
   primaryColorBrightness: Brightness.light,
   primaryColorDark: Colors.black,
