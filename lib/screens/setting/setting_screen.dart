@@ -1,12 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/screens/setting/advanced_setting.dart';
 import 'package:lettutor_app/screens/setting/booking_history.dart';
-import 'package:lettutor_app/data/provider/list_teacher.dart';
-import 'package:lettutor_app/data/provider/local_app_sp.dart';
 import 'package:lettutor_app/screens/setting/session_history_screen.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'components/info_account.dart';
 import 'components/option_card.dart';
@@ -103,12 +100,7 @@ class SettingScreen extends StatelessWidget {
                   ],
                 ),
                 onPressed: () async {
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  await prefs.setString('currentUserID', "");
-                  Provider.of<ListTeacher>(context, listen: false)
-                      .setListTeacher([]);
-                  Provider.of<LocalApp>(context, listen: false).setID("");
+                  await FirebaseAuth.instance.signOut();
                 },
               ),
             ],

@@ -64,9 +64,16 @@
 				<!-- TODO Replace this value: -->
 				<!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
 				<string>com.googleusercontent.apps.48884679142-4mf7s26bcccg9g5avnsqijt79uoja2qs</string>
+				<string>fb3011920089081498</string>
 			</array>
 		</dict>
 	</array>
 	<!-- End of the Google Sign-in Section -->
+	<key>FacebookAppID</key>
+	<string>3011920089081498</string>
+	<key>FacebookClientToken</key>
+	<string>CLIENT-TOKEN</string>
+	<key>FacebookDisplayName</key>
+	<string>Lettutor</string>
 </dict>
 </plist>

@@ -35,7 +35,6 @@ class _MyTabBarState extends State<MyTabBar> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
       final User? user = FirebaseAuth.instance.currentUser;
