@@ -1,6 +1,6 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/data/sql_lite/user_dao.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -19,12 +19,12 @@ class _CountryTextFormFieldState extends State<CountryTextFormField> {
   
   @override
   void initState() {
-    countryName.text = context.read<User>().country; //set the initial value of text field
+    countryName.text = context.read<UserProvider>().country; //set the initial value of text field
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<User>();
+    final user = context.watch<UserProvider>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

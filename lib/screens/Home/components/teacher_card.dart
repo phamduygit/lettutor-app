@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/models/teacher.dart';
-import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/data/provider/list_teacher.dart';
 import 'package:lettutor_app/data/sql_lite/favorite_dao.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +16,7 @@ class TeacherCard extends StatelessWidget {
   final Teacher teacher;
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<User>();
+    final user = context.watch<UserProvider>();
     final teacherProvider = context.watch<ListTeacher>();
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: defaultPadding),

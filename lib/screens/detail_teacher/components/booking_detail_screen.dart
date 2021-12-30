@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/models/meeting.dart';
 import 'package:lettutor_app/models/teacher.dart';
-import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/screens/detail_teacher/components/over_view_teacher.dart';
 import 'package:lettutor_app/data/provider/list_meeting.dart';
 import 'package:lettutor_app/data/sql_lite/meeting_dao.dart';
@@ -136,7 +136,7 @@ class BookingDetailScreen extends StatelessWidget {
                       onPressed: () async {
                         Meeting newMeeting = Meeting(
                           id: const Uuid().v4(),
-                          userID: context.read<User>().id,
+                          userID: context.read<UserProvider>().id,
                           teacherID: teacher.id,
                           avatar: teacher.avatar,
                           name: teacher.name,

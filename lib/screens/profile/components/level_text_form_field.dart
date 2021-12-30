@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/data/sql_lite/user_dao.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -38,13 +38,13 @@ class _LevelTextFormFieldState extends State<LevelTextFormField> {
   SingingCharacter? _character = SingingCharacter.beginer;
   @override
   void initState() {
-    level.text = context.read<User>().level;
+    level.text = context.read<UserProvider>().level;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<User>();
+    final user = context.watch<UserProvider>();
     return Column(
       children: [
         Row(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
-import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/screens/profile/components/edit_photo.dart';
 import 'package:provider/provider.dart';
 import 'birthday_text_form_field.dart';
@@ -24,7 +24,7 @@ class _BodyState extends State<Body> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<User>();
+    final user = context.watch<UserProvider>();
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),

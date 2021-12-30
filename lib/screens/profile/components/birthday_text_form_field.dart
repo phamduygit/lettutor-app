@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/data/sql_lite/user_dao.dart';
 import 'package:provider/provider.dart';
 
@@ -19,12 +19,12 @@ class _BirthdayTextFormFieldState extends State<BirthdayTextFormField> {
   // DateTime now = DateTime.now();
   @override
   void initState() {
-    dateinput.text = DateFormat('dd/MM/yyyy').format(context.read<User>().birthDay); //set the initial value of text field
+    dateinput.text = DateFormat('dd/MM/yyyy').format(context.read<UserProvider>().birthDay); //set the initial value of text field
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<User>();
+    final user = context.watch<UserProvider>();
     return Column(
       children: [
         Row(

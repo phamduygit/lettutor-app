@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/screens/courses/courses_screen.dart';
 import 'package:lettutor_app/screens/profile/become_teacher.dart';
 import 'package:lettutor_app/screens/profile/profile_screen.dart';
@@ -12,7 +12,7 @@ class EndDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<User>();
+    final user = context.watch<UserProvider>();
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,

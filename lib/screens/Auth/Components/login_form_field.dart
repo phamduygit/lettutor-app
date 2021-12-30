@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/data/provider/local_app_sp.dart';
-import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/screens/Auth/forgot_password.dart';
 import 'package:lettutor_app/screens/auth/components/email_form_field.dart';
 import 'package:lettutor_app/screens/auth/components/secure_text_field.dart';
@@ -70,7 +70,7 @@ class _MyFormFieldState extends State<MyFormField> {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 if (_password == "12345678") {
-                  User newUser = User(
+                  UserProvider newUser = UserProvider(
                     id: const Uuid().v4(),
                     email: _email,
                     favorites: [],

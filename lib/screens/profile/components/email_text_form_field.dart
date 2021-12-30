@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 
 class EmailTextFormField extends StatelessWidget {
@@ -9,7 +9,7 @@ class EmailTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<User>();
+    final user = context.watch<UserProvider>();
     return Column(
       children: [
         Row(

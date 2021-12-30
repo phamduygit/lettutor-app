@@ -1,6 +1,6 @@
 
 import 'package:intl/intl.dart';
-import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/data/sql_lite/favorite_dao.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -24,7 +24,7 @@ class UserDAO {
   Future<void> close() async {
     db!.close();
   }
-  Future<void> insert(User user) async {
+  Future<void> insert(UserProvider user) async {
     await open();
     final List<Map<String, dynamic>> maps =
         await db!.query('users', where: 'id = ?', whereArgs: [user.id]);
@@ -37,12 +37,12 @@ class UserDAO {
     }
     await db!.close();
   }
-  Future<void> update(User user) async {
+  Future<void> update(UserProvider user) async {
     await open();
     await db!.update('users', user.toMap(), where: 'id = ?', whereArgs: [user.id]);
     // db!.close();
   }
-  Future<bool> isNotExists(User user) async {
+  Future<bool> isNotExists(UserProvider user) async {
     await open();
     final List<Map<String, dynamic>> maps =
         await db!.query('users', where: 'email = ?', whereArgs: [user.email]);
@@ -53,7 +53,7 @@ class UserDAO {
     return false;
   }
 
-  Future<User> getUserByEmail(String email) async {
+  Future<UserProvider> getUserByEmail(String email) async {
     await open();
     final List<Map<String, dynamic>> maps =
         await db!.query('users', where: 'email = ?', whereArgs: [email]);
@@ -62,7 +62,7 @@ class UserDAO {
       favorites = await FavoriteDAO().listTeacherID(maps[0]["id"]);
     }
     await db!.close();
-    return User(
+    return UserProvider(
       favorites: favorites,
       id: maps[0]["id"],
       fullName: maps[0]["fullName"],
@@ -76,7 +76,7 @@ class UserDAO {
     );
   }
 
-  Future<User> getUserById(String id) async {
+  Future<UserProvider> getUserById(String id) async {
     await open();
     final List<Map<String, dynamic>> maps =
         await db!.query('users', where: 'id = ?', whereArgs: [id]);
@@ -85,7 +85,7 @@ class UserDAO {
       favorites = await FavoriteDAO().listTeacherID(maps[0]["id"]);
     }
     await db!.close();
-    return User(
+    return UserProvider(
       favorites: favorites,
       id: maps[0]["id"],
       fullName: maps[0]["fullName"],

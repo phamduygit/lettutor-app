@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
-import 'package:lettutor_app/models/user.dart';
+import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:provider/provider.dart';
 
 class InfoAccount extends StatelessWidget {
@@ -10,7 +10,7 @@ class InfoAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = context.read<User>();
+    final user = context.read<UserProvider>();
     return Padding(
       padding: const EdgeInsets.all(defaultPadding),
       child: Row(
