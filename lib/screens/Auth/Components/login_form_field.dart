@@ -5,6 +5,7 @@ import 'package:lettutor_app/screens/Auth/forgot_password.dart';
 import 'package:lettutor_app/screens/auth/components/email_form_field.dart';
 import 'package:lettutor_app/screens/auth/components/secure_text_field.dart';
 import 'package:lettutor_app/data/sql_lite/user_dao.dart';
+import 'package:lettutor_app/services/email_password.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
@@ -69,27 +70,28 @@ class _MyFormFieldState extends State<MyFormField> {
             press: () async {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                if (_password == "12345678") {
-                  UserProvider newUser = UserProvider(
-                    id: const Uuid().v4(),
-                    email: _email,
-                    favorites: [],
-                    target: [],
-                    birthDay: DateTime.now(),
-                  );
-                  if (await UserDAO().isNotExists(newUser)) {
-                    await UserDAO().insert(newUser);
-                  } else {
-                    newUser = await UserDAO().getUserByEmail(_email);
-                  }
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  await prefs.setString('currentUserID', newUser.id);
-                  Provider.of<LocalApp>(context, listen: false)
-                      .setID(newUser.id);
-                } else {
-                  ///
-                }
+                signInWithEmailPassword(_email, _password);
+                // if (_password == "12345678") {
+                //   UserProvider newUser = UserProvider(
+                //     id: const Uuid().v4(),
+                //     email: _email,
+                //     favorites: [],
+                //     target: [],
+                //     birthDay: DateTime.now(),
+                //   );
+                //   if (await UserDAO().isNotExists(newUser)) {
+                //     await UserDAO().insert(newUser);
+                //   } else {
+                //     newUser = await UserDAO().getUserByEmail(_email);
+                //   }
+                //   SharedPreferences prefs =
+                //       await SharedPreferences.getInstance();
+                //   await prefs.setString('currentUserID', newUser.id);
+                //   Provider.of<LocalApp>(context, listen: false)
+                //       .setID(newUser.id);
+                // } else {
+                //   ///
+                // }
               }
             },
           ),

@@ -20,6 +20,7 @@ class _MainAppState extends State<MainApp> {
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
         // print('User is currently signed out!');
+        // user!.sendEmailVerification();
         setState(() {
           isLogin = false;
         });
@@ -34,8 +35,6 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    final localApp = context.watch<LocalApp>();
-
     return isLogin ? const MyTabBar() : const LoginScreen();
   }
 }

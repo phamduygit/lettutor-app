@@ -41,8 +41,9 @@ class _MyTabBarState extends State<MyTabBar> {
       if (user != null) {
         UserProvider userProvider =
             UserProvider(birthDay: DateTime.now(), target: [], favorites: []);
-        userProvider.avatar = user.photoURL!;
-        userProvider.fullName = user.displayName!;
+        userProvider.avatar = user.photoURL ?? "https://picsum.photos/250?image=9";
+        userProvider.fullName = user.displayName ?? "None";
+        userProvider.email = user.email ?? "none";
         Provider.of<UserProvider>(context, listen: false)
             .updateUser(userProvider);
       }
