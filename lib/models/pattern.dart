@@ -6,10 +6,10 @@ const experience =
     "I have over 5 years of experience teaching and using English in my job. I have an American accent which the student can easily understand.";
 
 List<DateTime> schedules = [
-  DateTime.parse("2021-12-26 20:15:00Z"),
-  DateTime.parse("2021-12-26 20:45:00Z"),
-  DateTime.parse("2021-12-27 20:45:00Z"),
-  DateTime.parse("2021-12-27 21:15:00Z"),
-  DateTime.parse("2021-12-28 21:45:00Z"),
-  DateTime.parse("2021-12-28 22:15:00Z"),
+  DateTime.parse("2022-01-04 20:15:00Z"),
+  DateTime.parse("2022-01-04 20:45:00Z"),
+  DateTime.parse("2022-01-05 20:45:00Z"),
+  DateTime.parse("2022-01-05 21:15:00Z"),
+  DateTime.parse("2022-01-06 21:45:00Z"),
+  DateTime.parse("2022-01-06 22:15:00Z"),
 ];

@@ -9,14 +9,12 @@ ThemeData lightTheme = ThemeData(
   ),
   primaryColorLight: Colors.black,
   primaryColor: Colors.white,
-  primaryColorBrightness: Brightness.light,
   primaryColorDark: Colors.black,
   canvasColor: Colors.white,
 );
 
 ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
-  primaryColorBrightness: Brightness.dark,
   primaryColor: Colors.grey.shade900,
   primaryColorLight: Colors.white,
   primaryColorDark: Colors.black,
