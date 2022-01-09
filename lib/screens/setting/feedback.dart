@@ -157,7 +157,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                               userID: user.id,
                               teacherID: widget.meeting.teacherID,
                               avatar: user.avatar,
-                              username: user.fullName,
+                              username: user.name,
                               date: DateTime.now(),
                               numberOfStar: numberOfStar,
                               comment: comment,

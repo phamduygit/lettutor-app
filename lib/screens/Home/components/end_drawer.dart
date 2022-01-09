@@ -34,7 +34,7 @@ class EndDrawer extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      user.fullName == "" ? "..." : user.fullName,
+                      user.name == "" ? "..." : user.name,
                       style: const TextStyle(fontSize: 18, color: Colors.white),
                     ),
                     const SizedBox(height: 5),

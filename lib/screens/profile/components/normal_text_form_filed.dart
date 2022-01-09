@@ -48,9 +48,9 @@ class NormalTextFormField extends StatelessWidget {
           },
           initialValue: name,
           onSaved: (val) {
-            user.fullName = val!;
+            user.name = val!;
             user.updateUser(user);
-            UserDAO().update(user);
+            // UserDAO().update(user);
           },
         ),
       ],

@@ -57,8 +57,8 @@ class _ReEnterPasswordTextFieldState extends State<ReEnterPasswordTextField> {
             if (value == null || value.isEmpty) {
               return tr('Please enter some text');
             } else {
-              if (value.length < 8) {
-                return tr('Password at least 8 charactor');
+              if (value.length < 6) {
+                return tr('Password at least 6 charactor');
               }
               if (value != widget.password) {
                 return tr('Confirm password does not match');

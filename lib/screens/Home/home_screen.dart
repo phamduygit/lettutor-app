@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/screens/detail_teacher/detail_teacher.dart';
 import 'package:lettutor_app/data/provider/list_teacher.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     var teachers = context.watch<ListTeacher>();
+    final user = context.watch<UserProvider>();
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -28,9 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           Builder(
             builder: (context) => IconButton(
-              icon: const CircleAvatar(
-                backgroundImage: NetworkImage(
-                    "https://images.unsplash.com/photo-1565604113656-e92be3ec1b15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"),
+              icon: CircleAvatar(
+                backgroundImage: NetworkImage(user.avatar),
               ),
               onPressed: () => Scaffold.of(context).openEndDrawer(),
             ),
@@ -46,27 +47,27 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 5),
             const RecommendedTutors(),
             const SizedBox(height: 5),
-            Column(
-              children: List.generate(
-                teachers.list.length,
-                (index) => GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => DetailTeacher(
-                                teacher: teachers.list[index],
-                              ),
-                          settings:
-                              const RouteSettings(name: "/detailTeacher")),
-                    );
-                  },
-                  child: TeacherCard(
-                    teacher: teachers.list[index],
-                  ),
-                ),
-              ),
-            ),
+            // Column(
+            //   children: List.generate(
+            //     teachers.list.length,
+            //     (index) => GestureDetector(
+            //       onTap: () {
+            //         Navigator.push(
+            //           context,
+            //           MaterialPageRoute(
+            //               builder: (context) => DetailTeacher(
+            //                     teacher: teachers.list[index],
+            //                   ),
+            //               settings:
+            //                   const RouteSettings(name: "/detailTeacher")),
+            //         );
+            //       },
+            //       child: TeacherCard(
+            //         teacher: teachers.list[index],
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),

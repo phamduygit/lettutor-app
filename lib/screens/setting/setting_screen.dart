@@ -1,10 +1,12 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
+import 'package:lettutor_app/data/provider/local_app_sp.dart';
+import 'package:lettutor_app/data/share_preference/local_sp.dart';
 import 'package:lettutor_app/screens/setting/advanced_setting.dart';
 import 'package:lettutor_app/screens/setting/booking_history.dart';
 import 'package:lettutor_app/screens/setting/session_history_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:provider/provider.dart';
 import 'components/info_account.dart';
 import 'components/option_card.dart';
 
@@ -100,7 +102,9 @@ class SettingScreen extends StatelessWidget {
                   ],
                 ),
                 onPressed: () async {
-                  await FirebaseAuth.instance.signOut();
+                  Provider.of<LocalApp>(context, listen: false)
+                      .setAccessToken("");
+                  LocalSP().setAccessToken("");
                 },
               ),
             ],

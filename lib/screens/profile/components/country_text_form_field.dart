@@ -60,7 +60,7 @@ class _CountryTextFormFieldState extends State<CountryTextFormField> {
           onSaved: (val) {
             user.country = countryName.text;
             user.updateUser(user);
-            UserDAO().update(user);
+            // UserDAO().update(user);
           },
           onTap: () {
             showCountryPicker(

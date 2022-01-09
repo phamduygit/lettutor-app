@@ -56,8 +56,8 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
               return tr('Please enter some text');
             }
             else {
-              if (value.length < 8) {
-                return tr('Password at least 8 charactor');
+              if (value.length < 6) {
+                return tr('Password at least 6 charactor');
               }
             }
             return null;

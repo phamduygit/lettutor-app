@@ -26,19 +26,19 @@ enum SingingCharacter {
 
 class _LevelTextFormFieldState extends State<LevelTextFormField> {
   static final List<String> _levels = [
-    "Beginner",
-    "Higher Beginner",
-    "Pre-Intermediate",
-    "Intermediate",
-    "Upper-Intermediate",
-    "Advanced",
-    "Proficiency",
+    "BEGINNER",
+    "HIGHER_BEGINNER",
+    "PRE_INTERMEDIATE",
+    "INTERMEDIATE",
+    "UPPER_INTERMEDIATE",
+    "ADVANCED",
+    "PROFICIENCY",
   ];
   var level = TextEditingController();
   SingingCharacter? _character = SingingCharacter.beginer;
   @override
   void initState() {
-    level.text = context.read<UserProvider>().level;
+    level.text = (context.read<UserProvider>().level);
     super.initState();
   }
 
@@ -78,7 +78,7 @@ class _LevelTextFormFieldState extends State<LevelTextFormField> {
           onSaved: (val) {
             user.level = level.text;
             user.updateUser(user);
-            UserDAO().update(user);
+            // UserDAO().update(user);
           },
           onTap: () => showDialog(
             context: context,
@@ -95,10 +95,11 @@ class _LevelTextFormFieldState extends State<LevelTextFormField> {
                               (e) => RadioListTile<SingingCharacter>(
                                 value:
                                     SingingCharacter.values[_levels.indexOf(e)],
-                                title: Text(e),
+                                title: Text(e).tr(),
                                 groupValue: _character,
                                 onChanged: (newValue) {
                                   setState(() {
+                                    print(newValue);
                                     _character = newValue;
                                   });
                                   level.text = e;

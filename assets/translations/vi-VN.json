@@ -120,5 +120,13 @@
   "CONFIRM PASSWORD": "NHẬP LẠI MẬT KHẨU",
   "Re-enter your password": "Nhập lại mật khẩu",
   "Forgot password": "Quên mật khẩu",
-  "SEND": "GỬI"
+  "SEND": "GỬI",
+  "BEGINNER": "Beginner",
+  "HIGHER_BEGINNER": "Higer Beginner",
+  "PRE_INTERMEDIATE": "Pre Intermediate",
+  "INTERMEDIATE": "Intermediate",
+  "UPPER_INTERMEDIATE": "Upper Intermadiate",
+  "ADVANCED": "Advanced",
+  "PROFICIENCY": "Proficiency",
+  "Select your level": "Chọn trình độ"
 }
