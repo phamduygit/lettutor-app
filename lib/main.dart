@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_theme.dart';
 import 'package:lettutor_app/data/provider/user_provider.dart';
+import 'package:lettutor_app/data/share_preference/local_sp.dart';
 import 'package:lettutor_app/screens/auth/login_screen.dart';
 import 'package:lettutor_app/screens/main_app.dart';
 import 'package:lettutor_app/data/provider/list_meeting.dart';
 import 'package:lettutor_app/data/provider/list_review.dart';
 import 'package:lettutor_app/data/provider/list_teacher.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'data/provider/local_app_sp.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
   await EasyLocalization.ensureInitialized();
   runApp(
     EasyLocalization(
@@ -36,21 +34,20 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final localApp = LocalApp();
-  UserProvider user = UserProvider(favorites: [], target: [], birthDay: DateTime.now());
+  LocalApp localApp = LocalApp();
+  UserProvider user = UserProvider();
   ListTeacher teachers = ListTeacher();
   initApp() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String userID = (prefs.getString('currentUserID') ?? "");
+    String token = await LocalSP().getAccessToken();
     setState(() {
-      localApp.setID(userID);
+      localApp.setAccessToken(token);
     });
   }
 
   @override
   void initState() {
-    initApp();
     super.initState();
+    initApp();
   }
 
   @override

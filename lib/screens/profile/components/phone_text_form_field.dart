@@ -39,7 +39,7 @@ class PhoneTextFormField extends StatelessWidget {
             if (value == null || value.isEmpty) {
               return tr('Please enter some text');
             } else {
-              if (!RegExp(r"^(?:[+0]9)?[0-9]{10}$").hasMatch(value)) {
+              if (!RegExp(r"^(?:[+0]9)?[0-9]{12}$").hasMatch(value)) {
                 return tr('Invalid phone number');
               }
             }
@@ -48,7 +48,7 @@ class PhoneTextFormField extends StatelessWidget {
           onSaved: (val) {
             user.phone = val!;
             user.updateUser(user);
-            UserDAO().update(user);
+            // UserDAO().update(user);
           },
         ),
       ],

@@ -61,19 +61,19 @@ class DetailTeacher extends StatelessWidget {
                               : CupertinoIcons.heart,
                           title: tr("Favorite"),
                           press: () {
-                            user.like(teacher.id);
+                            // user.like(teacher.id);
                             teacherProvider.favorite(teacher);
                             // local save
-                            if (user.isFavorite(teacher.id)) {
-                              Favorite newFavorite = Favorite(
-                                id: const Uuid().v4(),
-                                userID: user.id,
-                                teacherID: teacher.id,
-                              );
-                              FavoriteDAO().insert(newFavorite);
-                            } else {
-                              FavoriteDAO().delete(user.id, teacher.id);
-                            }
+                            // if (user.isFavorite(teacher.id)) {
+                            //   Favorite newFavorite = Favorite(
+                            //     id: const Uuid().v4(),
+                            //     userID: user.id,
+                            //     teacherID: teacher.id,
+                            //   );
+                            //   FavoriteDAO().insert(newFavorite);
+                            // } else {
+                            //   FavoriteDAO().delete(user.id, teacher.id);
+                            // }
                           },
                         ),
                         OptionButton(

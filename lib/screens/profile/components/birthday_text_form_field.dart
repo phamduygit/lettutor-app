@@ -19,7 +19,7 @@ class _BirthdayTextFormFieldState extends State<BirthdayTextFormField> {
   // DateTime now = DateTime.now();
   @override
   void initState() {
-    dateinput.text = DateFormat('dd/MM/yyyy').format(context.read<UserProvider>().birthDay); //set the initial value of text field
+    dateinput.text = DateFormat('yyyy-MM-dd').format(context.read<UserProvider>().birthday!); //set the initial value of text field
     super.initState();
   }
   @override
@@ -51,15 +51,15 @@ class _BirthdayTextFormFieldState extends State<BirthdayTextFormField> {
           onTap: () async {
             DateTime? pickedDate = await showDatePicker(
               context: context,
-              initialDate: user.birthDay,
+              initialDate: user.birthday!,
               firstDate: DateTime(
-                  2000), //DateTime.now() - not to allow to choose before today.
+                  1990), //DateTime.now() - not to allow to choose before today.
               lastDate: DateTime(2101),
             );
 
             if (pickedDate != null) {
               String formattedDate =
-                  DateFormat('dd/MM/yyyy').format(pickedDate);
+                  DateFormat('yyyy-MM-dd').format(pickedDate);
               setState(() {
                 dateinput.text =
                     formattedDate; //set output date to TextField value.
@@ -67,9 +67,9 @@ class _BirthdayTextFormFieldState extends State<BirthdayTextFormField> {
             }
           },
           onSaved: (val) {
-            user.birthDay = DateFormat("dd/MM/yyyy").parse(val!);
+            user.birthday = DateFormat("yyyy-MM-dd").parse(val!);
             user.updateUser(user);
-            UserDAO().update(user);
+            // UserDAO().update(user);
           },
         )
       ],

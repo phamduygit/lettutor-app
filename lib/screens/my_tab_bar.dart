@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
+import 'package:lettutor_app/data/api/user_api.dart';
+import 'package:lettutor_app/data/provider/local_app_sp.dart';
+import 'package:lettutor_app/data/provider/topic.dart';
 import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/screens/home/home_screen.dart';
 import 'package:lettutor_app/screens/messages/message_screen.dart';
@@ -36,36 +38,16 @@ class _MyTabBarState extends State<MyTabBar> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      final User? user = FirebaseAuth.instance.currentUser;
-      if (user != null) {
-        UserProvider userProvider =
-            UserProvider(birthDay: DateTime.now(), target: [], favorites: []);
-        userProvider.avatar = user.photoURL ?? "https://picsum.photos/250?image=9";
-        userProvider.fullName = user.displayName ?? "None";
-        userProvider.email = user.email ?? "none";
-        Provider.of<UserProvider>(context, listen: false)
-            .updateUser(userProvider);
-      }
+    String token = Provider.of<LocalApp>(context, listen: false).getAccessToken;
+    debugPrint(token);
+    UserAPI().getUserInformation(token).then((value) {
+      UserProvider newUser = UserProvider.fromJson(value["user"]);
+      Provider.of<UserProvider>(context, listen: false).updateUser(newUser);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // UserDAO()
-    //     .getUserById(context.watch<LocalApp>().getCurrentUserID)
-    //     .then((value) {
-    //   Provider.of<ListTeacher>(context, listen: false)
-    //       .setListTeacher(value.favorites);
-    //   Provider.of<User>(context, listen: false).updateUser(value);
-    // });
-    // MeetingDAO()
-    //     .getListMeeting(context.watch<LocalApp>().getCurrentUserID)
-    //     .then((value) => Provider.of<ListMeeting>(context, listen: false)
-    //         .setListMeeting(value));
-    // ReviewDAO().getListReivew().then((value) =>
-    //     Provider.of<ListReview>(context, listen: false).setListReview(value));
-
     return Scaffold(
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),

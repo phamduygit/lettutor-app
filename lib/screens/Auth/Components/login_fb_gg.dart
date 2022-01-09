@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:lettutor_app/services/facebook_sign_in.dart';
-import 'package:lettutor_app/services/google_sign_in.dart';
 import 'border_icon_button.dart';
 
 class LoginFacebookGoogle extends StatelessWidget {
@@ -22,7 +20,7 @@ class LoginFacebookGoogle extends StatelessWidget {
               child: const BorderIconButton(
                   iconName: "assets/images/icons8-google.svg"),
               onTap: () async {
-                await signInWithGoogle();
+                // await signInWithGoogle();
               },
               borderRadius: BorderRadius.circular(50),
             ),
@@ -31,7 +29,7 @@ class LoginFacebookGoogle extends StatelessWidget {
               child: const BorderIconButton(
                   iconName: "assets/images/icons8-facebook.svg"),
               onTap: () async {
-                await signInWithFacebook();
+                // await signInWithFacebook();
               },
               borderRadius: BorderRadius.circular(50),
             ),

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/data/sql_lite/user_dao.dart';
+import 'package:lettutor_app/util/fuctions.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
+
+import '../../../data/constants.dart';
 
 class CoursesTextFormField extends StatefulWidget {
   const CoursesTextFormField({
@@ -17,25 +20,14 @@ class CoursesTextFormField extends StatefulWidget {
 }
 
 class _CoursesTextFormFieldState extends State<CoursesTextFormField> {
-  static final List<String> _courses = [
-    "English for kids",
-    "English for business",
-    "Conversational",
-    "STARTERS",
-    "MOVERS",
-    "FLYERS",
-    "KET",
-    "PET",
-    "IELTS",
-    "TOEFL",
-    "TOEIC",
-  ];
   List<String> selectedCourses = [];
   var value = TextEditingController();
   @override
   void initState() {
-    value.text = context.read<UserProvider>().target.join("-");
-    selectedCourses = context.read<UserProvider>().target;
+    final user = context.read<UserProvider>();
+
+    selectedCourses = getSelectedCourses(user);
+    value.text = selectedCourses.join("-");
     super.initState();
   }
 
@@ -75,9 +67,11 @@ class _CoursesTextFormFieldState extends State<CoursesTextFormField> {
           //   return null;
           // },
           onSaved: (val) {
-            user.target = selectedCourses;
+            // user.target = selectedCourses;
+            user.learnTopics = getTopic(selectedCourses);
+            user.testPreparations = getTest(selectedCourses);
             user.updateUser(user);
-            UserDAO().update(user);
+            // UserDAO().update(user);
           },
           onTap: () => showDialog(
             context: context,
@@ -89,7 +83,7 @@ class _CoursesTextFormFieldState extends State<CoursesTextFormField> {
                     child: SizedBox(
                       width: double.infinity,
                       child: Column(
-                        children: _courses
+                        children: courses
                             .map(
                               (e) => CheckboxListTile(
                                 value: selectedCourses.contains(e),

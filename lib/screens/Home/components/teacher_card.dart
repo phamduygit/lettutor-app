@@ -73,22 +73,22 @@ class TeacherCard extends StatelessWidget {
                             ),
                             TextButton(
                               onPressed: () {
-                                user.like(teacher.id);
-                                teacherProvider.favorite(teacher);
-                                // local save
-                                if (user.isFavorite(teacher.id)) {
-                                  Favorite newFavorite = Favorite(
-                                    id: const Uuid().v4(),
-                                    userID: user.id,
-                                    teacherID: teacher.id,
-                                  );
-                                  FavoriteDAO().insert(newFavorite);
-                                } else {
-                                  FavoriteDAO().delete(user.id, teacher.id);
-                                }
+                                // user.like(teacher.id);
+                                // teacherProvider.favorite(teacher);
+                                // // local save
+                                // if (user.isFavorite(teacher.id)) {
+                                //   Favorite newFavorite = Favorite(
+                                //     id: const Uuid().v4(),
+                                //     userID: user.id,
+                                //     teacherID: teacher.id,
+                                //   );
+                                //   FavoriteDAO().insert(newFavorite);
+                                // } else {
+                                //   FavoriteDAO().delete(user.id, teacher.id);
+                                // }
                               },
                               child: Icon(
-                                user.isFavorite(teacher.id)
+                                false
                                     ? Icons.favorite
                                     : Icons.favorite_border,
                                 size: 24,
