@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/data/api/user_api.dart';
 import 'package:lettutor_app/data/provider/local_app_sp.dart';
-import 'package:lettutor_app/data/provider/topic.dart';
 import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/screens/home/home_screen.dart';
 import 'package:lettutor_app/screens/messages/message_screen.dart';

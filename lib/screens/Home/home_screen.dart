@@ -1,12 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/data/provider/user_provider.dart';
-import 'package:lettutor_app/screens/detail_teacher/detail_teacher.dart';
 import 'package:lettutor_app/data/provider/list_teacher.dart';
 import 'package:provider/provider.dart';
 import 'components/end_drawer.dart';
 import 'components/recommended_tutors.dart';
-import 'components/teacher_card.dart';
 import 'components/up_coming_lesson.dart';
 
 class HomeScreen extends StatefulWidget {

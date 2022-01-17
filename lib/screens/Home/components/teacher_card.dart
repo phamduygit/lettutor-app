@@ -3,9 +3,7 @@ import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/models/teacher.dart';
 import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/data/provider/list_teacher.dart';
-import 'package:lettutor_app/data/sql_lite/favorite_dao.dart';
 import 'package:provider/provider.dart';
-import 'package:uuid/uuid.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class TeacherCard extends StatelessWidget {
@@ -87,7 +85,7 @@ class TeacherCard extends StatelessWidget {
                                 //   FavoriteDAO().delete(user.id, teacher.id);
                                 // }
                               },
-                              child: Icon(
+                              child: const Icon(
                                 false
                                     ? Icons.favorite
                                     : Icons.favorite_border,
