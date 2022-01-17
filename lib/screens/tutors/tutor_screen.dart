@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
-import 'package:lettutor_app/models/teacher.dart';
 import 'package:lettutor_app/screens/detail_teacher/detail_teacher.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'components/tutor_card.dart';
@@ -16,7 +15,7 @@ class Tutors extends StatefulWidget {
 class _TutorsState extends State<Tutors> {
   late TextEditingController _textController;
   // Teacher teacher = listTeacher[0];
-  List<Teacher> filterTeacher = listTeacher;
+  // List<Teacher> filterTeacher = listTeacher;
   String selectedSpecifier = ("All");
   @override
   void initState() {
@@ -24,16 +23,16 @@ class _TutorsState extends State<Tutors> {
     _textController = TextEditingController(text: '');
   }
 
-  void filter() {
-    filterTeacher = listTeacher
-        .where((element) =>
-            (element.name
-                .toLowerCase()
-                .contains(_textController.text.toLowerCase())) &&
-            (selectedSpecifier == ("All") ||
-                element.specialties.contains(selectedSpecifier)))
-        .toList();
-  }
+  // void filter() {
+  //   filterTeacher = listTeacher
+  //       .where((element) =>
+  //           (element.name
+  //               .toLowerCase()
+  //               .contains(_textController.text.toLowerCase())) &&
+  //           (selectedSpecifier == ("All") ||
+  //               element.specialties.contains(selectedSpecifier)))
+  //       .toList();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -67,11 +66,11 @@ class _TutorsState extends State<Tutors> {
                 controller: _textController,
                 prefixInsets:
                     const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                onChanged: (value) {
-                  setState(() {
-                    filter();
-                  });
-                },
+                // onChanged: (value) {
+                //   setState(() {
+                //     filter();
+                //   });
+                // },
               ),
               const SizedBox(height: 10),
               SizedBox(
@@ -87,7 +86,7 @@ class _TutorsState extends State<Tutors> {
                           onTap: () {
                             setState(() {
                               selectedSpecifier = (specifiers[index]);
-                              filter();
+                              // filter();
                             });
                           },
                           child: Container(
@@ -114,26 +113,26 @@ class _TutorsState extends State<Tutors> {
                   ),
                 ),
               ),
-              Column(
-                children: List.generate(
-                  filterTeacher.length,
-                  (index) => GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DetailTeacher(
-                            teacher: filterTeacher[index],
-                          ),
-                        ),
-                      );
-                    },
-                    child: TutorCard(
-                      teacher: filterTeacher[index],
-                    ),
-                  ),
-                ),
-              )
+            //   Column(
+            //     children: List.generate(
+            //       filterTeacher.length,
+            //       (index) => GestureDetector(
+            //         onTap: () {
+            //           Navigator.push(
+            //             context,
+            //             MaterialPageRoute(
+            //               builder: (context) => DetailTeacher(
+            //                 teacher: filterTeacher[index],
+            //               ),
+            //             ),
+            //           );
+            //         },
+            //         child: TutorCard(
+            //           teacher: filterTeacher[index],
+            //         ),
+            //       ),
+            //     ),
+            //   )
             ],
           ),
         ),

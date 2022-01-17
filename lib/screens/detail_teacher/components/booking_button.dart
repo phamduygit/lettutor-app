@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
-import 'package:lettutor_app/models/teacher.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:lettutor_app/data/provider/teacher_provider.dart';
 import 'date_button.dart';
 
 class BookingButton extends StatelessWidget {
@@ -11,7 +11,7 @@ class BookingButton extends StatelessWidget {
     required this.teacher,
   }) : super(key: key);
   final DateTime today;
-  final Teacher teacher;
+  final TeacherProvider teacher;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(

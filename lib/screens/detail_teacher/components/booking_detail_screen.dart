@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
+import 'package:lettutor_app/data/provider/teacher_provider.dart';
 import 'package:lettutor_app/models/meeting.dart';
-import 'package:lettutor_app/models/teacher.dart';
 import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/screens/detail_teacher/components/over_view_teacher.dart';
-import 'package:lettutor_app/data/provider/list_meeting.dart';
 import 'package:lettutor_app/data/sql_lite/meeting_dao.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
@@ -15,7 +14,7 @@ class BookingDetailScreen extends StatelessWidget {
       {Key? key, required this.date, required this.teacher})
       : super(key: key);
   final DateTime date;
-  final Teacher teacher;
+  final TeacherProvider teacher;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,9 +31,9 @@ class BookingDetailScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       const SizedBox(height: 30),
-                      OverViewTeacher(
-                        teacher: teacher,
-                      ),
+                      // OverViewTeacher(
+                      //   teacher: teacher,
+                      // ),
                       const SizedBox(height: 10),
                       const Divider(),
                       const SizedBox(height: 10),
@@ -144,8 +143,8 @@ class BookingDetailScreen extends StatelessWidget {
                           status: 1,
                         );
                         await MeetingDAO().insertMeeting(newMeeting);
-                        Provider.of<ListMeeting>(context, listen: false)
-                            .addNewMeeting(newMeeting);
+                        // Provider.of<ListMeeting>(context, listen: false)
+                        //     .addNewMeeting(newMeeting);
                         Navigator.popUntil(context,
                             (route) => route.settings.name == "/detailTeacher");
                       },

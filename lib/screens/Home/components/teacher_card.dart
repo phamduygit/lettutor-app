@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
-import 'package:lettutor_app/models/teacher.dart';
+import 'package:lettutor_app/data/provider/teacher_provider.dart';
 import 'package:lettutor_app/data/provider/user_provider.dart';
-import 'package:lettutor_app/data/provider/list_teacher.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -11,11 +10,10 @@ class TeacherCard extends StatelessWidget {
     Key? key,
     required this.teacher,
   }) : super(key: key);
-  final Teacher teacher;
+  final TeacherProvider teacher;
   @override
   Widget build(BuildContext context) {
     final user = context.watch<UserProvider>();
-    final teacherProvider = context.watch<ListTeacher>();
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
       child: Card(
@@ -56,9 +54,9 @@ class TeacherCard extends StatelessWidget {
                                     (index) => Container(
                                       padding: const EdgeInsets.only(right: 4),
                                       child: Icon(
-                                        index < teacher.rating - 0.5
+                                        index < teacher.getRating() - 0.5
                                             ? Icons.star
-                                            : index - teacher.rating + 0.5 > 0
+                                            : index - teacher.getRating() + 0.25 > 0
                                                 ? Icons.star_border
                                                 : Icons.star_half,
                                         color: Colors.yellow[700],
@@ -103,14 +101,14 @@ class TeacherCard extends StatelessWidget {
                           child: ListView(
                             scrollDirection: Axis.horizontal,
                             children: List.generate(
-                              teacher.specialties.length,
+                              teacher.convertSpecialties().length,
                               (index) => Padding(
                                 padding: const EdgeInsets.only(right: 5),
                                 child: Center(
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 10),
-                                    child: Text(teacher.specialties[index],
+                                    child: Text(teacher.convertSpecialties()[index],
                                         style:
                                             const TextStyle(color: mainColor)).tr(),
                                     decoration: BoxDecoration(
@@ -130,7 +128,7 @@ class TeacherCard extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                teacher.description,
+                teacher.bio,
                 maxLines: 4,
                 overflow: TextOverflow.ellipsis,
               ),

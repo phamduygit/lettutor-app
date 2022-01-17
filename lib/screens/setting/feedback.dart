@@ -4,7 +4,6 @@ import 'package:lettutor_app/models/meeting.dart';
 import 'package:lettutor_app/models/review.dart';
 import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/screens/setting/components/rating.dart';
-import 'package:lettutor_app/data/provider/list_review.dart';
 import 'package:lettutor_app/data/sql_lite/review_dao.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
@@ -152,19 +151,19 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
-                            Review review = Review(
-                              id: const Uuid().v4(),
-                              userID: user.id,
-                              teacherID: widget.meeting.teacherID,
-                              avatar: user.avatar,
-                              username: user.name,
-                              date: DateTime.now(),
-                              numberOfStar: numberOfStar,
-                              comment: comment,
-                            );
-                            Provider.of<ListReview>(context, listen: false)
-                                .addNewReivew(review);
-                            await ReviewDAO().insert(review);
+                            // Review review = Review(
+                            //   id: const Uuid().v4(),
+                            //   bookingId: user.id,
+                            //   teacherID: widget.meeting.teacherID,
+                            //   avatar: user.avatar,
+                            //   username: user.name,
+                            //   date: DateTime.now(),
+                            //   numberOfStar: numberOfStar,
+                            //   content: comment,
+                            // );
+                            // Provider.of<ListReview>(context, listen: false)
+                            //     .addNewReivew(review);
+                            // await ReviewDAO().insert(review);
                             Navigator.pop(context);
                           }
                         },

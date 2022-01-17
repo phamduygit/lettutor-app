@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
-import 'package:lettutor_app/models/teacher.dart';
+import 'package:lettutor_app/data/provider/teacher_provider.dart';
 import 'package:lettutor_app/screens/detail_teacher/components/booking_detail_screen.dart';
 
 class TimeButton extends StatelessWidget {
@@ -12,7 +12,7 @@ class TimeButton extends StatelessWidget {
   }) : super(key: key);
 
   final DateTime date;
-  final Teacher teacher;
+  final TeacherProvider teacher;
   @override
   Widget build(BuildContext context) {
     return Padding(

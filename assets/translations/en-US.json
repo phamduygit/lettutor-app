@@ -129,5 +129,16 @@
   "UPPER_INTERMEDIATE": "Upper Intermadiate",
   "ADVANCED": "Advanced",
   "PROFICIENCY": "Proficiency",
-  "Select your level": "Select your level"
+  "Select your level": "Select your level",
+  "ielts": "IELTS",
+  "pet": "PET", 
+  "ket": "KET", 
+  "english-for-kids": "English for kids", 
+  "toefl": "TOEFL", 
+  "toeic": "TOEIC", 
+  "conversational-english": "Conversational", 
+  "starters": "STARTERS", 
+  "movers": "MOVER", 
+  "flyers": "FLYERS",
+  "business-english": "English for Business"
 }

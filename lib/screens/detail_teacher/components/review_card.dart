@@ -17,7 +17,7 @@ class ReviewCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CircleAvatar(
-              backgroundImage: NetworkImage(review.avatar),
+              backgroundImage: NetworkImage(review.firstInfo!.avatar),
               radius: 30,
             ),
             const SizedBox(width: 15),
@@ -29,7 +29,7 @@ class ReviewCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        review.username,
+                        review.firstInfo!.name,
                         style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.w500),
                       ),
@@ -39,9 +39,13 @@ class ReviewCard extends StatelessWidget {
                         children: List.generate(
                           5,
                           (index) => Container(
-                            padding: const EdgeInsets.only(right: 2),
+                            padding: const EdgeInsets.only(right: 4),
                             child: Icon(
-                              Icons.star,
+                              index < review.rating - 0.5
+                                  ? Icons.star
+                                  : index - review.rating + 0.5 > 0
+                                      ? Icons.star_border
+                                      : Icons.star_half,
                               color: Colors.yellow[700],
                               size: 14,
                             ),
@@ -51,13 +55,14 @@ class ReviewCard extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 10),
-                  Text(review.comment),
+                  Text(review.content),
                   const SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        DateFormat('yyyy-MM-dd – kk:mm').format(review.date),
+                        DateFormat('yyyy-MM-dd – kk:mm')
+                            .format(review.createdAt!),
                         style: TextStyle(
                             fontSize: 12, color: Colors.black.withOpacity(0.7)),
                       ),

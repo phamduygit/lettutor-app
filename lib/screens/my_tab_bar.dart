@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
+import 'package:lettutor_app/data/api/tutor_api.dart';
 import 'package:lettutor_app/data/api/user_api.dart';
 import 'package:lettutor_app/data/provider/local_app_sp.dart';
+import 'package:lettutor_app/data/provider/tutors_provider.dart';
 import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/screens/home/home_screen.dart';
 import 'package:lettutor_app/screens/messages/message_screen.dart';
@@ -38,10 +40,14 @@ class _MyTabBarState extends State<MyTabBar> {
   void initState() {
     super.initState();
     String token = Provider.of<LocalApp>(context, listen: false).getAccessToken;
-    debugPrint(token);
     UserAPI().getUserInformation(token).then((value) {
       UserProvider newUser = UserProvider.fromJson(value["user"]);
       Provider.of<UserProvider>(context, listen: false).updateUser(newUser);
+    });
+    TutorAPI().getListTutorWithPagination(9, 1, "I would like to have free talk session").then((value) {
+      TutorsProvider tutorsProvider = TutorsProvider.fromJson(value["tutors"]);
+      print(tutorsProvider.count);
+      Provider.of<TutorsProvider>(context, listen: false).setTutorsProvider(tutorsProvider);
     });
   }
 
