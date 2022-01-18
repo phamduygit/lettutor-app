@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lettutor_app/models/courses.dart';
-import 'package:lettutor_app/screens/courses/components/course_detail.dart';
+import 'package:lettutor_app/models/course.dart';
+import 'package:lettutor_app/util/fuctions.dart';
+
+import 'course_detail.dart';
 
 class CoursesCard extends StatelessWidget {
   const CoursesCard({
@@ -16,7 +18,7 @@ class CoursesCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => CourseDetail(
-              course: course,
+              courseId: course.id,
             ),
           ),
         );
@@ -27,11 +29,11 @@ class CoursesCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10.0),
-              child: Image.asset(
-                course.image,
+              child: Image.network(
+                course.imageUrl,
                 fit: BoxFit.fill,
                 width: 250,
-                height: 180,
+                // height: 180,
               ),
             ),
             SizedBox(
@@ -39,8 +41,9 @@ class CoursesCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(height: 10),
                   Text(
-                    course.title,
+                    course.name,
                     style: const TextStyle(
                         fontWeight: FontWeight.w600, fontSize: 16),
                   ),
@@ -48,22 +51,21 @@ class CoursesCard extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    course.sologan,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.normal, fontSize: 14),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "${course.experienceLevel} - ${course.listTopic.length} Lessons",
+                    course.description,
                     style: const TextStyle(
                       fontWeight: FontWeight.normal,
                       fontSize: 14,
                     ),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 10,
+                  ),
+                  Text(
+                    "${convertLevel(course.level)} - ${course.topics!.length} Lessons",
+                    style: const TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 14,
+                    ),
                   ),
                 ],
               ),

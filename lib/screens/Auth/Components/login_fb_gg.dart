@@ -32,7 +32,6 @@ class _LoginFacebookGoogleState extends State<LoginFacebookGoogle> {
                   iconName: "assets/images/icons8-google.svg"),
               onTap: () async {
                 String token = await signInWithGoogle();
-                print(token);
                 final result = await AuthAPI().loginByGoogle(token);
                 if (result["statusCode"] == 200) {
                   String newToken = result["token"];

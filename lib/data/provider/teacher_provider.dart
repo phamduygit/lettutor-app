@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:json_annotation/json_annotation.dart';
 import 'package:lettutor_app/models/review.dart';
 
@@ -37,9 +35,8 @@ class TeacherProvider {
   }
 
   double getRating() {
-    var result = feedbacks!.map((m) => m.rating).reduce((a, b) => a + b) / feedbacks!.length;
-
-    print(result); // prints 3.75
+    var result = feedbacks!.map((m) => m.rating).reduce((a, b) => a + b) /
+        feedbacks!.length;
     return result;
   }
 }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/data/provider/teacher_provider.dart';
-import 'package:lettutor_app/data/provider/user_provider.dart';
-import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class TeacherCard extends StatelessWidget {
@@ -13,7 +11,6 @@ class TeacherCard extends StatelessWidget {
   final TeacherProvider teacher;
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<UserProvider>();
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
       child: Card(

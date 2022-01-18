@@ -15,6 +15,9 @@ UserInfo _$UserInfoFromJson(Map<String, dynamic> json) => UserInfo(
       feedbacks: (json['feedbacks'] as List<dynamic>?)
           ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
           .toList(),
+      courses: (json['courses'] as List<dynamic>?)
+          ?.map((e) => Course.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$UserInfoToJson(UserInfo instance) => <String, dynamic>{
@@ -24,4 +27,5 @@ Map<String, dynamic> _$UserInfoToJson(UserInfo instance) => <String, dynamic>{
       'country': instance.country,
       'name': instance.name,
       'feedbacks': instance.feedbacks,
+      'courses': instance.courses,
     };

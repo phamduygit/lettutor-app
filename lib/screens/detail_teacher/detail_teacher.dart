@@ -2,13 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/data/api/tutor_api.dart';
-import 'package:lettutor_app/data/provider/teacher_provider.dart';
-import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/models/teacher_info.dart';
 import 'package:lettutor_app/screens/detail_teacher/components/video_intro.dart';
-import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
-import 'components/booking_button.dart';
 import 'components/courses.dart';
 import 'components/option_button.dart';
 import 'components/over_view_teacher.dart';
@@ -30,8 +26,6 @@ class DetailTeacher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var heightScreen = MediaQuery.of(context).size.height;
-
     return FutureBuilder<TeacherInfo>(
       future: getTeacherInfo(),
       builder: (context, AsyncSnapshot<TeacherInfo> snapshot) {
@@ -46,7 +40,9 @@ class DetailTeacher extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: double.infinity,
-                      child: VideoIntro(linkVideo: snapshot.data!.video,),
+                      child: VideoIntro(
+                        linkVideo: snapshot.data!.video,
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(defaultPadding),
@@ -127,8 +123,12 @@ class DetailTeacher extends StatelessWidget {
                             title: ("Specialties"),
                             chipsContent: snapshot.data!.specialties.split(","),
                           ),
-                          const Courses(),
-                          Reviews(reviews: snapshot.data!.User!.feedbacks!,),
+                          Courses(
+                            courses: snapshot.data!.User?.courses ?? [],
+                          ),
+                          Reviews(
+                            reviews: snapshot.data!.User!.feedbacks!,
+                          ),
                         ],
                       ),
                     ),

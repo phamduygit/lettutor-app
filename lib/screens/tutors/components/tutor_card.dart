@@ -47,16 +47,16 @@ class TutorCard extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            // Row(
-                            //   children: [
-                            //     Text(teacher.rating.toString()),
-                            //     Icon(
-                            //       Icons.star_outlined,
-                            //       color: Colors.yellow[700],
-                            //       size: 16,
-                            //     )
-                            //   ],
-                            // )
+                            Row(
+                              children: [
+                                Text(teacher.getRating().toStringAsFixed(2)),
+                                Icon(
+                                  Icons.star_outlined,
+                                  color: Colors.yellow[700],
+                                  size: 16,
+                                )
+                              ],
+                            )
                           ],
                         ),
                         const SizedBox(height: 5),
@@ -65,7 +65,7 @@ class TutorCard extends StatelessWidget {
                           child: ListView(
                             scrollDirection: Axis.horizontal,
                             children: List.generate(
-                              teacher.specialties.length,
+                              teacher.convertSpecialties().length,
                               (index) => Padding(
                                 padding: const EdgeInsets.only(right: 5),
                                 child: Center(
@@ -73,7 +73,7 @@ class TutorCard extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 10),
                                     child: Text(
-                                      teacher.specialties[index],
+                                      teacher.convertSpecialties()[index],
                                       style: const TextStyle(
                                         color: mainColor,
                                       ),

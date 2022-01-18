@@ -3,7 +3,6 @@ import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/data/provider/teacher_provider.dart';
 import 'package:lettutor_app/models/meeting.dart';
 import 'package:lettutor_app/data/provider/user_provider.dart';
-import 'package:lettutor_app/screens/detail_teacher/components/over_view_teacher.dart';
 import 'package:lettutor_app/data/sql_lite/meeting_dao.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';

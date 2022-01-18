@@ -25,6 +25,7 @@ class TutorAPI {
     }
     return {};
   }
+
   Future<Map<String, dynamic>> getTutorInfoById(String tutorid) async {
     var url = Uri.parse('https://sandbox.api.lettutor.com/tutor/$tutorid');
     var token = await LocalSP().getAccessToken();
@@ -34,6 +35,36 @@ class TutorAPI {
         HttpHeaders.authorizationHeader: 'Bearer $token',
         'Content-Type': 'application/json; charset=UTF-8'
       },
+    );
+    if (response.statusCode == 200) {
+      Map<String, dynamic> json = jsonDecode(response.body);
+      return json;
+    } else {
+      // error;
+    }
+    return {};
+  }
+
+  Future<Map<String, dynamic>> searchTutor(
+      int perPage, int page, List<String> specialties, String key) async {
+    var url = Uri.parse('https://sandbox.api.lettutor.com/tutor/search');
+    var token = await LocalSP().getAccessToken();
+    var response = await http.post(
+      url,
+      headers: {
+        HttpHeaders.authorizationHeader: 'Bearer $token',
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+      body: jsonEncode(
+        {
+          "filters": {
+            "specialties": specialties,
+          },
+          "page": page,
+          "perPage": perPage,
+          "search": key
+        },
+      ),
     );
     if (response.statusCode == 200) {
       Map<String, dynamic> json = jsonDecode(response.body);

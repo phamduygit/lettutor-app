@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lettutor_app/data/provider/teacher_provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:lettutor_app/models/teacher_info.dart';
 

@@ -98,7 +98,6 @@ class _LevelTextFormFieldState extends State<LevelTextFormField> {
                                 groupValue: _character,
                                 onChanged: (newValue) {
                                   setState(() {
-                                    print(newValue);
                                     _character = newValue;
                                   });
                                   level.text = e;
