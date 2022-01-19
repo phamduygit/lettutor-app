@@ -162,7 +162,7 @@ class _TutorsState extends State<Tutors> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => DetailTeacher(
-                                  teacherId: filterTutor.rows![index].userId)),
+                                  teacher: filterTutor.rows![index])),
                         );
                       },
                       child: TutorCard(

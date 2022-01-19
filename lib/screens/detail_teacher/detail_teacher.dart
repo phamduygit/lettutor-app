@@ -2,8 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/data/api/tutor_api.dart';
+import 'package:lettutor_app/data/provider/teacher_provider.dart';
+import 'package:lettutor_app/data/provider/tutors_provider.dart';
 import 'package:lettutor_app/models/teacher_info.dart';
 import 'package:lettutor_app/screens/detail_teacher/components/video_intro.dart';
+import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 import 'components/courses.dart';
 import 'components/option_button.dart';
@@ -13,15 +16,31 @@ import 'components/title_and_chips.dart';
 import 'components/title_and_paragraph.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class DetailTeacher extends StatelessWidget {
-  const DetailTeacher({Key? key, required this.teacherId}) : super(key: key);
-  final String teacherId;
+class DetailTeacher extends StatefulWidget {
+  const DetailTeacher({Key? key, required this.teacher}) : super(key: key);
+  final TeacherProvider teacher;
+
+  @override
+  State<DetailTeacher> createState() => _DetailTeacherState();
+}
+
+class _DetailTeacherState extends State<DetailTeacher> {
+  bool isFavorite = false;
   Future<TeacherInfo> getTeacherInfo() async {
     // print("teacherid: $teacherId");
-    final value = await TutorAPI().getTutorInfoById(teacherId);
+    final value = await TutorAPI().getTutorInfoById(widget.teacher.userId);
     TeacherInfo teacherInfo = TeacherInfo.fromJson(value);
+    isFavorite = teacherInfo.isFavorite;
     // print(teacherInfo.bio);
     return teacherInfo;
+  }
+
+  Future addToFavorite() async {
+    setState(() {
+      isFavorite = !isFavorite;
+    });
+    Provider.of<TutorsProvider>(context, listen: false)
+        .addFavorite(widget.teacher);
   }
 
   @override
@@ -62,24 +81,12 @@ class DetailTeacher extends StatelessWidget {
                                 press: () {},
                               ),
                               OptionButton(
-                                icon: 1 == 1
+                                icon: snapshot.data!.isFavorite
                                     ? CupertinoIcons.heart_fill
                                     : CupertinoIcons.heart,
                                 title: tr("Favorite"),
-                                press: () {
-                                  // user.like(teacher.id);
-                                  // teacherProvider.favorite(teacher);
-                                  // local save
-                                  // if (user.isFavorite(teacher.id)) {
-                                  //   Favorite newFavorite = Favorite(
-                                  //     id: const Uuid().v4(),
-                                  //     userID: user.id,
-                                  //     teacherID: teacher.id,
-                                  //   );
-                                  //   FavoriteDAO().insert(newFavorite);
-                                  // } else {
-                                  //   FavoriteDAO().delete(user.id, teacher.id);
-                                  // }
+                                press: () async {
+                                  await addToFavorite();
                                 },
                               ),
                               OptionButton(

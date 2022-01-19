@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/data/provider/teacher_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:lettutor_app/data/provider/tutors_provider.dart';
+import 'package:provider/provider.dart';
 
 class TeacherCard extends StatelessWidget {
   const TeacherCard({
@@ -10,7 +12,9 @@ class TeacherCard extends StatelessWidget {
   }) : super(key: key);
   final TeacherProvider teacher;
   @override
+ 
   Widget build(BuildContext context) {
+     final tutors = context.watch<TutorsProvider>();
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
       child: Card(
@@ -66,22 +70,10 @@ class TeacherCard extends StatelessWidget {
                             ),
                             TextButton(
                               onPressed: () {
-                                // user.like(teacher.id);
-                                // teacherProvider.favorite(teacher);
-                                // // local save
-                                // if (user.isFavorite(teacher.id)) {
-                                //   Favorite newFavorite = Favorite(
-                                //     id: const Uuid().v4(),
-                                //     userID: user.id,
-                                //     teacherID: teacher.id,
-                                //   );
-                                //   FavoriteDAO().insert(newFavorite);
-                                // } else {
-                                //   FavoriteDAO().delete(user.id, teacher.id);
-                                // }
+                                tutors.addFavorite(teacher);
                               },
-                              child: const Icon(
-                                false
+                              child: Icon(
+                                teacher.isFavorite == 1
                                     ? Icons.favorite
                                     : Icons.favorite_border,
                                 size: 24,

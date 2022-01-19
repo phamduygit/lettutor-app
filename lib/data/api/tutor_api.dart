@@ -74,4 +74,27 @@ class TutorAPI {
     }
     return {};
   }
+
+  Future<bool> addTutorToFavorites(String tutorId) async {
+    var url = Uri.parse('https://sandbox.api.lettutor.com/user/manageFavoriteTutor');
+    var token = await LocalSP().getAccessToken();
+    var response = await http.post(
+      url,
+      headers: {
+        HttpHeaders.authorizationHeader: 'Bearer $token',
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+      body: jsonEncode(
+        {
+          "tutorId": tutorId,
+        },
+      ),
+    );
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      // error;
+    }
+    return false;
+  }
 }

@@ -15,6 +15,7 @@ TeacherInfo _$TeacherInfoFromJson(Map<String, dynamic> json) => TeacherInfo(
       specialties: json['specialties'] as String? ?? "",
       interests: json['interests'] as String? ?? "",
       experience: json['experience'] as String? ?? "",
+      isFavorite: json['isFavorite'] as bool? ?? false,
       User: json['User'] == null
           ? null
           : UserInfo.fromJson(json['User'] as Map<String, dynamic>),
@@ -30,5 +31,6 @@ Map<String, dynamic> _$TeacherInfoToJson(TeacherInfo instance) =>
       'specialties': instance.specialties,
       'interests': instance.interests,
       'experience': instance.experience,
+      'isFavorite': instance.isFavorite,
       'User': instance.User,
     };

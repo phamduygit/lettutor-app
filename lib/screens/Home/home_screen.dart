@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/data/api/tutor_api.dart';
+import 'package:lettutor_app/data/provider/favorites_provider.dart';
 import 'package:lettutor_app/data/provider/tutors_provider.dart';
 import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/screens/Home/components/teacher_card.dart';
@@ -46,6 +47,15 @@ class _HomeScreenState extends State<HomeScreen> {
             lastPerPage, 1, "I would like to have free talk session")
         .then((value) {
       TutorsProvider tutorsProvider = TutorsProvider.fromJson(value["tutors"]);
+      FavoritesProvider favoritesProvider = FavoritesProvider.fromJson(value);
+      for (int index = 0; index < tutorsProvider.rows!.length; index++) {
+        for (var item in favoritesProvider.favoriteTutor!) {
+          if (item.containsId(tutorsProvider.rows![index].userId)) {
+            tutorsProvider.rows![index].isFavorite = 1;
+          }
+        }
+      }
+      tutorsProvider.rows!.sort((a, b) => b.isFavorite.compareTo(a.isFavorite));
       Provider.of<TutorsProvider>(context, listen: false)
           .setTutorsProvider(tutorsProvider);
     });
@@ -102,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => DetailTeacher(
-                                  teacherId: tutors.rows![index].userId,
+                                  teacher: tutors.rows![index],
                                 ),
                             settings:
                                 const RouteSettings(name: "/detailTeacher")),

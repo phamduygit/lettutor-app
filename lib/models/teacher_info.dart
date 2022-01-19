@@ -14,6 +14,7 @@ class TeacherInfo {
   String specialties;
   String interests;
   String experience;
+  bool isFavorite;
   // ignore: non_constant_identifier_names
   UserInfo? User;
   TeacherInfo({
@@ -25,8 +26,10 @@ class TeacherInfo {
     this.specialties = "",
     this.interests = "",
     this.experience = "",
+    this.isFavorite = false,
     // ignore: non_constant_identifier_names
     this.User,
+    
   });
   factory TeacherInfo.fromJson(Map<String, dynamic> json) =>
       _$TeacherInfoFromJson(json);

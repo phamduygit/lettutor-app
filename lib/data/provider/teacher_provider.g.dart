@@ -20,6 +20,7 @@ TeacherProvider _$TeacherProviderFromJson(Map<String, dynamic> json) =>
       feedbacks: (json['feedbacks'] as List<dynamic>?)
           ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
           .toList(),
+      isFavorite: json['isFavorite'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$TeacherProviderToJson(TeacherProvider instance) =>
@@ -34,4 +35,5 @@ Map<String, dynamic> _$TeacherProviderToJson(TeacherProvider instance) =>
       'bio': instance.bio,
       'languages': instance.languages,
       'feedbacks': instance.feedbacks,
+      'isFavorite': instance.isFavorite,
     };
