@@ -22,22 +22,30 @@ class BookingButton extends StatefulWidget {
 
 class _BookingButtonState extends State<BookingButton> {
   ScheduleData scheduleData = ScheduleData();
-  bool _isLoading = true;
+  bool _isLoading = false;
   Future getData() async {
     setState(() {
-      _isLoading = false;
+      _isLoading = true;
     });
     final value = await ScheduleAPI().getScheduleById(widget.teacher.userId);
-    scheduleData = ScheduleData.fromJson(value);
-    setState(() {
-      _isLoading = false;
-    });
+    if (mounted) {
+      setState(() {
+        scheduleData = ScheduleData.fromJson(value);
+        _isLoading = false;
+      });
+    }
   }
 
   @override
   void initState() {
     super.initState();
     getData();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    scheduleData = ScheduleData();
   }
 
   @override
@@ -61,8 +69,7 @@ class _BookingButtonState extends State<BookingButton> {
                 ? const Center(child: CircularProgressIndicator())
                 : MultiProvider(
                     providers: [
-                      ChangeNotifierProvider(
-                          create: (context) => scheduleData),
+                      ChangeNotifierProvider(create: (context) => scheduleData),
                     ],
                     child: Center(
                       child: Column(

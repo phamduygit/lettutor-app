@@ -15,7 +15,6 @@ class BookingDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController textController = TextEditingController();
-    print("start ${schedule.startTimestamp}");
     return Scaffold(
       appBar: AppBar(
         title: const Text("Booking Detail").tr(),
@@ -176,8 +175,7 @@ class BookingDetailScreen extends StatelessWidget {
             TextButton(
               child: const Text('Approve'),
               onPressed: () {
-                Navigator.popUntil(context,
-                            (route) => route.settings.name == "/detailTeacher");
+                Navigator.pop(context);
               },
             ),
           ],

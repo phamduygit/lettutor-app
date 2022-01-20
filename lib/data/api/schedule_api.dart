@@ -68,4 +68,42 @@ class ScheduleAPI {
     }
     return {};
   }
+  Future<Map<String, dynamic>> getBookedClass(int page, int perPage) async {
+    int timestamp = DateTime.now().millisecondsSinceEpoch;
+    var url = Uri.parse('https://sandbox.api.lettutor.com/booking/list/student?page=$page&perPage=$perPage&dateTimeLte=$timestamp&orderBy=meeting&sortBy=desc');
+    var token = await LocalSP().getAccessToken();
+    var response = await http.get(
+      url,
+      headers: {
+        HttpHeaders.authorizationHeader: 'Bearer $token',
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+    );
+    if (response.statusCode == 200) {
+      Map<String, dynamic> json = jsonDecode(response.body);
+      return json;
+    } else {
+      // error;
+    }
+    return {};
+  }
+  Future<String> cancelBookedClass(String scheduleDetailIds) async {
+    var url = Uri.parse('https://sandbox.api.lettutor.com/booking');
+    var token = await LocalSP().getAccessToken();
+    var response = await http.delete(
+      url,
+      headers: {
+        HttpHeaders.authorizationHeader: 'Bearer $token',
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+      body: jsonEncode({"scheduleDetailIds":[scheduleDetailIds]}),
+    );
+    if (response.statusCode == 200) {
+      Map<String, dynamic> json = jsonDecode(response.body);
+      return json["message"];
+    } else {
+      Map<String, dynamic> json = jsonDecode(response.body);
+      return json["message"];
+    }
+  }
 }

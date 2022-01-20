@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:lettutor_app/models/meeting.dart';
+import 'package:lettutor_app/models/meeting_info.dart';
 import 'package:lettutor_app/screens/setting/feedback.dart';
 
 class SessionHistoryCard extends StatelessWidget {
@@ -10,6 +12,7 @@ class SessionHistoryCard extends StatelessWidget {
   final Meeting meeting;
   @override
   Widget build(BuildContext context) {
+    MeetingInfo meetingInfo = meeting.getTutor();
     return Padding(
       padding: const EdgeInsets.only(top: 15.0),
       child: Card(
@@ -19,66 +22,70 @@ class SessionHistoryCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                children: const [
-                  // CircleAvatar(
-                  //   backgroundImage: NetworkImage(meeting.avatar),
-                  //   radius: 30,
-                  // ),
+                children: [
+                  CircleAvatar(
+                    backgroundImage:
+                        NetworkImage(meetingInfo.userBeCalled!.avatar),
+                    radius: 30,
+                  ),
                   const SizedBox(width: 10),
-                  // Expanded(
-                  //   child: Column(
-                  //     crossAxisAlignment: CrossAxisAlignment.start,
-                  //     children: [
-                  //       Text(
-                  //         meeting.name,
-                  //         style: const TextStyle(fontSize: 18),
-                  //       ),
-                  //       const SizedBox(height: 5),
-                  //       Row(
-                  //         children: [
-                  //           const Icon(
-                  //             Icons.calendar_today_outlined,
-                  //             size: 15,
-                  //           ),
-                  //           const SizedBox(width: 10),
-                  //           Text(
-                  //             DateFormat('HH:mm:ss dd/MM/yyyy')
-                  //                 .format(meeting.date),
-                  //             style: const TextStyle(fontSize: 15),
-                  //           )
-                  //         ],
-                  //       ),
-                  //       const SizedBox(height: 5),
-                  //       Row(
-                  //         children: const [
-                  //           Icon(
-                  //             Icons.timer_outlined,
-                  //             size: 15,
-                  //           ),
-                  //           SizedBox(width: 10),
-                  //           Text(
-                  //             "14:48:49",
-                  //             style: TextStyle(fontSize: 15),
-                  //           )
-                  //         ],
-                  //       ),
-                  //       const SizedBox(height: 5),
-                  //       Row(
-                  //         children: const [
-                  //           Icon(
-                  //             Icons.star_border_rounded,
-                  //             size: 20,
-                  //           ),
-                  //           SizedBox(width: 10),
-                  //           Text(
-                  //             "Not feedback yet",
-                  //             style: TextStyle(fontSize: 15),
-                  //           )
-                  //         ],
-                  //       ),
-                  //     ],
-                  //   ),
-                  // )
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          meetingInfo.userBeCalled!.name,
+                          style: const TextStyle(fontSize: 18),
+                        ),
+                        const SizedBox(height: 5),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.calendar_today_outlined,
+                              size: 15,
+                            ),
+                            const SizedBox(width: 10),
+                            Text(
+                              DateFormat('HH:mm:ss dd/MM/yyyy').format(
+                                  DateTime.fromMillisecondsSinceEpoch(
+                                      meetingInfo.startTime)),
+                              style: const TextStyle(fontSize: 15),
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 5),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.timer_outlined,
+                              size: 15,
+                            ),
+                            const SizedBox(width: 10),
+                            Text(
+                              DateFormat('HH:mm:ss dd/MM/yyyy').format(
+                                  DateTime.fromMillisecondsSinceEpoch(
+                                      meetingInfo.startTime)),
+                              style: const TextStyle(fontSize: 15),
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 5),
+                        Row(
+                          children: const [
+                            Icon(
+                              Icons.star_border_rounded,
+                              size: 20,
+                            ),
+                            SizedBox(width: 10),
+                            Text(
+                              "Not feedback yet",
+                              style: TextStyle(fontSize: 15),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),

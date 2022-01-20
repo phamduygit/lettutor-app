@@ -84,6 +84,7 @@ class _BodyState extends State<Body> {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
                           final data = {
+                            "avatar": user.avatar,
                             "name": user.name,
                             "country": user.country,
                             "phone": user.phone,
@@ -101,7 +102,7 @@ class _BodyState extends State<Body> {
                                 .updateUser(newUser);
                           });
 
-                          // Navigator.pop(context);
+                          Navigator.pop(context);
                         }
                       },
                     )

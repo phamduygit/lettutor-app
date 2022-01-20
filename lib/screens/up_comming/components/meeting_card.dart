@@ -2,16 +2,20 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
+import 'package:lettutor_app/data/api/schedule_api.dart';
 import 'package:lettutor_app/models/meeting.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:lettutor_app/models/meeting_data.dart';
 import 'package:lettutor_app/models/meeting_info.dart';
+import 'package:provider/provider.dart';
 
 class MeetingCard extends StatelessWidget {
   const MeetingCard({
     Key? key,
-    required this.meeting,
+    required this.meeting, required this.remove,
   }) : super(key: key);
   final Meeting meeting;
+  final Function(Meeting) remove;
   @override
   Widget build(BuildContext context) {
     final meetingInfo = meeting.getTutor();
@@ -90,8 +94,10 @@ class MeetingCard extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {
-                        _showMyDialog(context, title: "title", message: "message");
+                      onPressed: () async {
+                        String message = await ScheduleAPI().cancelBookedClass(meeting.scheduleDetailId);
+                        _showMyDialog(context, title: "Message", message: message);
+                        remove(meeting);
                       },
                       child: const Text("Cancel").tr(),
                       style: ElevatedButton.styleFrom(primary: Colors.grey),

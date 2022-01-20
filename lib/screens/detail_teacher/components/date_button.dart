@@ -20,7 +20,6 @@ class DateButton extends StatelessWidget {
     DateTime newDate = DateTime(date.year, date.month, date.day);
     final scheduleData = context.read<ScheduleData>();
     final List<Schedule> scheduleInDay = scheduleData.getScheduleInDay(newDate);
-    print(newDate.millisecondsSinceEpoch);
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: ElevatedButton(

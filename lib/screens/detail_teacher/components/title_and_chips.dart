@@ -24,10 +24,13 @@ class _TitileAndChipsState extends State<TitileAndChips> {
       var languageName = await CommonAPI().getLanguageName(languageKey);
       myChips.add(languageName);
     }
-    setState(() {
-      chips = myChips;
-    });
+    if (mounted) {
+      setState(() {
+        chips = myChips;
+      });
+    }
   }
+
   @override
   void initState() {
     super.initState();
@@ -37,10 +40,9 @@ class _TitileAndChipsState extends State<TitileAndChips> {
       setState(() {
         chips = widget.chipsContent;
       });
-      
     }
-    
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -5,6 +5,7 @@ import 'package:lettutor_app/data/api/tutor_api.dart';
 import 'package:lettutor_app/data/provider/tutors_provider.dart';
 import 'package:lettutor_app/screens/detail_teacher/detail_teacher.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:lettutor_app/util/fuctions.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'components/tutor_card.dart';
 
@@ -18,8 +19,9 @@ class Tutors extends StatefulWidget {
 class _TutorsState extends State<Tutors> {
   late TextEditingController _textController;
   TutorsProvider filterTutor = TutorsProvider();
+  TutorsProvider tutors = TutorsProvider();
   List<String> selectedSpecifier = [];
-  int lastPerPage = 3;
+  int lastPerPage = 0;
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
   void select(String specialty) {
@@ -39,27 +41,47 @@ class _TutorsState extends State<Tutors> {
   }
 
   void _onRefresh() async {
-    // monitor network fetch
     await Future.delayed(const Duration(milliseconds: 1000));
-    // if failed,use refreshFailed()
     _refreshController.refreshCompleted();
   }
 
   void _onLoading() async {
-    // monitor network fetch
     await Future.delayed(const Duration(milliseconds: 1000));
-    // if failed,use loadFailed(),if no data return,use LoadNodata()
     lastPerPage += 3;
-    // if (mounted) setState(() {});
-    search();
+    if (lastPerPage > filterTutor.rows!.length) {
+      setState(() {
+        lastPerPage = filterTutor.rows!.length;
+      });
+    }
     _refreshController.loadComplete();
   }
 
   Future<void> search() async {
-    final value =
-        await TutorAPI().searchTutor(lastPerPage, 1, selectedSpecifier, _textController.text);
     setState(() {
-      filterTutor = TutorsProvider.fromJson(value);
+      filterTutor.rows = tutors.rows!
+          .where((element) =>
+              checkStringContains(element.name, _textController.text) ||
+              checkStringContains(element.country, _textController.text))
+          .toList();
+      filterTutor.rows = filterTutor.rows!
+          .where((element) =>
+              checkContains(selectedSpecifier, element.convertSpecialties()))
+          .toList();
+      lastPerPage = 3;
+      if (lastPerPage > filterTutor.rows!.length) {
+        lastPerPage = filterTutor.rows!.length;
+      }
+    });
+  }
+
+  Future<void> fetchData() async {
+    final value = await TutorAPI().searchTutor(20, 1, [], "");
+    if (!mounted) return;
+    setState(() {
+      tutors = TutorsProvider.fromJson(value);
+      tutors.rows!.sort((a, b) => b.getRating().compareTo(a.getRating()));
+      filterTutor.rows = tutors.rows;
+      lastPerPage = 3;
     });
   }
 
@@ -67,7 +89,7 @@ class _TutorsState extends State<Tutors> {
   void initState() {
     super.initState();
     _textController = TextEditingController(text: '');
-    search();
+    fetchData();
   }
 
   @override
@@ -84,7 +106,7 @@ class _TutorsState extends State<Tutors> {
       "pet",
       "ielts",
       "toefl",
-      "toeic",
+      "toeic"
     ];
     return Scaffold(
       appBar: AppBar(
@@ -135,13 +157,15 @@ class _TutorsState extends State<Tutors> {
                               child: Text(
                                 specifiers[index],
                                 style: TextStyle(
-                                  color: selectedSpecifier.contains(specifiers[index])
+                                  color: selectedSpecifier
+                                          .contains(specifiers[index])
                                       ? mainColor
                                       : null,
                                 ),
                               ).tr(),
                               decoration: BoxDecoration(
-                                color: selectedSpecifier.contains(specifiers[index])
+                                color: selectedSpecifier
+                                        .contains(specifiers[index])
                                     ? Colors.blue[100]
                                     : Colors.grey.withOpacity(0.3),
                                 borderRadius: BorderRadius.circular(20),
@@ -153,24 +177,30 @@ class _TutorsState extends State<Tutors> {
                     ),
                   ),
                 ),
-                Column(
-                  children: List.generate(
-                    filterTutor.rows?.length ?? 0,
-                    (index) => GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DetailTeacher(
-                                  teacher: filterTutor.rows![index])),
-                        );
-                      },
-                      child: TutorCard(
-                        teacher: filterTutor.rows![index],
-                      ),
-                    ),
-                  ),
-                )
+                lastPerPage != 0
+                    ? Column(
+                        children: List.generate(
+                          lastPerPage,
+                          (index) => GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DetailTeacher(
+                                        teacher: filterTutor.rows![index])),
+                              );
+                            },
+                            child: TutorCard(
+                              teacher: filterTutor.rows![index],
+                            ),
+                          ),
+                        ),
+                      )
+                    : const SizedBox(
+                        width: 200,
+                        height: 500,
+                        child: Center(child: Icon(Icons.find_replace_outlined, size: 50,)),
+                      )
               ],
             ),
           ),

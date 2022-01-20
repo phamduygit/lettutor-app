@@ -16,6 +16,8 @@ class TutorsProvider extends ChangeNotifier {
   void setTutorsProvider(TutorsProvider other) {
     count = other.count;
     rows = other.rows;
+    rows!.sort((a, b) => b.getRating().compareTo(a.getRating()));
+    rows!.sort((a, b) => b.isFavorite.compareTo(a.isFavorite));
     notifyListeners();
   }
 
@@ -34,7 +36,9 @@ class TutorsProvider extends ChangeNotifier {
       rows![index].isFavorite = 0;
     }
     final result = await TutorAPI().addTutorToFavorites(rows![index].userId);
+    rows!.sort((a, b) => b.getRating().compareTo(a.getRating()));
     rows!.sort((a, b) => b.isFavorite.compareTo(a.isFavorite));
+    
     notifyListeners();
     return result;
   }

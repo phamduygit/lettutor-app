@@ -11,6 +11,7 @@ Meeting _$MeetingFromJson(Map<String, dynamic> json) => Meeting(
       userId: json['userId'] as String? ?? "",
       tutorMeetingLink: json['tutorMeetingLink'] as String? ?? "",
       studentMeetingLink: json['studentMeetingLink'] as String? ?? "",
+      scheduleDetailId: json['scheduleDetailId'] as String? ?? "",
     );
 
 Map<String, dynamic> _$MeetingToJson(Meeting instance) => <String, dynamic>{
@@ -18,4 +19,5 @@ Map<String, dynamic> _$MeetingToJson(Meeting instance) => <String, dynamic>{
       'userId': instance.userId,
       'tutorMeetingLink': instance.tutorMeetingLink,
       'studentMeetingLink': instance.studentMeetingLink,
+      'scheduleDetailId': instance.scheduleDetailId,
     };

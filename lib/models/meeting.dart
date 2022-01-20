@@ -11,11 +11,13 @@ class Meeting {
   String userId;
   String tutorMeetingLink;
   String studentMeetingLink;
+  String scheduleDetailId;
   Meeting({
     this.id = "",
     this.userId = "",
     this.tutorMeetingLink = "",
     this.studentMeetingLink = "",
+    this.scheduleDetailId = "",
   });
   factory Meeting.fromJson(Map<String, dynamic> json) =>
       _$MeetingFromJson(json);

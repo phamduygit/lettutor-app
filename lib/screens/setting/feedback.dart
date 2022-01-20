@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
+import 'package:lettutor_app/data/api/tutor_api.dart';
 import 'package:lettutor_app/models/meeting.dart';
 import 'package:lettutor_app/screens/setting/components/rating.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -66,14 +67,14 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       style: TextStyle(fontSize: 18),
                     ).tr(),
                     const SizedBox(height: 10),
-                    // CircleAvatar(
-                    //   backgroundImage: NetworkImage(widget.meeting.avatar),
-                    //   radius: 40,
-                    // ),
-                    // Text(
-                    //   widget.meeting.name,
-                    //   style: const TextStyle(fontSize: 18),
-                    // ),
+                    CircleAvatar(
+                      backgroundImage: NetworkImage(widget.meeting.getTutor().userBeCalled!.avatar),
+                      radius: 40,
+                    ),
+                    Text(
+                      widget.meeting.getTutor().userBeCalled!.name,
+                      style: const TextStyle(fontSize: 18),
+                    ),
                     RatingStar(
                       saveNumberOfStar: saveNumberOfStar,
                       numberOfStar: numberOfStar,
@@ -145,20 +146,8 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
-                            // Review review = Review(
-                            //   id: const Uuid().v4(),
-                            //   bookingId: user.id,
-                            //   teacherID: widget.meeting.teacherID,
-                            //   avatar: user.avatar,
-                            //   username: user.name,
-                            //   date: DateTime.now(),
-                            //   numberOfStar: numberOfStar,
-                            //   content: comment,
-                            // );
-                            // Provider.of<ListReview>(context, listen: false)
-                            //     .addNewReivew(review);
-                            // await ReviewDAO().insert(review);
-                            Navigator.pop(context);
+                            await TutorAPI().writeReview(widget.meeting.getTutor().bookingId, widget.meeting.userId, numberOfStar, comment);
+                            // Navigator.pop(context);
                           }
                         },
                         style: ElevatedButton.styleFrom(

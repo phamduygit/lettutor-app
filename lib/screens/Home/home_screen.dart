@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
     await Future.delayed(const Duration(milliseconds: 1000));
     // if failed,use loadFailed(),if no data return,use LoadNodata()
     lastPerPage += 3;
-    // if (mounted) setState(() {});
+    if (mounted) setState(() {});
     initListTutor();
     _refreshController.loadComplete();
   }
@@ -55,7 +55,6 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         }
       }
-      tutorsProvider.rows!.sort((a, b) => b.isFavorite.compareTo(a.isFavorite));
       Provider.of<TutorsProvider>(context, listen: false)
           .setTutorsProvider(tutorsProvider);
     });

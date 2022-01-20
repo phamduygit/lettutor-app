@@ -57,3 +57,16 @@ String convertLevel(String num) {
   }
   return "";
 }
+
+bool checkContains(List<String> a, List<String> b) {
+  int count = 0;
+  for (var item in a) {
+    if(b.contains(item)) {
+      count++;
+    }
+  }
+  return count == a.length;
+}
+bool checkStringContains(String a, String b) {
+  return a.toUpperCase().contains(b.toUpperCase());
+}
