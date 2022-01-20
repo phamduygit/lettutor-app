@@ -1,4 +1,4 @@
-import 'package:lettutor_app/models/firstInfo.dart';
+import 'package:lettutor_app/models/first_info.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'review.g.dart';
@@ -19,7 +19,6 @@ class Review {
     this.createdAt,
     this.firstInfo,
   });
-    factory Review.fromJson(Map<String, dynamic> json) =>
-      _$ReviewFromJson(json);
+  factory Review.fromJson(Map<String, dynamic> json) => _$ReviewFromJson(json);
   Map<String, dynamic> toJson() => _$ReviewToJson(this);
 }

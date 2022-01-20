@@ -77,7 +77,7 @@ class _VideoCallSreenState extends State<VideoCallSreen> {
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                             ),
-                            endTime: widget.meeting.date.millisecondsSinceEpoch,
+                            // endTime: widget.meeting.date.millisecondsSinceEpoch,
                           ),
                         ],
                       ),
@@ -86,59 +86,6 @@ class _VideoCallSreenState extends State<VideoCallSreen> {
                 ],
               ),
             ),
-            // Container(
-            //   padding: const EdgeInsets.all(20),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //     children: [
-            //       InkWell(
-            //         onTap: () {},
-            //         child: const Icon(
-            //           Icons.mic_none,
-            //           size: 28,
-            //           color: Colors.white,
-            //         ),
-            //       ),
-            //       const Icon(
-            //         Icons.videocam_outlined,
-            //         size: 28,
-            //         color: Colors.white,
-            //       ),
-            //       const Icon(
-            //         Icons.chat_bubble_outline,
-            //         size: 28,
-            //         color: Colors.white,
-            //       ),
-            //       const Icon(
-            //         Icons.switch_camera,
-            //         size: 28,
-            //         color: Colors.white,
-            //       ),
-            //       const Icon(
-            //         Icons.more_vert,
-            //         size: 28,
-            //         color: Colors.white,
-            //       ),
-            //       GestureDetector(
-            //         onTap: () {
-            //           Navigator.pop(context);
-            //         },
-            //         child: Container(
-            //           padding: const EdgeInsets.all(8),
-            //           decoration: BoxDecoration(
-            //               color: Colors.red[400],
-            //               borderRadius: BorderRadius.circular(5)),
-            //           child: const Icon(
-            //             Icons.call_end,
-            //             size: 28,
-            //             color: Colors.white,
-            //           ),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            //   color: Colors.grey[800],
-            // )
           ],
         ),
       ),

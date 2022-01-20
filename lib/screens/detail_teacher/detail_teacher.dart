@@ -8,6 +8,7 @@ import 'package:lettutor_app/models/teacher_info.dart';
 import 'package:lettutor_app/screens/detail_teacher/components/video_intro.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
+import 'components/booking_button.dart';
 import 'components/courses.dart';
 import 'components/option_button.dart';
 import 'components/over_view_teacher.dart';
@@ -97,10 +98,10 @@ class _DetailTeacherState extends State<DetailTeacher> {
                             ],
                           ),
                           const SizedBox(height: 15),
-                          // BookingButton(
-                          //   today: DateTime.now(),
-                          //   teacher: snapshot.data,
-                          // ),
+                          BookingButton(
+                            today: DateTime.now(),
+                            teacher: snapshot.data!,
+                          ),
                           const SizedBox(height: 10),
                           ReadMoreText(
                             snapshot.data!.bio,

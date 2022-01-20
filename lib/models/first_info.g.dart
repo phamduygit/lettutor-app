@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'firstInfo.dart';
+part of 'first_info.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
-import 'package:lettutor_app/data/provider/teacher_provider.dart';
-import 'package:lettutor_app/models/pattern.dart';
+import 'package:lettutor_app/data/provider/schedule_data.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:lettutor_app/models/schedule.dart';
+import 'package:lettutor_app/models/teacher_info.dart';
+import 'package:provider/provider.dart';
 import 'time_button.dart';
 
 class DateButton extends StatelessWidget {
@@ -12,10 +14,13 @@ class DateButton extends StatelessWidget {
     required this.teacher,
   }) : super(key: key);
   final DateTime date;
-  final TeacherProvider teacher;
+  final TeacherInfo teacher;
   @override
   Widget build(BuildContext context) {
-    var fliterTime = schedules.where((i) => (i.isAfter(DateTime.now()) && i.day == date.day)).toList();
+    DateTime newDate = DateTime(date.year, date.month, date.day);
+    final scheduleData = context.read<ScheduleData>();
+    final List<Schedule> scheduleInDay = scheduleData.getScheduleInDay(newDate);
+    print(newDate.millisecondsSinceEpoch);
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: ElevatedButton(
@@ -23,7 +28,7 @@ class DateButton extends StatelessWidget {
           children: [
             const Spacer(),
             Text(
-              DateFormat('yyyy-MM-dd').format(date),
+              DateFormat('dd-MM-yyyy').format(newDate),
               style: const TextStyle(fontSize: 18),
             ),
             const Spacer(),
@@ -62,9 +67,9 @@ class DateButton extends StatelessWidget {
                           crossAxisCount: 2,
                           childAspectRatio: 3,
                           children: List.generate(
-                            fliterTime.length,
+                            scheduleInDay.length,
                             (index) => TimeButton(
-                              date: fliterTime[index],
+                              schedule: scheduleInDay[index],
                               teacher: teacher,
                             ),
                           ),

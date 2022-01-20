@@ -66,14 +66,14 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                       style: TextStyle(fontSize: 18),
                     ).tr(),
                     const SizedBox(height: 10),
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(widget.meeting.avatar),
-                      radius: 40,
-                    ),
-                    Text(
-                      widget.meeting.name,
-                      style: const TextStyle(fontSize: 18),
-                    ),
+                    // CircleAvatar(
+                    //   backgroundImage: NetworkImage(widget.meeting.avatar),
+                    //   radius: 40,
+                    // ),
+                    // Text(
+                    //   widget.meeting.name,
+                    //   style: const TextStyle(fontSize: 18),
+                    // ),
                     RatingStar(
                       saveNumberOfStar: saveNumberOfStar,
                       numberOfStar: numberOfStar,
