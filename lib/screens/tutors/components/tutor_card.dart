@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
-import 'package:lettutor_app/models/teacher.dart';
+import 'package:lettutor_app/data/provider/teacher_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class TutorCard extends StatelessWidget {
@@ -9,7 +9,7 @@ class TutorCard extends StatelessWidget {
     required this.teacher,
   }) : super(key: key);
 
-  final Teacher teacher;
+  final TeacherProvider teacher;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class TutorCard extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                Text(teacher.rating.toString()),
+                                Text(teacher.getRating().toStringAsFixed(2)),
                                 Icon(
                                   Icons.star_outlined,
                                   color: Colors.yellow[700],
@@ -65,7 +65,7 @@ class TutorCard extends StatelessWidget {
                           child: ListView(
                             scrollDirection: Axis.horizontal,
                             children: List.generate(
-                              teacher.specialties.length,
+                              teacher.convertSpecialties().length,
                               (index) => Padding(
                                 padding: const EdgeInsets.only(right: 5),
                                 child: Center(
@@ -73,7 +73,7 @@ class TutorCard extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 10),
                                     child: Text(
-                                      teacher.specialties[index],
+                                      teacher.convertSpecialties()[index],
                                       style: const TextStyle(
                                         color: mainColor,
                                       ),
@@ -95,7 +95,7 @@ class TutorCard extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                teacher.description,
+                teacher.bio,
                 maxLines: 4,
                 overflow: TextOverflow.ellipsis,
               ),

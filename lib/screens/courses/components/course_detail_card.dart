@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
-import 'package:lettutor_app/models/courses.dart';
+import 'package:lettutor_app/models/course.dart';
 
 
 class CoursesDetailCard extends StatelessWidget {
@@ -32,8 +32,8 @@ class CoursesDetailCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(10.0),
-            child: Image.asset(
-              course.image,
+            child: Image.network(
+              course.imageUrl,
               fit: BoxFit.fill,
               width: double.infinity,
               height: widthScreen * 0.75,
@@ -46,7 +46,7 @@ class CoursesDetailCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  course.title,
+                  course.name,
                   style: const TextStyle(
                       fontWeight: FontWeight.w600, fontSize: 16),
                 ),
@@ -54,7 +54,7 @@ class CoursesDetailCard extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  course.sologan,
+                  course.description,
                   style: const TextStyle(
                       fontWeight: FontWeight.normal, fontSize: 14),
                 ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lettutor_app/models/meeting.dart';
+import 'package:lettutor_app/models/meeting_info.dart';
 import 'package:lettutor_app/screens/setting/feedback.dart';
 
 class SessionHistoryCard extends StatelessWidget {
@@ -11,6 +12,7 @@ class SessionHistoryCard extends StatelessWidget {
   final Meeting meeting;
   @override
   Widget build(BuildContext context) {
+    MeetingInfo meetingInfo = meeting.getTutor();
     return Padding(
       padding: const EdgeInsets.only(top: 15.0),
       child: Card(
@@ -22,7 +24,8 @@ class SessionHistoryCard extends StatelessWidget {
               child: Row(
                 children: [
                   CircleAvatar(
-                    backgroundImage: NetworkImage(meeting.avatar),
+                    backgroundImage:
+                        NetworkImage(meetingInfo.userBeCalled!.avatar),
                     radius: 30,
                   ),
                   const SizedBox(width: 10),
@@ -31,7 +34,7 @@ class SessionHistoryCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          meeting.name,
+                          meetingInfo.userBeCalled!.name,
                           style: const TextStyle(fontSize: 18),
                         ),
                         const SizedBox(height: 5),
@@ -43,23 +46,26 @@ class SessionHistoryCard extends StatelessWidget {
                             ),
                             const SizedBox(width: 10),
                             Text(
-                              DateFormat('HH:mm:ss dd/MM/yyyy')
-                                  .format(meeting.date),
+                              DateFormat('HH:mm:ss dd/MM/yyyy').format(
+                                  DateTime.fromMillisecondsSinceEpoch(
+                                      meetingInfo.startTime)),
                               style: const TextStyle(fontSize: 15),
                             )
                           ],
                         ),
                         const SizedBox(height: 5),
                         Row(
-                          children: const [
-                            Icon(
+                          children: [
+                            const Icon(
                               Icons.timer_outlined,
                               size: 15,
                             ),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text(
-                              "14:48:49",
-                              style: TextStyle(fontSize: 15),
+                              DateFormat('HH:mm:ss dd/MM/yyyy').format(
+                                  DateTime.fromMillisecondsSinceEpoch(
+                                      meetingInfo.startTime)),
+                              style: const TextStyle(fontSize: 15),
                             )
                           ],
                         ),

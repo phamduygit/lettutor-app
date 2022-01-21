@@ -71,7 +71,6 @@ class _MyFormFieldState extends State<MyFormField> {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 // signInWithEmailPassword(_email, _password);
-
                 var url =
                     Uri.parse('https://sandbox.api.lettutor.com/auth/login');
                 var response = await http
@@ -84,13 +83,40 @@ class _MyFormFieldState extends State<MyFormField> {
                   Provider.of<LocalApp>(context, listen: false).setAccessToken(token);
                 } else {
                   Map<String, dynamic> json = jsonDecode(response.body);
-                  debugPrint(json["message"]);
+                  await _showMyDialog(title: "Warning", message: json["message"]);
                 }
               }
             },
           ),
         ],
       ),
+    );
+  }
+  Future<void> _showMyDialog(
+      {required String title, required String message}) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(message),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Approve'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

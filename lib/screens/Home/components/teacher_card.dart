@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
-import 'package:lettutor_app/models/teacher.dart';
-import 'package:lettutor_app/data/provider/user_provider.dart';
-import 'package:lettutor_app/data/provider/list_teacher.dart';
-import 'package:lettutor_app/data/sql_lite/favorite_dao.dart';
-import 'package:provider/provider.dart';
-import 'package:uuid/uuid.dart';
+import 'package:lettutor_app/data/provider/teacher_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:lettutor_app/data/provider/tutors_provider.dart';
+import 'package:provider/provider.dart';
 
 class TeacherCard extends StatelessWidget {
   const TeacherCard({
     Key? key,
     required this.teacher,
   }) : super(key: key);
-  final Teacher teacher;
+  final TeacherProvider teacher;
   @override
+ 
   Widget build(BuildContext context) {
-    final user = context.watch<UserProvider>();
-    final teacherProvider = context.watch<ListTeacher>();
+     final tutors = context.watch<TutorsProvider>();
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
       child: Card(
@@ -58,9 +55,9 @@ class TeacherCard extends StatelessWidget {
                                     (index) => Container(
                                       padding: const EdgeInsets.only(right: 4),
                                       child: Icon(
-                                        index < teacher.rating - 0.5
+                                        index < teacher.getRating() - 0.5
                                             ? Icons.star
-                                            : index - teacher.rating + 0.5 > 0
+                                            : index - teacher.getRating() + 0.25 > 0
                                                 ? Icons.star_border
                                                 : Icons.star_half,
                                         color: Colors.yellow[700],
@@ -73,22 +70,10 @@ class TeacherCard extends StatelessWidget {
                             ),
                             TextButton(
                               onPressed: () {
-                                // user.like(teacher.id);
-                                // teacherProvider.favorite(teacher);
-                                // // local save
-                                // if (user.isFavorite(teacher.id)) {
-                                //   Favorite newFavorite = Favorite(
-                                //     id: const Uuid().v4(),
-                                //     userID: user.id,
-                                //     teacherID: teacher.id,
-                                //   );
-                                //   FavoriteDAO().insert(newFavorite);
-                                // } else {
-                                //   FavoriteDAO().delete(user.id, teacher.id);
-                                // }
+                                tutors.addFavorite(teacher);
                               },
                               child: Icon(
-                                false
+                                teacher.isFavorite == 1
                                     ? Icons.favorite
                                     : Icons.favorite_border,
                                 size: 24,
@@ -105,14 +90,14 @@ class TeacherCard extends StatelessWidget {
                           child: ListView(
                             scrollDirection: Axis.horizontal,
                             children: List.generate(
-                              teacher.specialties.length,
+                              teacher.convertSpecialties().length,
                               (index) => Padding(
                                 padding: const EdgeInsets.only(right: 5),
                                 child: Center(
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 10),
-                                    child: Text(teacher.specialties[index],
+                                    child: Text(teacher.convertSpecialties()[index],
                                         style:
                                             const TextStyle(color: mainColor)).tr(),
                                     decoration: BoxDecoration(
@@ -132,7 +117,7 @@ class TeacherCard extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                teacher.description,
+                teacher.bio,
                 maxLines: 4,
                 overflow: TextOverflow.ellipsis,
               ),

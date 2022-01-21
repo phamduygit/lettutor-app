@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
 import 'package:lettutor_app/data/api/user_api.dart';
 import 'package:lettutor_app/data/provider/local_app_sp.dart';
-import 'package:lettutor_app/data/provider/topic.dart';
 import 'package:lettutor_app/data/provider/user_provider.dart';
 import 'package:lettutor_app/screens/home/home_screen.dart';
 import 'package:lettutor_app/screens/messages/message_screen.dart';
@@ -39,7 +38,6 @@ class _MyTabBarState extends State<MyTabBar> {
   void initState() {
     super.initState();
     String token = Provider.of<LocalApp>(context, listen: false).getAccessToken;
-    debugPrint(token);
     UserAPI().getUserInformation(token).then((value) {
       UserProvider newUser = UserProvider.fromJson(value["user"]);
       Provider.of<UserProvider>(context, listen: false).updateUser(newUser);

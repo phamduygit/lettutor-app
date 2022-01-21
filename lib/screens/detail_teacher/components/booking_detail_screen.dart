@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
-import 'package:lettutor_app/models/meeting.dart';
-import 'package:lettutor_app/models/teacher.dart';
-import 'package:lettutor_app/data/provider/user_provider.dart';
+import 'package:lettutor_app/data/api/schedule_api.dart';
+import 'package:lettutor_app/models/schedule.dart';
+import 'package:lettutor_app/models/teacher_info.dart';
 import 'package:lettutor_app/screens/detail_teacher/components/over_view_teacher.dart';
-import 'package:lettutor_app/data/provider/list_meeting.dart';
-import 'package:lettutor_app/data/sql_lite/meeting_dao.dart';
-import 'package:provider/provider.dart';
-import 'package:uuid/uuid.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class BookingDetailScreen extends StatelessWidget {
   const BookingDetailScreen(
-      {Key? key, required this.date, required this.teacher})
+      {Key? key, required this.schedule, required this.teacher})
       : super(key: key);
-  final DateTime date;
-  final Teacher teacher;
+  final Schedule schedule;
+  final TeacherInfo teacher;
   @override
   Widget build(BuildContext context) {
+    TextEditingController textController = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Booking Detail").tr(),
@@ -46,7 +43,7 @@ class BookingDetailScreen extends StatelessWidget {
                             style: TextStyle(fontSize: 18),
                           ).tr(),
                           Text(
-                            "${DateFormat('HH:mm').format(date)} - ${DateFormat('HH:mm').format(date)}",
+                            "${DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(schedule.startTimestamp))} - ${DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(schedule.endTimestamp))}",
                             style: const TextStyle(fontSize: 18),
                           ),
                         ],
@@ -55,7 +52,11 @@ class BookingDetailScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            DateFormat('EE, dd MM yyyy').format(date),
+                            DateFormat('EE, dd MM yyyy').format(
+                              DateTime.fromMillisecondsSinceEpoch(
+                                schedule.startTimestamp,
+                              ),
+                            ),
                             style: const TextStyle(fontSize: 18),
                           )
                         ],
@@ -104,7 +105,7 @@ class BookingDetailScreen extends StatelessWidget {
                     child: ElevatedButton(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children:[
+                        children: [
                           const Text(
                             "Cancel",
                             style: TextStyle(fontSize: 18),
@@ -126,7 +127,7 @@ class BookingDetailScreen extends StatelessWidget {
                     child: ElevatedButton(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children:[
+                        children: [
                           const Text(
                             "Accept",
                             style: TextStyle(fontSize: 18),
@@ -134,20 +135,9 @@ class BookingDetailScreen extends StatelessWidget {
                         ],
                       ),
                       onPressed: () async {
-                        Meeting newMeeting = Meeting(
-                          id: const Uuid().v4(),
-                          userID: context.read<UserProvider>().id,
-                          teacherID: teacher.id,
-                          avatar: teacher.avatar,
-                          name: teacher.name,
-                          date: date,
-                          status: 1,
-                        );
-                        await MeetingDAO().insertMeeting(newMeeting);
-                        Provider.of<ListMeeting>(context, listen: false)
-                            .addNewMeeting(newMeeting);
-                        Navigator.popUntil(context,
-                            (route) => route.settings.name == "/detailTeacher");
+                        String message = await ScheduleAPI().bookAClass(schedule.scheduleDetails![0].id, textController.text);
+                        _showMyDialog(context, title: "Message", message: message);
+                        
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.all(defaultPadding),
@@ -164,6 +154,33 @@ class BookingDetailScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+  Future<void> _showMyDialog(BuildContext context,
+      {required String title, required String message}) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(message),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Approve'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

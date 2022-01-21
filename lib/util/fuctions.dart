@@ -23,7 +23,6 @@ List<Topic> getTest(List<String> selectedCourse) {
       }
     }
   }
-  print(result.length);
   return result;
 }
 
@@ -46,4 +45,28 @@ List<String> getIDTopic(List<Topic> topics) {
     results.add(topic.id.toString());
   }
   return results;
+}
+
+String convertLevel(String num) {
+  if (num == "1") {
+    return "Beginner";
+  } else if (num == "4") {
+    return "Intermediate";
+  } else if (num == "7") {
+    return "Advanced";
+  }
+  return "";
+}
+
+bool checkContains(List<String> a, List<String> b) {
+  int count = 0;
+  for (var item in a) {
+    if(b.contains(item)) {
+      count++;
+    }
+  }
+  return count == a.length;
+}
+bool checkStringContains(String a, String b) {
+  return a.toUpperCase().contains(b.toUpperCase());
 }

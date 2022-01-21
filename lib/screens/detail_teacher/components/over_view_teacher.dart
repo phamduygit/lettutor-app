@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lettutor_app/models/teacher.dart';
 import 'package:http/http.dart' as http;
+import 'package:lettutor_app/models/teacher_info.dart';
 
 class OverViewTeacher extends StatefulWidget {
   const OverViewTeacher({
     Key? key,
     required this.teacher,
   }) : super(key: key);
-  final Teacher teacher;
+  final TeacherInfo teacher;
 
   @override
   State<OverViewTeacher> createState() => _OverViewTeacherState();
@@ -17,8 +17,11 @@ class OverViewTeacher extends StatefulWidget {
 
 class _OverViewTeacherState extends State<OverViewTeacher> {
   Future<void> fetchCountry() async {
-    final response = await http.get(Uri.parse(
-        'https://restcountries.com/v2/alpha/${widget.teacher.country}'));
+    final response = await http.get(
+      Uri.parse(
+        'https://restcountries.com/v2/alpha/${widget.teacher.User!.country}',
+      ),
+    );
     if (response.statusCode == 200) {
       setState(() {
         json = jsonDecode(response.body);
@@ -40,7 +43,7 @@ class _OverViewTeacherState extends State<OverViewTeacher> {
     return Row(
       children: [
         CircleAvatar(
-          backgroundImage: NetworkImage(widget.teacher.avatar),
+          backgroundImage: NetworkImage(widget.teacher.User!.avatar),
           radius: 45,
         ),
         const SizedBox(width: 10),
@@ -48,7 +51,7 @@ class _OverViewTeacherState extends State<OverViewTeacher> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              widget.teacher.name,
+              widget.teacher.User!.name,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
             const SizedBox(height: 5),
@@ -59,9 +62,9 @@ class _OverViewTeacherState extends State<OverViewTeacher> {
                 (index) => Container(
                   padding: const EdgeInsets.only(right: 4),
                   child: Icon(
-                    index < widget.teacher.rating - 0.5
+                    index < widget.teacher.User!.getRating() - 0.5
                         ? Icons.star
-                        : index - widget.teacher.rating + 0.5 > 0
+                        : index - widget.teacher.User!.getRating() + 0.25 > 0
                             ? Icons.star_border
                             : Icons.star_half,
                     color: Colors.yellow[700],
@@ -78,9 +81,14 @@ class _OverViewTeacherState extends State<OverViewTeacher> {
                   height: 15,
                   width: 30,
                 ),
-                const SizedBox(width: 5),
-                Text("${json["name"] ?? "none"}",
-                    style: const TextStyle(fontSize: 16)),
+                const SizedBox(width: 10),
+                SizedBox(
+                  width: 200,
+                  child: Text(
+                    "${json["name"] ?? "none"}",
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                ),
               ],
             )
           ],

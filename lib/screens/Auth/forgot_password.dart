@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lettutor_app/constants/app_constants.dart';
+import 'package:lettutor_app/data/api/auth_api.dart';
 import 'package:lettutor_app/screens/Auth/Components/default_button.dart';
 import 'package:lettutor_app/screens/auth/components/email_form_field.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -53,12 +54,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 const SizedBox(height: 15),
                 DefaultButton(
                   content: tr("SEND"),
-                  press: () {
+                  press: () async {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Processing Data $_email')),
-                      );
+                      String message = await AuthAPI().forgotPassowrd(_email);
+                      await _showMyDialog(title: "Message", message: message);
                     }
                   },
                 ),
@@ -68,6 +68,33 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           ),
         ),
       ),
+    );
+  }
+  Future<void> _showMyDialog(
+      {required String title, required String message}) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(message),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Approve'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
